@@ -1,0 +1,164 @@
+[
+  {
+    "name": "HTML5",
+    "level": 95,
+    "category": "Frontend",
+    "icon": "FaHtml5"
+  },
+  {
+    "name": "CSS3",
+    "level": 95,
+    "category": "Frontend",
+    "icon": "FaCss3"
+  },
+  {
+    "name": "React",
+    "level": 95,
+    "category": "Frontend",
+    "icon": "SiReact"
+  },
+  {
+    "name": "Angular",
+    "level": 85,
+    "category": "Frontend",
+    "icon": "FaAngular"
+  },
+  {
+    "name": "Next.js",
+    "level": 90,
+    "category": "Frontend",
+    "icon": "SiNextdotjs"
+  },
+  {
+    "name": "Tailwind CSS",
+    "level": 95,
+    "category": "Frontend",
+    "icon": "SiTailwindcss"
+  },
+  {
+    "name": "Vite",
+    "level": 85,
+    "category": "Frontend",
+    "icon": "SiVite"
+  },
+  {
+    "name": "Node.js",
+    "level": 88,
+    "category": "Backend",
+    "icon": "SiNodedotjs"
+  },
+  {
+    "name": "Express.js",
+    "level": 85,
+    "category": "Backend",
+    "icon": "SiExpress"
+  },
+  {
+    "name": "Prisma",
+    "level": 90,
+    "category": "Backend",
+    "icon": "SiPrisma"
+  },
+  {
+    "name": "Zod",
+    "level": 88,
+    "category": "Backend",
+    "icon": "SiZod"
+  },
+  {
+    "name": "JWT",
+    "level": 90,
+    "category": "Backend",
+    "icon": "SiJsonwebtokens"
+  },
+  {
+    "name": "PostgreSQL",
+    "level": 90,
+    "category": "Database",
+    "icon": "SiPostgresql"
+  },
+  {
+    "name": "MySQL",
+    "level": 88,
+    "category": "Database",
+    "icon": "SiMysql"
+  },
+  {
+    "name": "Azure",
+    "level": 85,
+    "category": "Cloud & DevOps",
+    "icon": "VscAzure"
+  },
+  {
+    "name": "Render",
+    "level": 88,
+    "category": "Cloud & DevOps",
+    "icon": "SiRender"
+  },
+  {
+    "name": "GitHub",
+    "level": 95,
+    "category": "Cloud & DevOps",
+    "icon": "SiGithub"
+  },
+  {
+    "name": "GitHub Actions",
+    "level": 90,
+    "category": "Cloud & DevOps",
+    "icon": "SiGithubactions"
+  },
+  {
+    "name": "CI/CD",
+    "level": 88,
+    "category": "Cloud & DevOps",
+    "icon": "FaInfinity"
+  },
+  {
+    "name": "Vercel",
+    "level": 92,
+    "category": "Cloud & DevOps",
+    "icon": "SiVercel"
+  },
+  {
+    "name": "Playwright",
+    "level": 85,
+    "category": "Testing",
+    "icon": "FaBug"
+  },
+  {
+    "name": "Vitest",
+    "level": 88,
+    "category": "Testing",
+    "icon": "SiVitest"
+  },
+  {
+    "name": "Supertest",
+    "level": 82,
+    "category": "Testing",
+    "icon": "FaVial"
+  },
+  {
+    "name": "Postman",
+    "level": 90,
+    "category": "Testing",
+    "icon": "SiPostman"
+  },
+  {
+    "name": "Visual Studio Code",
+    "level": 98,
+    "category": "Development Environment",
+    "icon": "VscVscode"
+  },
+  {
+    "name": "Antigravity",
+    "level": 100,
+    "category": "Development Environment",
+    "icon": "AntigravityIcon"
+  },
+  {
+    "name": "OpenAI Codex",
+    "level": 95,
+    "category": "Development Environment",
+    "icon": "SiOpenaigym"
+  }
+]
