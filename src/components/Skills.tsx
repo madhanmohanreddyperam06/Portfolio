@@ -5,11 +5,11 @@ import skills from '../data/skills.json';
 type Skill = (typeof skills)[number];
 
 const CATEGORY_ORDER = [
+  'Programming Languages',
   'Frontend',
   'Backend',
   'Database',
   'Cloud & DevOps',
-  'Testing',
   'Development Environment'
 ];
 

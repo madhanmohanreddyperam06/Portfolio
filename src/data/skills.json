@@ -90,12 +90,6 @@
     "icon": "VscAzure"
   },
   {
-    "name": "Render",
-    "level": 88,
-    "category": "Cloud & DevOps",
-    "icon": "SiRender"
-  },
-  {
     "name": "GitHub",
     "level": 95,
     "category": "Cloud & DevOps",
@@ -120,28 +114,28 @@
     "icon": "SiVercel"
   },
   {
-    "name": "Playwright",
-    "level": 85,
-    "category": "Testing",
-    "icon": "FaBug"
-  },
-  {
-    "name": "Vitest",
+    "name": "Render",
     "level": 88,
-    "category": "Testing",
-    "icon": "SiVitest"
+    "category": "Cloud & DevOps",
+    "icon": "SiRender"
   },
   {
-    "name": "Supertest",
-    "level": 82,
-    "category": "Testing",
-    "icon": "FaVial"
+    "name": "Python",
+    "level": 85,
+    "category": "Programming Languages",
+    "icon": "SiPython"
   },
   {
-    "name": "Postman",
-    "level": 90,
-    "category": "Testing",
-    "icon": "SiPostman"
+    "name": "Java",
+    "level": 80,
+    "category": "Programming Languages",
+    "icon": "FaJava"
+  },
+  {
+    "name": "JavaScript",
+    "level": 95,
+    "category": "Programming Languages",
+    "icon": "FaJs"
   },
   {
     "name": "Visual Studio Code",
@@ -150,15 +144,15 @@
     "icon": "VscVscode"
   },
   {
+    "name": "Devin",
+    "level": 95,
+    "category": "Development Environment",
+    "icon": "DevinIcon"
+  },
+  {
     "name": "Antigravity",
     "level": 100,
     "category": "Development Environment",
     "icon": "AntigravityIcon"
-  },
-  {
-    "name": "OpenAI Codex",
-    "level": 95,
-    "category": "Development Environment",
-    "icon": "SiOpenaigym"
   }
 ]
