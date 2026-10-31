@@ -4,33 +4,31 @@ import meta from '../data/meta.json';
 const OWNER = meta.name;
 
 /**
- * Dramatic Zoom Reveal Loader
- * Cinematic zoom effect with scale, blur, and rotation
+ * Cinematic Spotlight Loader
+ * Dramatic spotlight effect with dramatic reveal
  * Duration: ~4s total
  */
 export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [exiting, setExiting] = useState(false);
-  const [scale, setScale] = useState(0.5);
-  const [opacity, setOpacity] = useState(0);
+  const [intensity, setIntensity] = useState(0);
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (reduced) { onComplete(); return; }
 
-    // Animate scale and opacity
+    // Animate spotlight intensity
     let progress = 0;
     const animate = () => {
-      progress += 0.008;
+      progress += 0.005;
       if (progress <= 1) {
-        setScale(0.5 + progress * 0.5);
-        setOpacity(progress);
+        setIntensity(Math.sin(progress * Math.PI) * 100);
         requestAnimationFrame(animate);
       }
     };
     requestAnimationFrame(animate);
 
-    const exitTimer = setTimeout(() => setExiting(true), 3500);
-    const doneTimer = setTimeout(onComplete, 4000);
+    const exitTimer = setTimeout(() => setExiting(true), 5500);
+    const doneTimer = setTimeout(onComplete, 6000);
     return () => {
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
@@ -47,68 +45,80 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       }}
     >
       <style>{`
-        @keyframes rotate-slow {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+        @keyframes spotlight-sweep {
+          0% { transform: translateX(-100%) rotate(45deg); }
+          100% { transform: translateX(100vw) rotate(45deg); }
         }
-        @keyframes pulse-glow {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 0.7; }
+        @keyframes text-glow {
+          0%, 100% { text-shadow: 0 0 20px color-mix(in srgb, var(--accent) 20%, transparent); }
+          50% { text-shadow: 0 0 60px color-mix(in srgb, var(--accent) 50%, transparent); }
         }
-        @keyframes float {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+        @keyframes curtain-rise {
+          0% { transform: translateY(0); }
+          100% { transform: translateY(-100%); }
         }
-        .rotate-slow {
-          animation: rotate-slow 20s linear infinite;
+        @keyframes fade-in {
+          0% { opacity: 0; }
+          100% { opacity: 1; }
         }
-        .pulse-glow {
-          animation: pulse-glow 3s ease-in-out infinite;
+        .spotlight-sweep {
+          animation: spotlight-sweep 2s ease-in-out forwards;
         }
-        .float {
-          animation: float 4s ease-in-out infinite;
+        .text-glow {
+          animation: text-glow 2s ease-in-out infinite;
+        }
+        .curtain-rise {
+          animation: curtain-rise 1s ease-out 1.5s forwards;
+        }
+        .fade-in {
+          animation: fade-in 1s ease-out 1.5s forwards;
         }
       `}</style>
 
-      {/* Background rotating element */}
+      {/* Top curtain */}
       <div
-        className="rotate-slow absolute w-[800px] h-[800px] rounded-full"
+        className="curtain-rise absolute top-0 left-0 right-0 h-1/2 bg-[var(--bg-base)] z-20"
+        style={{ opacity: 0 }}
+      />
+
+      {/* Bottom curtain */}
+      <div
+        className="curtain-rise absolute bottom-0 left-0 right-0 h-1/2 bg-[var(--bg-base)] z-20"
+        style={{ opacity: 0, animationDelay: '1.5s' }}
+      />
+
+      {/* Spotlight beam */}
+      <div
+        className="spotlight-sweep absolute top-0 left-0 w-[200px] h-[200%]"
         style={{
-          background: 'conic-gradient(from 0deg, transparent, var(--accent)/10, transparent, var(--accent)/5, transparent)',
-          opacity: 0.5,
+          background: 'linear-gradient(90deg, transparent, var(--accent)/30, transparent)',
+          opacity: 0,
+          animationDelay: '0.5s',
         }}
       />
 
       {/* Central glow */}
       <div
-        className="pulse-glow absolute w-[400px] h-[400px] rounded-full"
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, color-mix(in srgb, var(--accent) 20%, transparent) 0%, transparent 70%)',
+          background: `radial-gradient(circle, color-mix(in srgb, var(--accent) ${intensity * 0.3}%, transparent) 0%, transparent 70%)`,
         }}
       />
 
-      {/* Main content with zoom effect */}
-      <div
-        className="relative z-10 text-center float"
-        style={{
-          transform: `scale(${scale})`,
-          opacity,
-          transition: 'transform 0.1s linear, opacity 0.1s linear',
-        }}
-      >
+      {/* Main content */}
+      <div className="relative z-30 text-center fade-in" style={{ opacity: 0 }}>
         <h1
-          className="text-3xl md:text-6xl font-bold tracking-tight"
+          className="text-glow text-3xl md:text-6xl font-bold tracking-tight"
           style={{
             fontFamily: "'Times New Roman', Times, serif",
-            textShadow: '0 0 40px color-mix(in srgb, var(--accent) 30%, transparent)',
           }}
         >
           {OWNER}
         </h1>
 
-        {/* Decorative line */}
+        {/* Dramatic divider */}
         <div
-          className="mt-6 mx-auto h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"
+          className="mt-8 mx-auto h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"
           style={{ width: '200px' }}
         />
       </div>
