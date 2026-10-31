@@ -208,7 +208,9 @@ export default function Hero({ started = false }: { started?: boolean }) {
                 href={s.href}
                 target="_blank"
                 rel="noreferrer noopener"
-                className="flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] text-[11px] font-medium uppercase tracking-[0.25em] transition-colors"
+                className={`flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] text-[11px] font-medium uppercase tracking-[0.25em] transition-colors ${
+                  s.label === 'HackerRank' ? 'hidden md:flex' : ''
+                }`}
               >
                 {s.icon && iconMap[s.icon]}
                 {s.label}
