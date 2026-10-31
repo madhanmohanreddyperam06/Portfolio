@@ -65,7 +65,7 @@ The build produces:
 - `dist/index.html` - Main HTML file
 - `dist/assets/` - CSS and JS bundles
 - `dist/favicon.svg` - Favicon
-- `dist/og-image.jpg` - Open Graph image
+- `dist/image.png` - Open Graph image
 - `dist/robots.txt` - SEO robots file
 - `dist/sitemap.xml` - Sitemap for SEO
 
