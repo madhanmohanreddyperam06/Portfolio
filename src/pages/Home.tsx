@@ -115,15 +115,17 @@ export default function Home() {
         style={!isMobile ? { transform: 'translateX(18%)', width: '100%' } : undefined}
         aria-hidden="true"
       >
-        {webglSupported ? (
-          <Suspense fallback={null}>
-            <LazyCanvas camera={{ position: [0, 0, 8], fov: 55 }}>
-              <LazyParticleField scrollProgress={scrollProgress} />
-            </LazyCanvas>
-          </Suspense>
-        ) : (
-          <CSSParticleFallback />
-        )}
+        {!isMobile ? (
+          webglSupported ? (
+            <Suspense fallback={null}>
+              <LazyCanvas camera={{ position: [0, 0, 8], fov: 55 }}>
+                <LazyParticleField scrollProgress={scrollProgress} />
+              </LazyCanvas>
+            </Suspense>
+          ) : (
+            <CSSParticleFallback />
+          )
+        ) : null}
       </div>
 
       <div className="relative z-10 w-full overflow-x-clip">
