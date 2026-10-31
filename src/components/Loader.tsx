@@ -1,191 +1,132 @@
 import { useEffect, useState } from 'react';
 import meta from '../data/meta.json';
 
-const OWNER = meta.name;
+const OWNER = meta.name.toUpperCase();
 
 /**
- * Cinematic Letter Reveal Loader
- * Enhanced typewriter effect with cinematic background elements
- * Total runtime ~4s
+ * Cinematic Anamorphic Film Reveal Loader
+ * Minimal, ultra-refined, filmic widescreen reveal.
+ * Duration: ~1.8s total
  */
 export default function Loader({ onComplete }: { onComplete: () => void }) {
-  const [exiting, setExiting] = useState(false);
-  const [text, setText] = useState('');
-  const [showElements, setShowElements] = useState(false);
+  const [phase, setPhase] = useState<'ignite' | 'focus' | 'reveal'>('ignite');
 
   useEffect(() => {
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduced) { onComplete(); return; }
+    // Skip if user prefers reduced motion
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      onComplete();
+      return;
+    }
 
-    // Show background elements after short delay
-    const elementsTimer = setTimeout(() => setShowElements(true), 500);
+    // Choreographed cinematic timeline
+    const t1 = setTimeout(() => setPhase('focus'), 250);   // Horizontal light ignites, name resolves
+    const t2 = setTimeout(() => setPhase('reveal'), 1500);  // Widescreen curtains expand open
+    const t3 = setTimeout(onComplete, 2100);               // Unmount and hand off to Hero
 
-    // Type effect
-    let index = 0;
-    const textInterval = setInterval(() => {
-      if (index <= OWNER.length) {
-        setText(OWNER.slice(0, index));
-        index++;
-      } else {
-        clearInterval(textInterval);
-      }
-    }, 250);
-
-    const exitTimer = setTimeout(() => setExiting(true), 5000);
-    const doneTimer = setTimeout(onComplete, 5500);
     return () => {
-      clearTimeout(elementsTimer);
-      clearInterval(textInterval);
-      clearTimeout(exitTimer);
-      clearTimeout(doneTimer);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
     };
   }, [onComplete]);
 
-  // Split text into "Madhan " and "DEV" for different colors
-  const whitePart = text.split('DEV')[0] || '';
-  const coloredPart = text.includes('DEV') ? text.slice(whitePart.length) : '';
+  const isExiting = phase === 'reveal';
 
   return (
     <div
-      className="fixed inset-0 z-[100] bg-[var(--bg-base)] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[100] bg-[#050507] overflow-hidden select-none pointer-events-none"
       style={{
-        opacity: exiting ? 0 : 1,
-        transition: 'opacity 600ms cubic-bezier(0.4, 0, 0.2, 1)',
-        pointerEvents: exiting ? 'none' : 'auto',
+        opacity: isExiting ? 0 : 1,
+        transition: 'opacity 550ms cubic-bezier(0.4, 0, 0.2, 1) 350ms',
       }}
     >
       <style>{`
-        @keyframes cursor-blink {
-          0%, 50% { opacity: 1; }
-          51%, 100% { opacity: 0; }
+        @keyframes lens-flare {
+          0% { transform: scaleX(0); opacity: 0; }
+          40% { opacity: 0.9; }
+          100% { transform: scaleX(1); opacity: 0.4; }
         }
-        @keyframes blur-in {
-          0% { filter: blur(10px); opacity: 0; }
-          100% { filter: blur(0); opacity: 1; }
-        }
-        @keyframes fade-in-up {
-          0% { opacity: 0; transform: translateY(20px); }
-          100% { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scale-ring {
-          0% { transform: scale(0.8); opacity: 0; }
-          50% { opacity: 0.3; }
-          100% { transform: scale(1.2); opacity: 0; }
-        }
-        @keyframes float-particle {
-          0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-          50% { transform: translateY(-20px) translateX(10px); opacity: 0.8; }
-        }
-        @keyframes scan-line {
-          0% { top: -10%; opacity: 0; }
-          10% { opacity: 0.5; }
-          90% { opacity: 0.5; }
-          100% { top: 110%; opacity: 0; }
-        }
-        @keyframes vignette-pulse {
-          0%, 100% { opacity: 0.6; }
-          50% { opacity: 0.8; }
-        }
-        .cursor {
-          animation: cursor-blink 0.8s infinite;
-        }
-        .blur-in {
-          animation: blur-in 0.3s ease-out forwards;
-        }
-        .fade-in-up {
-          animation: fade-in-up 0.8s ease-out forwards;
-        }
-        .scale-ring {
-          animation: scale-ring 3s ease-out infinite;
-        }
-        .float-particle {
-          animation: float-particle 4s ease-in-out infinite;
-        }
-        .scan-line {
-          animation: scan-line 2.5s linear infinite;
-        }
-        .vignette-pulse {
-          animation: vignette-pulse 3s ease-in-out infinite;
+        @keyframes pulse-glow {
+          0%, 100% { opacity: 0.25; filter: blur(30px); }
+          50% { opacity: 0.6; filter: blur(45px); }
         }
       `}</style>
 
-      {/* Cinematic vignette */}
+      {/* Top Film Shutter / Letterbox Curtain */}
       <div
-        className="absolute inset-0 pointer-events-none vignette-pulse"
+        className="absolute top-0 left-0 right-0 h-1/2 bg-[#050507] z-20 border-b border-[var(--border)]/40 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 30%, color-mix(in srgb, var(--bg-base) 85%, transparent) 100%)',
+          transform: isExiting ? 'translateY(-100%)' : 'translateY(0)',
         }}
       />
 
-      {/* Animated background rings */}
-      {showElements && (
-        <>
-          <div
-            className="scale-ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--accent)]/20"
-            style={{ width: '300px', height: '300px', animationDelay: '0s' }}
-          />
-          <div
-            className="scale-ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--accent)]/10"
-            style={{ width: '450px', height: '450px', animationDelay: '0.5s' }}
-          />
-          <div
-            className="scale-ring absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border border-[var(--accent)]/5"
-            style={{ width: '600px', height: '600px', animationDelay: '1s' }}
-          />
-        </>
-      )}
+      {/* Bottom Film Shutter / Letterbox Curtain */}
+      <div
+        className="absolute bottom-0 left-0 right-0 h-1/2 bg-[#050507] z-20 border-t border-[var(--border)]/40 transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)]"
+        style={{
+          transform: isExiting ? 'translateY(100%)' : 'translateY(0)',
+        }}
+      />
 
-      {/* Floating particles */}
-      {showElements && (
-        <>
-          <div
-            className="float-particle absolute w-2 h-2 rounded-full bg-[var(--accent)]/30"
-            style={{ left: '20%', top: '30%', animationDelay: '0s' }}
-          />
-          <div
-            className="float-particle absolute w-1.5 h-1.5 rounded-full bg-[var(--accent)]/40"
-            style={{ left: '80%', top: '25%', animationDelay: '0.5s' }}
-          />
-          <div
-            className="float-particle absolute w-2.5 h-2.5 rounded-full bg-[var(--accent)]/20"
-            style={{ left: '15%', top: '70%', animationDelay: '1s' }}
-          />
-          <div
-            className="float-particle absolute w-1 h-1 rounded-full bg-[var(--accent)]/50"
-            style={{ left: '85%', top: '65%', animationDelay: '1.5s' }}
-          />
-        </>
-      )}
+      {/* Center Cinematic Stage (Between Shutters) */}
+      <div className="relative z-30 flex flex-col items-center justify-center w-full h-full px-6">
+        {/* Soft Anamorphic Glow */}
+        <div
+          className="absolute w-[600px] max-w-[90vw] h-24 rounded-full pointer-events-none"
+          style={{
+            background: 'radial-gradient(ellipse at center, color-mix(in srgb, var(--accent) 30%, transparent) 0%, transparent 70%)',
+            animation: 'pulse-glow 2s ease-in-out infinite',
+          }}
+        />
 
-      {/* Scan line effect */}
-      {showElements && (
-        <div className="scan-line absolute left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[var(--accent)]/30 to-transparent" />
-      )}
+        {/* Razor-thin Anamorphic Light Beam */}
+        <div
+          className="w-full max-w-[480px] h-[1px] mb-8 pointer-events-none"
+          style={{
+            background: 'linear-gradient(90deg, transparent 0%, var(--accent) 50%, transparent 100%)',
+            animation: 'lens-flare 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+          }}
+        />
 
-      {/* Main content */}
-      <div className="relative z-10 text-center">
-        <h1
-          className="fade-in-up text-3xl md:text-5xl font-bold tracking-tight"
-          style={{ fontFamily: "'Times New Roman', Times, serif", opacity: 0 }}
+        {/* Subtitle / Eyebrow */}
+        <p
+          className="text-[10px] md:text-[11px] uppercase tracking-[0.45em] text-[var(--accent)] font-medium mb-3 transition-all duration-700"
+          style={{
+            opacity: phase === 'ignite' ? 0 : 0.85,
+            transform: phase === 'ignite' ? 'translateY(6px)' : 'translateY(0)',
+            transitionDelay: '150ms',
+          }}
         >
-          <span className="text-[var(--text-primary)]">{whitePart}</span>
-          <span className="text-[var(--accent)] blur-in" style={{ animationDelay: '0.1s' }}>{coloredPart}</span>
-          <span className="cursor text-[var(--accent)]">|</span>
+          A Portfolio By
+        </p>
+
+        {/* Cinematic Title — Optical Blur-to-Focus Reveal */}
+        <h1
+          className="text-2xl sm:text-3xl md:text-5xl font-normal uppercase text-[var(--text-primary)] text-center transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)]"
+          style={{
+            letterSpacing: '0.28em',
+            opacity: phase === 'ignite' ? 0 : 1,
+            filter: phase === 'ignite' ? 'blur(16px)' : 'blur(0px)',
+            transform: phase === 'ignite' ? 'scale(0.95)' : 'scale(1)',
+            textShadow: '0 0 35px rgba(212, 255, 79, 0.15)',
+          }}
+        >
+          {OWNER}
         </h1>
 
-        {/* Subtle progress indicator */}
-        {showElements && (
-          <div
-            className="fade-in-up mt-8 flex items-center justify-center gap-2"
-            style={{ opacity: 0, animationDelay: '0.3s' }}
-          >
-            <div className="w-16 h-[1px] bg-[var(--border)]" />
-            <span className="text-[10px] uppercase tracking-[0.3em] text-[var(--text-tertiary)]">
-              Loading
-            </span>
-            <div className="w-16 h-[1px] bg-[var(--border)]" />
-          </div>
-        )}
+        {/* Lower Film Telemetry / Coordinates */}
+        <div
+          className="mt-6 flex items-center gap-3 text-[9px] md:text-[10px] uppercase tracking-[0.35em] text-[var(--text-tertiary)] transition-all duration-700"
+          style={{
+            opacity: phase === 'ignite' ? 0 : 0.6,
+            transform: phase === 'ignite' ? 'translateY(-6px)' : 'translateY(0)',
+            transitionDelay: '300ms',
+          }}
+        >
+          <span>DEVELOPER</span>
+          <span className="w-1 h-1 rounded-full bg-[var(--accent)]/50" />
+          <span>ANDHRA PRADESH, IN</span>
+        </div>
       </div>
     </div>
   );
