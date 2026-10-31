@@ -336,7 +336,7 @@ export default function Skills() {
   const [revealedRows, setRevealedRows] = useState<Set<number>>(new Set());
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<string>('Frontend');
+  const [activeCategory, setActiveCategory] = useState<string>('Programming Languages');
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);

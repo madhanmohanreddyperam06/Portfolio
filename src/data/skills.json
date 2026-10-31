@@ -108,6 +108,12 @@
     "icon": "VscAzure"
   },
   {
+    "name": "Git",
+    "level": 92,
+    "category": "Cloud & DevOps",
+    "icon": "GitIcon"
+  },
+  {
     "name": "GitHub",
     "level": 95,
     "category": "Cloud & DevOps",
