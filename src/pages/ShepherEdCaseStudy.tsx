@@ -700,7 +700,6 @@ export default function ShepherEdCaseStudy() {
       <Helmet>
         <title>Engineering ShepherEd | Madhan Mohan Reddy Peram</title>
         <meta name="description" content="An engineering case study on building ShepherEd, a modular platform ecosystem for educational institutions." />
-        <link rel="canonical" href="https://vishnurohith.com/case-studies/shephered" />
       </Helmet>
 
       {/* Nav Header */}

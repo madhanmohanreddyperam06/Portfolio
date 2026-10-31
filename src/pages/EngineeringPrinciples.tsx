@@ -103,7 +103,6 @@ export default function EngineeringPrinciples() {
           name="description"
           content="The engineering principles that guide how Madhan Mohan Reddy Peram designs systems, makes technical decisions, and approaches software."
         />
-        <link rel="canonical" href="https://vishnurohith.com/principles" />
       </Helmet>
 
       {/* Nav Header */}

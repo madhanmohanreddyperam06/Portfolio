@@ -17,20 +17,19 @@ Madhan works at ShepherEd, building an enterprise college ERP and SaaS platform.
 ## Projects
 
 - EcoVate: Full-stack MERN application with authentication, form handling, and end-to-end production deployment. https://ecovate-global.vercel.app/
-- Personal Portfolio: Cinematic dark-themed portfolio with WebGL particles, GSAP scroll storytelling, and editorial typography. https://vishnurohithb.dev
+- Personal Portfolio: Cinematic dark-themed portfolio with WebGL particles, GSAP scroll storytelling, and editorial typography.
 - Email-Based Calendar Automation: AI workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.
 
 ## Tech Stack
 
-Frontend: React, Next.js, Vite, TypeScript, Tailwind CSS, Framer Motion, TanStack Query
+Frontend: HTML5, CSS3, React, Angular, Next.js, Tailwind CSS, Vite
 Backend: Node.js, Express.js, Prisma, Zod, JWT
-Database: PostgreSQL, MongoDB, Supabase, Redis, Neon
-Cloud & DevOps: Azure, Azure DevOps, GitHub, Vercel, CI/CD
+Database: PostgreSQL, MySQL
+Cloud & DevOps: Azure, Render, GitHub, GitHub Actions, CI/CD
 Testing: Playwright, Vitest, Supertest, Postman
 
 ## Links
 
-- Website: https://vishnurohithb.dev
 - Resume: /Peram_Madhan_Mohan_Reddy_Resume_.pdf
 - GitHub: https://github.com/madhanmohanreddyperam06
 - LinkedIn: https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253
