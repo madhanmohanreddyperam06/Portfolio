@@ -42,6 +42,12 @@
     "icon": "SiVite"
   },
   {
+    "name": "Streamlit",
+    "level": 80,
+    "category": "Frontend",
+    "icon": "SiStreamlit"
+  },
+  {
     "name": "Node.js",
     "level": 88,
     "category": "Backend",
@@ -52,6 +58,18 @@
     "level": 85,
     "category": "Backend",
     "icon": "SiExpress"
+  },
+  {
+    "name": "Flask",
+    "level": 80,
+    "category": "Backend",
+    "icon": "SiFlask"
+  },
+  {
+    "name": "FastAPI",
+    "level": 82,
+    "category": "Backend",
+    "icon": "SiFastapi"
   },
   {
     "name": "Prisma",
