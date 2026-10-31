@@ -199,7 +199,7 @@ export default function Nav() {
               <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square">
                 {mobileOpen
                   ? <><path d="M1 1L17 11"/><path d="M17 1L1 11"/></>
-                  : <><line x1="0" y1="1" x2="18" y2="1"/><line x1="4" y1="6" x2="18" y2="6"/><line x1="8" y1="11" x2="18" y2="11"/></>
+                  : <><line x1="0" y1="1" x2="18" y2="1"/><line x1="0" y1="6" x2="18" y2="6"/><line x1="0" y1="11" x2="18" y2="11"/></>
                 }
               </svg>
             </button>
