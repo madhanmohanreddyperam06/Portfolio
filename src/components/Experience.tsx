@@ -364,7 +364,7 @@ export default function Experience() {
           zIndex: 10,
         }}
       >
-        <div className="eyebrow mb-4">Experience</div>
+        <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>Experience</div>
         <h2
           className="font-display font-medium text-[var(--text-primary)]"
           style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', letterSpacing: '-0.02em' }}

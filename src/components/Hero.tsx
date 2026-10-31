@@ -182,7 +182,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
                   }
                 }
               }}
-              className="bg-[var(--accent)] text-[var(--bg-base)] px-8 py-4 text-sm font-semibold rounded-[2px] hover:bg-[#4A6EB5] transition-colors"
+              className="bg-[var(--accent)] text-[var(--bg-base)] px-8 py-4 text-sm font-semibold rounded-[2px] hover:bg-[#8A0B29] transition-colors"
             >
               {ctaPrimary.label}
             </a>

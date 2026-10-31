@@ -387,7 +387,7 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" ref={sectionRef} className="container-layout section-padding">
+    <section id="toolkit" ref={sectionRef} className="container-layout section-padding">
       <style>{`
         @keyframes skillSonarPing {
           0% { transform: scale(0.9); opacity: 0.75; }
@@ -419,7 +419,7 @@ export default function Skills() {
                 transition: 'opacity 0.5s ease',
               }}
             >
-              ● Skills & Tools
+              ● Toolkit
             </div>
             <h2
               className="font-display"
@@ -432,8 +432,8 @@ export default function Skills() {
                 lineHeight: 1.05,
               }}
             >
-              <WipeWord text="The" delay={0} visible={headerVisible} />{' '}
-              <WipeWord text="toolkit." delay={0.15} visible={headerVisible} />
+              <WipeWord text="SKILLS" delay={0} visible={headerVisible} />{' '}
+              <WipeWord text="& TOOLS" delay={0.15} visible={headerVisible} />
             </h2>
           </div>
           <div

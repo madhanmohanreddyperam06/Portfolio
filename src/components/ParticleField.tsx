@@ -100,7 +100,7 @@ export default function ParticleField({ scrollProgress }: { scrollProgress: Reac
     }
 
     if (materialRef.current) {
-      colorTarget.set(theme === 'light' ? '#0a0a0c' : '#6495ED');
+      colorTarget.set(theme === 'light' ? '#0a0a0c' : '#ffffff');
       colorCurrent.lerp(colorTarget, 0.05);
       materialRef.current.color = colorCurrent;
     }

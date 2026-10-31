@@ -15,11 +15,11 @@
   --text-primary:   #f5f5f2;
   --text-secondary: #8c8c94;
   --text-tertiary:  #4a4a52;
-  --accent:         #6495ED;
-  --accent-dim:     #4A6EB5;
+  --accent:         #DC143C;
+  --accent-dim:     #8A0B29;
   --border:         #1f1f24;
   --border-bright:  #2e2e36;
-  --particle-color: #6495ED;
+  --particle-color: #DC143C;
   --section-py:     120px;
 
   --text-hero: clamp(48px, 7.5vw, 112px);
@@ -179,7 +179,7 @@ h1, h2, h3, h4, h5, h6,
 }
 .css-particle {
   position: absolute;
-  background: #6495ED;
+  background: #DC143C;
   border-radius: 50%;
   animation: particle-pulse linear infinite;
 }
@@ -398,7 +398,7 @@ h1, h2, h3, h4, h5, h6,
   width: 2px;
   height: 0.9em;
   margin-left: 4px;
-  background: #6495ED;
+  background: #DC143C;
   vertical-align: -0.05em;
   animation: twBlink 0.9s steps(1) infinite;
 }

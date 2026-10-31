@@ -9,7 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 const NAV_LINKS = [
   { label: 'Journey',    href: '#journey' },
   { label: 'Experience', href: '#experience' },
-  { label: 'Skills',     href: '#skills' },
+  { label: 'Toolkit',     href: '#toolkit' },
   { label: 'Work',       href: '#projects' },
 ];
 
@@ -48,7 +48,7 @@ export default function Nav() {
       }
 
       // Active section detection
-      const sections = ['journey', 'experience', 'skills', 'projects'];
+      const sections = ['journey', 'experience', 'toolkit', 'projects'];
       let current = '';
       for (const id of sections) {
         const el = document.getElementById(id);
