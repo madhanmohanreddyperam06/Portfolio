@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiLeetcode } from 'react-icons/si';
+import { SiLeetcode, SiHackerrank } from 'react-icons/si';
 import hero from '../data/hero.json';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -42,6 +42,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
 
   const iconMap: Record<string, React.ReactNode> = {
     github: <FaGithub size={20} />,
+    hackerrank: <SiHackerrank size={20} />,
     linkedin: <FaLinkedin size={20} />,
     leetcode: <SiLeetcode size={20} />,
   };

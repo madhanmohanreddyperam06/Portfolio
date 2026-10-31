@@ -23,7 +23,7 @@ import {
 
 import { VscAzure, VscVscode } from 'react-icons/vsc';
 import { TbLetterK } from 'react-icons/tb';
-import { FaInfinity, FaBug, FaVial, FaSpaceShuttle, FaHeart, FaMoon, FaLinkedin, FaHtml5, FaCss3, FaAngular, FaJava, FaJs } from 'react-icons/fa';
+import { FaInfinity, FaBug, FaVial, FaSpaceShuttle, FaHeart, FaMoon, FaLinkedin, FaHtml5, FaCss3, FaAngular, FaJava, FaJs, FaWhatsapp, FaInstagram } from 'react-icons/fa';
 
 export const AntigravityIcon = ({ size = 20 }: { size?: number }) => (
   <svg width={size} height={size} viewBox="0 0 180 180" fill="none">
@@ -64,6 +64,8 @@ export const IconMap: Record<string, React.ComponentType<{ size?: number }>> = {
   FaJava,
   FaJs,
   FaLinkedin,
+  FaWhatsapp,
+  FaInstagram,
   VscAzure,
   VscVscode,
   FaInfinity,

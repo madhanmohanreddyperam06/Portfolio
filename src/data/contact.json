@@ -12,6 +12,16 @@
       "label": "LinkedIn",
       "url": "https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253",
       "icon": "FaLinkedin"
+    },
+    {
+      "label": "WhatsApp",
+      "url": "https://wa.me/qr/CRBOZCQVGOSWA1",
+      "icon": "FaWhatsapp"
+    },
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/madhan_me6/",
+      "icon": "FaInstagram"
     }
   ]
 }

@@ -127,7 +127,7 @@ export default function Contact() {
           {/* Name + Contact — NAP consistency for SEO */}
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div>
-              <p className="text-sm font-semibold text-[var(--text-primary)] tracking-wide">{meta.name}</p>
+              <p className="text-sm font-semibold text-[var(--text-primary)] tracking-wide">MADHAN MOHAN REDDY PERAM</p>
               <p className="text-xs text-[var(--text-tertiary)] mt-1">{meta.role} · Cuddapah, Andhra Pradesh, India</p>
             </div>
             <a
@@ -159,7 +159,7 @@ export default function Contact() {
             </div>
 
             <div className="flex items-center gap-8 text-xs text-[var(--border-bright)]">
-              <span>© {new Date().getFullYear()} {meta.name}</span>
+              <span>© {new Date().getFullYear()} MADHAN MOHAN REDDY PERAM</span>
               <button
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                 className="group flex items-center gap-2 hover:text-[var(--text-secondary)] transition-colors duration-200"

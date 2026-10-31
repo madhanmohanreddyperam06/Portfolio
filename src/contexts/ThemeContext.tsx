@@ -13,17 +13,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    // Check local storage or system preference on mount
+    // Check local storage on mount, default to dark mode
     const saved = localStorage.getItem('portfolio-theme') as Theme;
-    if (saved === 'light' || saved === 'dark') {
-      setTheme(saved);
-      document.documentElement.setAttribute('data-theme', saved);
-    } else {
-      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-      const initial = prefersLight ? 'light' : 'dark';
-      setTheme(initial);
-      document.documentElement.setAttribute('data-theme', initial);
-    }
+    const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
+    setTheme(initial);
+    document.documentElement.setAttribute('data-theme', initial);
   }, []);
 
   const toggleTheme = () => {
