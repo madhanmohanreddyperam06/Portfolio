@@ -13,7 +13,7 @@ export default function SEO({ title, description, path = '/' }: SEOProps) {
   const seoTitle = title || meta.name;
   const seoDescription = description || meta.tagline;
   const canonicalUrl = SITE_URL ? `${SITE_URL}${path}` : undefined;
-  const ogImageUrl = '/image.png';
+  const ogImageUrl = '/Preview.png';
 
   return (
     <Helmet>
