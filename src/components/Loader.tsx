@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react';
 import meta from '../data/meta.json';
 
 const OWNER = meta.name;
+const ROLE = meta.role;
 
 /**
  * Cinematic Spotlight Loader
  * Dramatic spotlight effect with dramatic reveal
- * Duration: ~4s total
+ * Duration: ~6s total
  */
 export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [exiting, setExiting] = useState(false);
   const [intensity, setIntensity] = useState(0);
+  const [roleText, setRoleText] = useState('');
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -27,9 +29,23 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
     };
     requestAnimationFrame(animate);
 
+    // Type "Developer" after delay
+    const typeTimer = setTimeout(() => {
+      let index = 0;
+      const typeInterval = setInterval(() => {
+        if (index <= ROLE.length) {
+          setRoleText(ROLE.slice(0, index));
+          index++;
+        } else {
+          clearInterval(typeInterval);
+        }
+      }, 100);
+    }, 2000);
+
     const exitTimer = setTimeout(() => setExiting(true), 5500);
     const doneTimer = setTimeout(onComplete, 6000);
     return () => {
+      clearTimeout(typeTimer);
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
     };
@@ -121,6 +137,16 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
           className="mt-8 mx-auto h-[2px] bg-gradient-to-r from-transparent via-[var(--accent)] to-transparent"
           style={{ width: '200px' }}
         />
+
+        {/* Typing role */}
+        <p
+          className="mt-6 text-sm md:text-base uppercase tracking-[0.3em] text-[var(--accent)]"
+          style={{
+            fontFamily: "'Times New Roman', Times, serif",
+          }}
+        >
+          {roleText}
+        </p>
       </div>
     </div>
   );
