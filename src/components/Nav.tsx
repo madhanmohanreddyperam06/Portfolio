@@ -110,13 +110,8 @@ export default function Nav() {
             className="group flex items-center gap-3 shrink-0"
             onClick={e => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
           >
-            <div className="w-9 h-9 bg-[var(--accent)] flex items-center justify-center">
-              <span className="font-display font-bold text-[var(--bg-base)] text-sm leading-none tracking-tight">
-                {meta.name.split(' ').slice(0, 2).map(n => n[0]).join('')}
-              </span>
-            </div>
-            <span className="hidden md:block font-display font-medium text-[var(--text-primary)] text-sm tracking-tight opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all duration-300 pointer-events-none">
-              {meta.name}
+            <span className="font-display font-bold text-[var(--text-primary)] text-sm tracking-tight">
+              Madhan DEV
             </span>
           </a>
 
