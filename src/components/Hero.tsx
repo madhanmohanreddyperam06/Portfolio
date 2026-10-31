@@ -123,11 +123,11 @@ export default function Hero({ started = false }: { started?: boolean }) {
             className="flex flex-wrap items-center gap-4 mb-8"
             style={{ opacity: 0 }}
           >
-            <span className="text-[var(--accent)] text-[11px] font-medium uppercase tracking-[0.3em]">
+            <span className="text-[var(--accent)] text-[9px] md:text-[11px] font-medium uppercase tracking-[0.3em]">
               {role}
             </span>
             <div className="h-[1px] w-8 bg-[var(--border-bright)]" />
-            <span className="text-[var(--text-secondary)] text-[11px] font-medium uppercase tracking-[0.25em]">
+            <span className="text-[var(--text-secondary)] text-[9px] md:text-[11px] font-medium uppercase tracking-[0.25em]">
               {location}
             </span>
           </div>
