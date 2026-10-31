@@ -1,6 +1,6 @@
 # Madhan Mohan Reddy Peram — Portfolio
 
-This repository contains my personal portfolio. It is a cinematic, WebGL-powered React application.
+A cinematic WebGL-powered React application.
 
 ## Tech Stack
 ![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=white)
@@ -24,15 +24,6 @@ To run this project locally:
    ```
 3. Open `http://localhost:8080` in your browser.
 
-## Deployment
+## Live URL
 
-### Render
-The portfolio is configured for deployment on Render using the `render.yaml` file.
-
-To deploy to Render:
-1. Connect your GitHub repository to Render
-2. Select "Static Site" as the service type
-3. Render will auto-detect `render.yaml` and configure everything automatically
-4. Deploy
-
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md)
+[![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-4673FF?style=for-the-badge&logo=render&logoColor=white)](https://portfolio-qto0.onrender.com/)
