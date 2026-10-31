@@ -5,7 +5,7 @@ import { useTheme } from '../../contexts/ThemeContext';
 import notes from '../../data/notesData.json';
 import meta from '../../data/meta.json';
 
-const monogram = meta.name.split(' ').slice(0, 2).map(n => n[0]).join('');
+const monogram = 'Madhan DEV';
 
 /* ─── helpers ─── */
 function readingTime(text: string): string {
