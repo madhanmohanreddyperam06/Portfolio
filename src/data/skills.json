@@ -72,10 +72,10 @@
     "icon": "SiFastapi"
   },
   {
-    "name": "Prisma",
+    "name": "REST APIs",
     "level": 90,
     "category": "Backend",
-    "icon": "SiPrisma"
+    "icon": "RestApiIcon"
   },
   {
     "name": "Zod",
