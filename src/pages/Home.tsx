@@ -10,6 +10,7 @@ import Nav from '../components/Nav';
 import Hero from '../components/Hero';
 import SEO from '../components/SEO';
 import Journey from '../components/Journey';
+import LeetCodeAnalytics from '../components/LeetCodeAnalytics';
 import Experience from '../components/Experience';
 import Skills from '../components/Skills';
 import Projects from '../components/Projects';
@@ -132,6 +133,7 @@ export default function Home() {
         <main>
           <Hero started={!loading} />
           <Journey />
+          <LeetCodeAnalytics />
           <Experience />
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
           <Skills />
