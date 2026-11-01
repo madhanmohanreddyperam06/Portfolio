@@ -70,7 +70,7 @@ const LeetCodeLogo = ({ size = 22 }: { size?: number }) => (
 export default function LeetCodeAnalytics() {
   const [data, setData] = useState<LeetCodeData>(INITIAL_DATA);
   const [isSyncing, setIsSyncing] = useState(false);
-  const [lastSyncTime, setLastSyncTime] = useState<string>('Live Connected');
+  const [lastSyncTime, setLastSyncTime] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'submissions' | 'activity'>('submissions');
   const [syncStatus, setSyncStatus] = useState<'live' | 'syncing' | 'synced'>('live');
 
@@ -201,7 +201,7 @@ export default function LeetCodeAnalytics() {
 
         {/* Live sync status banner */}
         <div className="flex items-center justify-between text-xs border border-[var(--border)] bg-[var(--bg-elevated)]/60 backdrop-blur-sm px-4 py-2.5 rounded-lg mb-8 text-[var(--text-secondary)]">
-          <div className="flex items-center gap-2">
+          <div className="hidden md:flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="tracking-wide">
               <strong className="text-[var(--text-primary)] font-mono">@{USERNAME}</strong>
