@@ -52,30 +52,12 @@ function ProjectRow({
         flexWrap: 'wrap',
       }}
     >
-      {align === 'right' ? (
-        <>
-          <span>{project.subtitle?.split(' ').slice(0, 2).join(' ') || 'Case Study'}</span>
-          <span style={{ color: '#2a2a30' }}>/</span>
-          <span>{project.year}</span>
-          <span style={{ color: ACCENT }}>{idx}</span>
-        </>
-      ) : align === 'center' ? (
-        <>
-          <span style={{ color: '#2a2a30' }}>[</span>
-          <span>{project.subtitle?.split(' ').slice(0, 2).join(' ') || 'Case Study'}</span>
-          <span style={{ color: '#2a2a30' }}>/</span>
-          <span>{project.year}</span>
-          <span style={{ color: ACCENT }}>· {idx}</span>
-          <span style={{ color: '#2a2a30' }}>]</span>
-        </>
-      ) : (
-        <>
-          <span style={{ color: ACCENT }}>{idx}</span>
-          <span>{project.subtitle?.split(' ').slice(0, 2).join(' ') || 'Case Study'}</span>
-          <span style={{ color: '#2a2a30' }}>/</span>
-          <span>{project.year}</span>
-        </>
-      )}
+      <>
+        <span style={{ color: ACCENT }}>{idx}</span>
+        <span>{project.subtitle || 'Case Study'}</span>
+        <span style={{ color: '#2a2a30' }}>/</span>
+        <span>{project.year}</span>
+      </>
     </div>
   );
 
@@ -162,7 +144,11 @@ function ProjectRow({
               color: isHovered ? '#c8c8d0' : '#5a5a64',
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              transition: 'color 0.35s ease',
+              transition: 'all 0.35s ease',
+              padding: '6px 12px',
+              border: `1px solid ${isHovered ? 'rgba(140,140,148,0.6)' : 'rgba(140,140,148,0.28)'}`,
+              borderRadius: '4px',
+              background: isHovered ? 'rgba(140,140,148,0.1)' : 'transparent',
             }}
           >
             {tag}
@@ -415,7 +401,7 @@ export default function Projects() {
             maxWidth: '18ch',
           }}
         >
-          Digital{' '}
+          Projects I have built{' '}
           <span
             style={{
               fontStyle: 'italic',
@@ -423,10 +409,7 @@ export default function Projects() {
               color: '#5a5a64',
             }}
           >
-            artifacts
           </span>{' '}
-          &<br />
-          experimental interfaces.
         </h2>
       </header>
 

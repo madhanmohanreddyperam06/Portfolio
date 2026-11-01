@@ -1,45 +1,47 @@
 [
   {
     "id": "proj-01",
-    "title": "EcoVate",
-    "subtitle": "Full-Stack MERN Application",
-    "description": "Built a complete MERN stack application featuring authentication, form handling, deployment, and end-to-end ownership from development to production.",
+    "title": "MITRA",
+    "subtitle": "FastAPI Application",
+    "description": "An intelligent AI-powered institution helpdesk assistant designed specifically for college students and staff which provides instant support by understanding natural language queries and delivering relevant FAQ responses with text-to-speech capabilities.",
     "tags": [
-      "React",
-      "Node.js",
-      "MongoDB",
-      "Express"
+      "Python",
+      "FastAPI",
+      "PostgreSQL",
+      "Streamlit"
     ],
     "year": "2025",
-    "link": "https://ecovate-global.vercel.app/",
+    "link": "https://mitra-1-x8fo.onrender.com/",
     "featured": true
   },
   {
     "id": "proj-02",
-    "title": "Personal Portfolio",
+    "title": "Portfolio Website",
     "subtitle": "Cinematic React Portfolio",
-    "description": "A cinematic dark-themed portfolio with WebGL particles, GSAP scroll storytelling, and editorial typography.",
+    "description": "A cinematic portfolio with WebGL particles, GSAP scroll storytelling and editorial typography.",
     "tags": [
-      "React 19",
+      "React",
       "Vite",
       "TypeScript",
-      "Tailwind v4",
+      "Tailwind CSS",
       "GSAP",
       "React Three Fiber"
     ],
     "year": "2026",
-    "link": "#",
+    "link": "https://portfolio-qto0.onrender.com/",
     "featured": true
   },
   {
     "id": "proj-03",
-    "title": "Email-Based Calendar Automation",
-    "subtitle": "AI Workflow Automation",
+    "title": "Campus Finder"  ,
+    "subtitle": "Generative AI",
     "description": "Created an intelligent workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.",
     "tags": [
-      "n8n",
-      "Gemini AI",
-      "Google Calendar API"
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Google Gemini API"
     ],
     "year": "2025",
     "link": "https://drive.google.com/file/d/1_xThxxREVn4mPhf8IuYrJfWhbf9qLbWv/view?usp=sharing",
