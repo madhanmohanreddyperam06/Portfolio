@@ -13,7 +13,8 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    // Check local storage on mount, default to dark mode
+    // STRICT RULE: Always default to dark theme on first visit
+    // Only use saved preference if explicitly set by user
     const saved = localStorage.getItem('portfolio-theme') as Theme;
     const initial = saved === 'light' || saved === 'dark' ? saved : 'dark';
     setTheme(initial);

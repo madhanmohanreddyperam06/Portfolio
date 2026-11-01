@@ -13,6 +13,8 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
   const [exiting, setExiting] = useState(false);
   const [intensity, setIntensity] = useState(0);
   const [roleText, setRoleText] = useState('');
+  const [showMadhanDev, setShowMadhanDev] = useState(false);
+  const [crimsonIndex, setCrimsonIndex] = useState(0); // 0 = none, 1 = D, 2 = DE, 3 = DEV
 
   useEffect(() => {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -44,10 +46,23 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
 
     const exitTimer = setTimeout(() => setExiting(true), 5500);
     const doneTimer = setTimeout(onComplete, 6000);
+
+    // Switch to "Madhan DEV" at 3.5 seconds
+    const switchTimer = setTimeout(() => setShowMadhanDev(true), 3500);
+
+    // Animate DEV crimson letter by letter starting at 3.8 seconds
+    const devCrimsonTimers: NodeJS.Timeout[] = [];
+    ['D', 'DE', 'DEV'].forEach((target, i) => {
+      const timer = setTimeout(() => setCrimsonIndex(i + 1), 3800 + (i * 400));
+      devCrimsonTimers.push(timer);
+    });
+
     return () => {
       clearTimeout(typeTimer);
       clearTimeout(exitTimer);
       clearTimeout(doneTimer);
+      clearTimeout(switchTimer);
+      devCrimsonTimers.forEach(t => clearTimeout(t));
     };
   }, [onComplete]);
 
@@ -124,12 +139,23 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
       {/* Main content */}
       <div className="relative z-30 text-center fade-in" style={{ opacity: 0 }}>
         <h1
-          className="text-glow text-3xl md:text-6xl font-bold tracking-tight"
+          className="text-3xl md:text-6xl font-bold tracking-tight"
           style={{
             fontFamily: "'Times New Roman', Times, serif",
           }}
         >
-          {OWNER}
+          {showMadhanDev ? (
+            <>
+              Madhan{' '}
+              <span>
+                <span style={{ color: crimsonIndex >= 1 ? 'var(--accent)' : 'var(--text-primary)' }}>D</span>
+                <span style={{ color: crimsonIndex >= 2 ? 'var(--accent)' : 'var(--text-primary)' }}>E</span>
+                <span style={{ color: crimsonIndex >= 3 ? 'var(--accent)' : 'var(--text-primary)' }}>V</span>
+              </span>
+            </>
+          ) : (
+            OWNER
+          )}
         </h1>
 
         {/* Dramatic divider */}
