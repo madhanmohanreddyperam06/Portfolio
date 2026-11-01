@@ -8,6 +8,7 @@ import meta from '../data/meta.json';
 gsap.registerPlugin(ScrollTrigger);
 
 const NAV_LINKS = [
+  { label: 'About Me',   href: '/about' },
   { label: 'Journey',    href: '#journey' },
   { label: 'LeetCode',   href: '#leetcode' },
   { label: 'Experience', href: '#experience' },
@@ -131,31 +132,39 @@ export default function Nav() {
               aria-hidden="true"
             />
             {NAV_LINKS.map((link, i) => (
-              <a
-                key={link.label}
-                ref={el => { linkRefs.current[i] = el; }}
-                href={link.href}
-                onClick={(e) => handleScroll(e, link.href)}
-                className={`relative z-10 px-4 py-2 text-[13px] font-medium rounded-full transition-colors duration-200 ${
-                  activeSection === link.href.slice(1)
-                    ? 'text-[var(--text-primary)]'
-                    : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                }`}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.label}
+                  ref={el => { linkRefs.current[i] = el; }}
+                  to={link.href}
+                  className={`relative z-10 px-4 py-2 text-[13px] font-medium rounded-full transition-colors duration-200 ${
+                    activeSection === link.href.slice(1)
+                      ? 'text-[var(--text-primary)]'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  ref={el => { linkRefs.current[i] = el; }}
+                  href={link.href}
+                  onClick={(e) => handleScroll(e, link.href)}
+                  className={`relative z-10 px-4 py-2 text-[13px] font-medium rounded-full transition-colors duration-200 ${
+                    activeSection === link.href.slice(1)
+                      ? 'text-[var(--text-primary)]'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
+                  }`}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
           </div>
 
           {/* Right: availability + CTA */}
           <div className="hidden md:flex items-center gap-4 shrink-0 ml-auto md:ml-0">
-            <Link
-              to="/about"
-              className="text-[12px] font-mono tracking-wider uppercase text-[var(--accent)] hover:opacity-80 transition-opacity flex items-center gap-1.5 border border-[var(--accent)]/30 px-3.5 py-1.5 rounded-full hover:border-[var(--accent)]"
-            >
-              <span>About Me</span>
-              <span>→</span>
-            </Link>
             <div className="flex items-center gap-2 text-xs font-medium text-[var(--text-secondary)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
               Available
@@ -167,7 +176,7 @@ export default function Nav() {
             >
               Let's Talk
             </a>
-            
+
             <button
               onClick={toggleTheme}
               className="w-10 h-10 rounded-full flex items-center justify-center border border-[var(--border)] text-[var(--text-primary)] hover:bg-[var(--border)] transition-colors"
@@ -224,48 +233,30 @@ export default function Nav() {
           className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-[30rem] opacity-100' : 'max-h-0 opacity-0'}`}
         >
           <div className="container-layout pt-4 pb-6 flex flex-col gap-1.5 border-t border-[var(--border)] mt-4">
-            {/* About Me Button in Hamburger */}
-            <Link
-              to="/about"
-              onClick={() => setMobileOpen(false)}
-              className="py-3 px-3.5 my-1 rounded-lg bg-[var(--accent)]/10 border border-[var(--accent)]/40 hover:border-[var(--accent)] transition-all flex items-center justify-between"
-              style={{
-                fontFamily: 'Menlo, monospace',
-                fontSize: '12px',
-                letterSpacing: '0.14em',
-                textTransform: 'uppercase',
-                color: 'var(--accent)',
-              }}
-            >
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
-                <span>About Me</span>
-              </div>
-              <span aria-hidden="true">→</span>
-            </Link>
-
             {NAV_LINKS.map(link => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors border-b border-[var(--border)]/40"
-                onClick={(e) => {
-                  setMobileOpen(false);
-                  handleScroll(e, link.href);
-                }}
-              >
-                {link.label}
-              </a>
+              link.href.startsWith('/') ? (
+                <Link
+                  key={link.label}
+                  to={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors border-b border-[var(--border)]/40"
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  className="py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors border-b border-[var(--border)]/40"
+                  onClick={(e) => {
+                    setMobileOpen(false);
+                    handleScroll(e, link.href);
+                  }}
+                >
+                  {link.label}
+                </a>
+              )
             ))}
-
-            <Link
-              to="/principles"
-              onClick={() => setMobileOpen(false)}
-              className="py-2.5 text-xs font-mono tracking-wider uppercase text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors border-b border-[var(--border)]/40 flex items-center justify-between"
-            >
-              <span>Engineering Principles</span>
-              <span>→</span>
-            </Link>
 
             <a
               href="#contact"

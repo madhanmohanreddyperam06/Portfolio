@@ -360,35 +360,6 @@ export default function Principles() {
           Explore My Engineering Principles
           <span aria-hidden="true" style={{ fontSize: '1em' }}>→</span>
         </Link>
-
-        <Link
-          to="/about"
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '0.6em',
-            fontFamily: 'Menlo, monospace',
-            fontSize: 'clamp(11px, 0.9vw, 13px)',
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            textDecoration: 'none',
-            borderBottom: '1px solid color-mix(in srgb, var(--accent) 30%, transparent)',
-            paddingBottom: '3px',
-            transition: 'border-color 0.3s ease, gap 0.3s ease',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent) 80%, transparent)';
-            e.currentTarget.style.gap = '0.9em';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent) 30%, transparent)';
-            e.currentTarget.style.gap = '0.6em';
-          }}
-        >
-          Explore More About Me
-          <span aria-hidden="true" style={{ fontSize: '1em' }}>→</span>
-        </Link>
       </div>
     </section>
   );
