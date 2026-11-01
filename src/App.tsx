@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import ShepherEdCaseStudy from './pages/ShepherEdCaseStudy';
 import EngineeringPrinciples from './pages/EngineeringPrinciples';
 import NoteList from './pages/notes/NoteList';
+import AboutMe from './pages/AboutMe';
 
 import { ThemeProvider } from './contexts/ThemeContext';
 
@@ -38,6 +39,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/case-studies/shephered" element={<ShepherEdCaseStudy />} />
           <Route path="/principles" element={<EngineeringPrinciples />} />
+          <Route path="/about" element={<AboutMe />} />
           <Route path="/notes" element={<NoteList />} />
 
         </Routes>

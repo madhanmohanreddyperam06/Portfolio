@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useTheme } from '../contexts/ThemeContext';
@@ -26,6 +27,10 @@ export default function Nav() {
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (href.startsWith('#')) {
+      if (window.location.pathname !== '/') {
+        window.location.href = '/' + href;
+        return;
+      }
       e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
@@ -144,6 +149,13 @@ export default function Nav() {
 
           {/* Right: availability + CTA */}
           <div className="hidden md:flex items-center gap-4 shrink-0 ml-auto md:ml-0">
+            <Link
+              to="/about"
+              className="text-[12px] font-mono tracking-wider uppercase text-[var(--accent)] hover:opacity-80 transition-opacity flex items-center gap-1.5 border border-[var(--accent)]/30 px-3.5 py-1.5 rounded-full hover:border-[var(--accent)]"
+            >
+              <span>About Me</span>
+              <span>→</span>
+            </Link>
             <div className="flex items-center gap-2 text-xs font-medium text-[var(--text-secondary)]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#4ade80] animate-pulse" />
               Available
@@ -209,14 +221,34 @@ export default function Nav() {
 
         {/* Mobile menu */}
         <div
-          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'}`}
+          className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${mobileOpen ? 'max-h-[30rem] opacity-100' : 'max-h-0 opacity-0'}`}
         >
-          <div className="container-layout pt-4 pb-6 flex flex-col gap-1 border-t border-[var(--border)] mt-4">
+          <div className="container-layout pt-4 pb-6 flex flex-col gap-1.5 border-t border-[var(--border)] mt-4">
+            {/* About Me Button in Hamburger */}
+            <Link
+              to="/about"
+              onClick={() => setMobileOpen(false)}
+              className="py-3 px-3.5 my-1 rounded-lg bg-[var(--accent)]/10 border border-[var(--accent)]/40 hover:border-[var(--accent)] transition-all flex items-center justify-between"
+              style={{
+                fontFamily: 'Menlo, monospace',
+                fontSize: '12px',
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--accent)',
+              }}
+            >
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                <span>About Me</span>
+              </div>
+              <span aria-hidden="true">→</span>
+            </Link>
+
             {NAV_LINKS.map(link => (
               <a
                 key={link.label}
                 href={link.href}
-                className="py-3 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors border-b border-[var(--border)]/40"
+                className="py-2.5 text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors border-b border-[var(--border)]/40"
                 onClick={(e) => {
                   setMobileOpen(false);
                   handleScroll(e, link.href);
@@ -225,9 +257,19 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
+
+            <Link
+              to="/principles"
+              onClick={() => setMobileOpen(false)}
+              className="py-2.5 text-xs font-mono tracking-wider uppercase text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors border-b border-[var(--border)]/40 flex items-center justify-between"
+            >
+              <span>Engineering Principles</span>
+              <span>→</span>
+            </Link>
+
             <a
               href="#contact"
-              className="mt-3 py-3 text-sm font-medium text-[var(--accent)] hover:text-[var(--text-primary)] transition-colors"
+              className="mt-2 py-3 text-sm font-medium text-[var(--accent)] hover:text-[var(--text-primary)] transition-colors"
               onClick={(e) => {
                 setMobileOpen(false);
                 handleScroll(e, '#contact');

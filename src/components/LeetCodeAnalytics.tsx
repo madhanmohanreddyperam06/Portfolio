@@ -216,7 +216,7 @@ export default function LeetCodeAnalytics() {
         </div>
 
         {/* Detailed Analytics: Horizontal Difficulty Breakdown */}
-        <div className="p-6 md:p-8 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]">
+        <div className="py-6 md:py-8">
           <div className="flex items-center justify-between mb-6 pb-3 border-b border-[var(--border)]">
             <h3 className="text-base font-semibold uppercase tracking-wider text-[var(--text-primary)]">
               Difficulty Breakdown

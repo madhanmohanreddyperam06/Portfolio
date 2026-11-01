@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import journey from '../data/journey.json';
 
 type JourneyItem = (typeof journey)[number];
@@ -444,6 +445,38 @@ export default function Journey() {
             </div>
           );
         })}
+      </div>
+
+      {/* Journey CTA -> About Me */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 'clamp(2.5rem, 5vh, 4rem)', position: 'relative', zIndex: 10 }}>
+        <Link
+          to="/about"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '0.6em',
+            fontFamily: 'Menlo, monospace',
+            fontSize: 'clamp(11px, 0.9vw, 13px)',
+            letterSpacing: '0.16em',
+            textTransform: 'uppercase',
+            color: 'var(--accent)',
+            textDecoration: 'none',
+            borderBottom: '1px solid color-mix(in srgb, var(--accent) 30%, transparent)',
+            paddingBottom: '3px',
+            transition: 'border-color 0.3s ease, gap 0.3s ease',
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent) 80%, transparent)';
+            e.currentTarget.style.gap = '0.9em';
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--accent) 30%, transparent)';
+            e.currentTarget.style.gap = '0.6em';
+          }}
+        >
+          Explore More About Me
+          <span aria-hidden="true" style={{ fontSize: '1em' }}>→</span>
+        </Link>
       </div>
     </section>
   );
