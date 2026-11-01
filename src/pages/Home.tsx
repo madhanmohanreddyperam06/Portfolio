@@ -17,7 +17,6 @@ import ShepherEd from '../components/ShepherEd';
 import HowIWork from '../components/HowIWork';
 // import EngineeringWithAI from '../components/EngineeringWithAI';
 import Principles from '../components/Principles';
-import Testimonials from '../components/Testimonials';
 import Contact from '../components/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -137,7 +136,9 @@ export default function Home() {
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
           <Skills />
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
-          <ShepherEd />
+          <div className="hidden md:block">
+            <ShepherEd />
+          </div>
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
           <Projects />
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
@@ -145,8 +146,6 @@ export default function Home() {
           <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
           {/* <EngineeringWithAI /> */}
           <Principles />
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
-          <Testimonials />
         </main>
         <Contact />
       </div>
