@@ -163,14 +163,14 @@ export default function LeetCodeAnalytics() {
             <div className="flex items-center gap-2 mb-3">
               <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
               <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
-                Live Analytics & Metrics
+                Programming
               </span>
             </div>
             <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
-              LeetCode Problem Solving
+              LeetCode Analytics
             </h2>
             <p className="mt-3 text-sm md:text-base text-[var(--text-secondary)] max-w-xl leading-relaxed">
-              Real-time competitive programming performance, difficulty breakdowns, and algorithm practice synced live from LeetCode.
+              Real-time competitive programming performance, difficulty breakdowns and algorithm practice synced live from LeetCode.
             </p>
           </div>
 
@@ -204,7 +204,7 @@ export default function LeetCodeAnalytics() {
           <div className="flex items-center gap-2">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
             <span className="tracking-wide">
-              Handle: <strong className="text-[var(--text-primary)] font-mono">@{USERNAME}</strong>
+              <strong className="text-[var(--text-primary)] font-mono">@{USERNAME}</strong>
             </span>
           </div>
           <div className="text-[11px] tracking-wider uppercase text-[var(--text-tertiary)] flex items-center gap-2">
@@ -215,369 +215,140 @@ export default function LeetCodeAnalytics() {
           </div>
         </div>
 
-        {/* Primary Metrics Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {/* Card 1: Total Solved */}
-          <div className="p-6 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]/80 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--text-tertiary)] font-medium">Total Solved</span>
-              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center">
-                <CheckCircle2 size={16} />
-              </div>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl md:text-5xl font-light text-[var(--text-primary)] font-mono">
-                {data.totalSolved}
-              </span>
-              <span className="text-xs text-[var(--text-tertiary)] font-mono">/ {data.totalQuestions}</span>
-            </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border)] text-xs text-[var(--text-secondary)] flex justify-between">
-              <span>Catalog Coverage</span>
-              <span className="text-[var(--accent)] font-mono font-medium">{totalPercent.toFixed(2)}%</span>
-            </div>
+        {/* Detailed Analytics: Horizontal Difficulty Breakdown */}
+        <div className="p-6 md:p-8 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]">
+          <div className="flex items-center justify-between mb-6 pb-3 border-b border-[var(--border)]">
+            <h3 className="text-base font-semibold uppercase tracking-wider text-[var(--text-primary)]">
+              Difficulty Breakdown
+            </h3>
+            <span className="text-xs text-[var(--text-tertiary)] font-mono">
+              {data.totalSolved} Solved
+            </span>
           </div>
 
-          {/* Card 2: Acceptance Rate */}
-          <div className="p-6 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]/80 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--text-tertiary)] font-medium">Accuracy</span>
-              <div className="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center">
-                <TrendingUp size={16} />
-              </div>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl md:text-5xl font-light text-[var(--text-primary)] font-mono">
-                {data.acceptanceRate}%
-              </span>
-            </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border)] text-xs text-[var(--text-secondary)] flex justify-between">
-              <span>Submission Quality</span>
-              <span className="text-emerald-400 font-medium">High Precision</span>
-            </div>
-          </div>
-
-          {/* Card 3: Global Ranking */}
-          <div className="p-6 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]/80 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--text-tertiary)] font-medium">Global Ranking</span>
-              <div className="w-8 h-8 rounded-lg bg-amber-500/10 text-amber-400 flex items-center justify-center">
-                <Award size={16} />
-              </div>
-            </div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-3xl md:text-4xl font-light text-[var(--text-primary)] font-mono">
-                #{data.ranking.toLocaleString()}
-              </span>
-            </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border)] text-xs text-[var(--text-secondary)] flex justify-between">
-              <span>Community Rank</span>
-              <span className="text-amber-400 font-medium">Active Competitor</span>
-            </div>
-          </div>
-
-          {/* Card 4: Contributions & Activity */}
-          <div className="p-6 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)]/80 relative overflow-hidden flex flex-col justify-between">
-            <div className="flex items-center justify-between mb-4">
-              <span className="text-xs uppercase tracking-widest text-[var(--text-tertiary)] font-medium">Points</span>
-              <div className="w-8 h-8 rounded-lg bg-[var(--accent)]/10 text-[var(--accent)] flex items-center justify-center">
-                <Flame size={16} />
-              </div>
-            </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-4xl md:text-5xl font-light text-[var(--accent)] font-mono">
-                {data.contributionPoint}
-              </span>
-              <span className="text-xs text-[var(--text-tertiary)] uppercase tracking-wider">PTS</span>
-            </div>
-            <div className="mt-4 pt-3 border-t border-[var(--border)] text-xs text-[var(--text-secondary)] flex justify-between">
-              <span>Community Rep</span>
-              <span className="text-[var(--text-primary)] font-mono font-medium">{data.reputation}</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Detailed Analytics Split: Difficulty Gauge vs Interactive Feed */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-          {/* Left Column: Difficulty Distribution Breakdown */}
-          <div className="lg:col-span-5 p-6 md:p-8 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] flex flex-col justify-between">
-            <div>
-              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[var(--border)]">
-                <h3 className="text-base font-semibold uppercase tracking-wider text-[var(--text-primary)]">
-                  Difficulty Breakdown
-                </h3>
-                <span className="text-xs text-[var(--text-tertiary)] font-mono">
-                  {data.totalSolved} Solved
-                </span>
-              </div>
-
-              {/* Central Circular Gauge & Stats */}
-              <div className="flex flex-col sm:flex-row items-center gap-6 my-6">
-                <div className="relative w-36 h-36 shrink-0 flex items-center justify-center">
-                  <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
-                    {/* Background track */}
-                    <circle
-                      cx="64"
-                      cy="64"
-                      r={radius}
-                      fill="none"
-                      stroke="var(--border)"
-                      strokeWidth="8"
-                    />
-                    {/* Active progress */}
-                    <circle
-                      cx="64"
-                      cy="64"
-                      r={radius}
-                      fill="none"
-                      stroke="var(--accent)"
-                      strokeWidth="8"
-                      strokeDasharray={circ}
-                      strokeDashoffset={strokeDashoffset}
-                      strokeLinecap="round"
-                      className="transition-all duration-1000 ease-out"
-                    />
-                  </svg>
-                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-                    <span className="text-2xl font-bold font-mono text-[var(--text-primary)]">
-                      {data.totalSolved}
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest text-[var(--text-tertiary)]">
-                      Solved
-                    </span>
-                  </div>
-                </div>
-
-                <div className="text-xs text-[var(--text-secondary)] space-y-2">
-                  <p className="leading-relaxed">
-                    Strong foundation in <strong className="text-[var(--text-primary)]">core data structures</strong>, iterative algorithms, string manipulation, and math problems.
-                  </p>
-                  <div className="flex items-center gap-2 text-[11px] text-[var(--accent)] font-medium">
-                    <Code2 size={13} />
-                    <span>Focus Languages: Java & Python</span>
-                  </div>
+          {/* Horizontal Layout: Circular Gauge + Stacked Cards */}
+          <div className="flex flex-col md:flex-row gap-8">
+            {/* Left: Circular Gauge */}
+            <div className="shrink-0 flex flex-col items-center justify-center">
+              <div className="relative w-48 h-48 shrink-0 flex items-center justify-center">
+                <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
+                  {/* Background track */}
+                  <circle
+                    cx="64"
+                    cy="64"
+                    r={radius}
+                    fill="none"
+                    stroke="var(--border)"
+                    strokeWidth="8"
+                  />
+                  {/* Active progress */}
+                  <circle
+                    cx="64"
+                    cy="64"
+                    r={radius}
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="8"
+                    strokeDasharray={circ}
+                    strokeDashoffset={strokeDashoffset}
+                    strokeLinecap="round"
+                    className="transition-all duration-1000 ease-out"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+                  <span className="text-3xl font-bold font-mono text-[var(--text-primary)]">
+                    {data.totalSolved}
+                  </span>
+                  <span className="text-[10px] uppercase tracking-widest text-[var(--text-tertiary)]">
+                    / {data.totalQuestions}
+                  </span>
+                  <span className="text-[9px] text-[var(--text-tertiary)] mt-1">
+                    Total Solved
+                  </span>
                 </div>
               </div>
+            </div>
 
-              {/* Difficulty Progress Bars */}
-              <div className="space-y-4 pt-2">
-                {/* Easy */}
-                <div>
-                  <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="text-emerald-400 font-semibold tracking-wide flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                      Easy
-                    </span>
-                    <span className="font-mono text-xs text-[var(--text-secondary)]">
-                      <strong className="text-[var(--text-primary)]">{data.easySolved}</strong> / {data.totalEasy}
-                    </span>
-                  </div>
-                  <div className="h-2 w-full bg-[var(--bg-base)] rounded-full overflow-hidden border border-[var(--border)]">
+            {/* Right: Stacked Difficulty Cards */}
+            <div className="flex-1 flex flex-col justify-center gap-3">
+              {/* Easy Card */}
+              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full bg-emerald-400" />
+                  <span className="text-sm font-semibold text-[var(--text-primary)]">Easy</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-mono text-[var(--text-secondary)]">
+                    {data.easySolved} / {data.totalEasy}
+                  </span>
+                  <div className="w-24 h-2 bg-[var(--border)] rounded-full overflow-hidden">
                     <div
                       className="h-full bg-emerald-400 rounded-full transition-all duration-700"
                       style={{ width: `${Math.max((data.easySolved / data.totalEasy) * 100, 2)}%` }}
                     />
                   </div>
                 </div>
+              </div>
 
-                {/* Medium */}
-                <div>
-                  <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="text-amber-400 font-semibold tracking-wide flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-amber-400" />
-                      Medium
-                    </span>
-                    <span className="font-mono text-xs text-[var(--text-secondary)]">
-                      <strong className="text-[var(--text-primary)]">{data.mediumSolved}</strong> / {data.totalMedium}
-                    </span>
-                  </div>
-                  <div className="h-2 w-full bg-[var(--bg-base)] rounded-full overflow-hidden border border-[var(--border)]">
+              {/* Medium Card */}
+              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full bg-amber-400" />
+                  <span className="text-sm font-semibold text-[var(--text-primary)]">Med.</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-mono text-[var(--text-secondary)]">
+                    {data.mediumSolved} / {data.totalMedium}
+                  </span>
+                  <div className="w-24 h-2 bg-[var(--border)] rounded-full overflow-hidden">
                     <div
                       className="h-full bg-amber-400 rounded-full transition-all duration-700"
                       style={{ width: `${Math.max((data.mediumSolved / data.totalMedium) * 100, 1.5)}%` }}
                     />
                   </div>
                 </div>
+              </div>
 
-                {/* Hard */}
-                <div>
-                  <div className="flex items-center justify-between text-xs mb-1.5">
-                    <span className="text-rose-400 font-semibold tracking-wide flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-rose-400" />
-                      Hard
-                    </span>
-                    <span className="font-mono text-xs text-[var(--text-secondary)]">
-                      <strong className="text-[var(--text-primary)]">{data.hardSolved}</strong> / {data.totalHard}
-                    </span>
-                  </div>
-                  <div className="h-2 w-full bg-[var(--bg-base)] rounded-full overflow-hidden border border-[var(--border)]">
+              {/* Hard Card */}
+              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#DC143C' }} />
+                  <span className="text-sm font-semibold text-[var(--text-primary)]">Hard</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="text-sm font-mono text-[var(--text-secondary)]">
+                    {data.hardSolved} / {data.totalHard}
+                  </span>
+                  <div className="w-24 h-2 bg-[var(--border)] rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-rose-400 rounded-full transition-all duration-700"
-                      style={{ width: `${Math.max((data.hardSolved / data.totalHard) * 100, 0)}%` }}
+                      className="h-full rounded-full transition-all duration-700"
+                      style={{ 
+                        backgroundColor: '#DC143C',
+                        width: `${Math.max((data.hardSolved / data.totalHard) * 100, 0)}%`
+                      }}
                     />
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Bottom link callout */}
-            <div className="mt-8 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs">
-              <span className="text-[var(--text-tertiary)]">Continuous algorithmic growth</span>
-              <a
-                href={PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[var(--accent)] hover:underline flex items-center gap-1 font-medium"
-              >
-                <span>Live Feed</span>
-                <ExternalLink size={11} />
-              </a>
-            </div>
           </div>
 
-          {/* Right Column: Interactive Submissions & Activity Heatmap */}
-          <div className="lg:col-span-7 p-6 md:p-8 rounded-xl border border-[var(--border)] bg-[var(--bg-elevated)] flex flex-col justify-between">
-            <div>
-              {/* Tabs */}
-              <div className="flex items-center justify-between mb-6 pb-3 border-b border-[var(--border)]">
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setActiveTab('submissions')}
-                    className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded transition-all cursor-pointer ${
-                      activeTab === 'submissions'
-                        ? 'bg-[var(--accent)] text-[var(--bg-base)]'
-                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                    }`}
-                  >
-                    Recent Submissions
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('activity')}
-                    className={`px-3 py-1.5 text-xs font-semibold uppercase tracking-wider rounded transition-all cursor-pointer ${
-                      activeTab === 'activity'
-                        ? 'bg-[var(--accent)] text-[var(--bg-base)]'
-                        : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
-                    }`}
-                  >
-                    Submission Calendar
-                  </button>
-                </div>
-
-                <span className="hidden sm:inline-block text-[11px] uppercase tracking-widest text-[var(--text-tertiary)]">
-                  Live Log
-                </span>
-              </div>
-
-              {/* Tab 1: Recent Submissions List */}
-              {activeTab === 'submissions' && (
-                <div className="space-y-2.5 max-h-[380px] overflow-y-auto pr-1">
-                  {data.recentSubmissions.slice(0, 8).map((sub, idx) => {
-                    const isAccepted = sub.statusDisplay === 'Accepted';
-                    return (
-                      <a
-                        key={idx}
-                        href={`https://leetcode.com/problems/${sub.titleSlug}/`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group flex items-center justify-between p-3 rounded-lg border border-[var(--border)]/60 bg-[var(--bg-base)]/60 hover:border-[var(--accent)] hover:bg-[var(--bg-elevated-2)] transition-all"
-                      >
-                        <div className="flex items-center gap-3 min-w-0 pr-3">
-                          <span
-                            className={`w-2 h-2 rounded-full shrink-0 ${
-                              isAccepted ? 'bg-emerald-400' : 'bg-amber-400'
-                            }`}
-                          />
-                          <span className="text-sm font-medium text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors truncate">
-                            {sub.title}
-                          </span>
-                        </div>
-
-                        <div className="flex items-center gap-2 shrink-0">
-                          <span className="text-[11px] font-mono px-2 py-0.5 rounded bg-[var(--border)]/70 text-[var(--text-secondary)] uppercase">
-                            {sub.lang}
-                          </span>
-                          <span
-                            className={`text-[11px] font-medium px-2 py-0.5 rounded ${
-                              isAccepted
-                                ? 'bg-emerald-500/10 text-emerald-400'
-                                : 'bg-amber-500/10 text-amber-400'
-                            }`}
-                          >
-                            {sub.statusDisplay}
-                          </span>
-                        </div>
-                      </a>
-                    );
-                  })}
-                </div>
-              )}
-
-              {/* Tab 2: Activity Heatmap & Calendar Stats */}
-              {activeTab === 'activity' && (
-                <div className="py-4">
-                  <div className="flex items-center gap-3 mb-6 p-4 rounded-lg bg-[var(--bg-base)] border border-[var(--border)]">
-                    <Calendar className="text-[var(--accent)]" size={20} />
-                    <div>
-                      <p className="text-sm font-semibold text-[var(--text-primary)]">
-                        {calendarDays.totalSubmissions} Total Submissions Recorded
-                      </p>
-                      <p className="text-xs text-[var(--text-tertiary)] mt-0.5">
-                        Active submission milestones logged in LeetCode submission history
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Submission History Grid */}
-                  <div className="space-y-3">
-                    <span className="text-xs uppercase tracking-wider text-[var(--text-tertiary)] font-medium">
-                      Recent Activity Bursts:
-                    </span>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                      {calendarDays.entries.map(([stamp, count]) => {
-                        const date = new Date(parseInt(stamp, 10) * 1000);
-                        const dateStr = date.toLocaleDateString(undefined, {
-                          month: 'short',
-                          day: 'numeric',
-                          year: 'numeric',
-                        });
-                        return (
-                          <div
-                            key={stamp}
-                            className="p-3.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex flex-col justify-between"
-                          >
-                            <span className="text-[11px] text-[var(--text-tertiary)] uppercase tracking-wider">
-                              {dateStr}
-                            </span>
-                            <div className="mt-2 flex items-baseline gap-1.5">
-                              <span className="text-2xl font-bold font-mono text-[var(--accent)]">
-                                {count}
-                              </span>
-                              <span className="text-xs text-[var(--text-secondary)]">submissions</span>
-                            </div>
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-              )}
-            </div>
-
-            {/* Bottom info banner */}
-            <div className="mt-6 pt-4 border-t border-[var(--border)] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-[var(--text-tertiary)]">
-              <span>Syncs automatically with LeetCode API</span>
-              <a
-                href={PROFILE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors"
-              >
-                <span>Full history on leetcode.com</span>
-                <ExternalLink size={12} />
-              </a>
-            </div>
+          {/* Bottom link callout */}
+          <div className="mt-6 pt-4 border-t border-[var(--border)] flex items-center justify-between text-xs">
+            <span className="text-[var(--text-tertiary)]">Continuous algorithmic growth</span>
+            <a
+              href={PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--accent)] hover:underline flex items-center gap-1 font-medium"
+            >
+              <span>Live Feed</span>
+              <ExternalLink size={11} />
+            </a>
           </div>
         </div>
       </div>
     </section>
   );
 }
+

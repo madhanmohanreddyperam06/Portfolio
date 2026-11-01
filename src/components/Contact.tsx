@@ -68,7 +68,7 @@ export default function Contact() {
         >
           <span className="w-2 h-2 rounded-full bg-[#4ade80] animate-pulse" />
           <span className="text-xs font-medium text-[var(--text-secondary)] tracking-wide uppercase">
-            Open to new projects
+            Open to opportunities
           </span>
         </div>
 
