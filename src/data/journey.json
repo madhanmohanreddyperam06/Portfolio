@@ -1,32 +1,32 @@
 [
   {
     "year": "2022",
-    "title": "Started Programming",
-    "description": "Began learning programming, data structures, and web development.",
+    "title": "Programming Foundation at University",
+    "description": "Began learning programming fundamentals & Problem Solving",
     "tag": "Origin"
   },
   {
     "year": "2023",
-    "title": "Built First Full-Stack Projects",
-    "description": "Started developing complete web applications using the MERN stack.",
+    "title": "Built Academic Projects",
+    "description": "Started developing comprehensive python based applications",
     "tag": "Growth"
   },
   {
     "year": "2024",
-    "title": "SDE Internship",
-    "description": "Worked at CodeSizzler contributing to HackersDock and cloud deployment workflows.",
+    "title": "AI Developer Internship",
+    "description": "Worked at Viswam AI contributing to Bhashaverse and Artificial Intelligence related workflows.",
     "tag": "Experience"
   },
   {
     "year": "2025",
-    "title": "Advanced Full-Stack Development",
-    "description": "Focused on scalable architectures, automation, AI integrations, and production-ready systems.",
-    "tag": "Growth"
+    "title": "Full Stack Development Training at matrimony.com",
+    "description": "Training Led by Industry Experts — From Core Fundamentals to Production-Ready Systems.",
+    "tag": "Training"
   },
   {
     "year": "2026",
     "title": "Engineering Graduate",
-    "description": "Graduating with practical experience in full-stack development and cloud technologies.",
+    "description": "Graduating with Hands-On Experience in Core Programming and Full-Stack Development.",
     "tag": "Today"
   }
 ]

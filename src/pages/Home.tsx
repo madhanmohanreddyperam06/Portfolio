@@ -134,12 +134,18 @@ export default function Home() {
           <Hero started={!loading} />
           <Journey />
           <Experience />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           <Skills />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           <ShepherEd />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           <Projects />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           <HowIWork />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           {/* <EngineeringWithAI /> */}
           <Principles />
+          <div className="md:hidden h-1 bg-[var(--accent)] mx-6" />
           <Testimonials />
         </main>
         <Contact />
