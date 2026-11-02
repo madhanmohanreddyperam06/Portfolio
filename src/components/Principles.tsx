@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import principles from '../data/principles.json';
 
-const HEADER_WORDS = ['Engineering', 'Principles', '.'];
+const HEADER_WORDS = ['Engineering', 'Principles'];
 
 function splitWithAccent(title: string, accentWord: string) {
   const idx = title.indexOf(accentWord);
