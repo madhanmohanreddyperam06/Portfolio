@@ -287,12 +287,12 @@ export default function HowIWork() {
     <section
       ref={sectionRef}
       id="how-i-work"
-      style={{ padding: 'clamp(5rem, 10vh, 9rem) 0', position: 'relative' }}
+      className="container-layout section-padding"
+      style={{ position: 'relative' }}
     >
       {/* Header */}
       <div
         style={{
-          padding: '0 5vw',
           marginBottom: 'clamp(3.5rem, 7vh, 6rem)',
           display: 'flex',
           alignItems: 'flex-end',
@@ -388,7 +388,6 @@ export default function HowIWork() {
         <div
           aria-hidden="true"
           style={{
-            margin: '0 5vw',
             height: '1px',
             backgroundColor: '#1a1a22',
             opacity: revealedSteps.size >= TOTAL ? 1 : 0,

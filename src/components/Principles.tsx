@@ -202,10 +202,11 @@ export default function Principles() {
     <section
       ref={sectionRef}
       id="principles"
-      style={{ padding: 'clamp(5rem, 10vh, 9rem) 0', position: 'relative' }}
+      className="container-layout section-padding"
+      style={{ position: 'relative' }}
     >
       {/* Header */}
-      <div style={{ padding: '0 5vw', marginBottom: 'clamp(3rem, 6vh, 5rem)' }}>
+      <div style={{ marginBottom: 'clamp(3rem, 6vh, 5rem)' }}>
         <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
           Beliefs
         </div>
@@ -268,7 +269,6 @@ export default function Principles() {
       <div
         aria-hidden="true"
         style={{
-          margin: '0 5vw',
           height: '1px',
           backgroundColor: '#1a1a22',
           opacity: headerVisible ? 1 : 0,
@@ -293,7 +293,6 @@ export default function Principles() {
           <div
             aria-hidden="true"
             style={{
-              margin: '0 5vw',
               height: '1px',
               background: revealedRows.has(i)
                 ? '#1e1e28'
@@ -311,7 +310,7 @@ export default function Principles() {
       <div
         ref={ctaRef}
         style={{
-          padding: 'clamp(3rem, 6vh, 5rem) 5vw 0',
+          marginTop: 'clamp(2rem, 4vh, 3rem)',
           opacity: ctaVisible ? 1 : 0,
           transform: ctaVisible ? 'translateY(0)' : 'translateY(16px)',
           transition: 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1)',

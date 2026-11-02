@@ -8,7 +8,7 @@ import meta from '../data/meta.json';
 gsap.registerPlugin(ScrollTrigger);
 
 const NAV_LINKS = [
-  { label: 'About Me',   href: '/about' },
+  { label: 'Profile',   href: '/about' },
   { label: 'Journey',    href: '#journey' },
   { label: 'LeetCode',   href: '#leetcode' },
   { label: 'Experience', href: '#experience' },

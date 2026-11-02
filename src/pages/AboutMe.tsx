@@ -294,10 +294,10 @@ export default function AboutMe() {
         {/* ======================= HERO / PROFILE SECTION ======================= */}
         <section className="mb-20">
           <div className="mb-8">
-            <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
+            <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
               Profile
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-[var(--text-primary)] mt-1">
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] mt-1">
               About Me
             </h2>
           </div>
@@ -357,7 +357,7 @@ export default function AboutMe() {
               </div>
 
               <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed pt-2">
-                Computer Science graduate passionate about crafting robust software systems, performant backend architectures, and clean user interfaces. Hands-on experience across <strong className="text-[var(--text-primary)]">Java, JavaScript, Python, Flask, FastAPI, React and SQL databases</strong>.
+                Computer Science graduate passionate about crafting robust software systems, performant backend architectures, and clean user interfaces. Hands-on experience across Java, JavaScript, Python, Flask, FastAPI, React and SQL databases.
               </p>
 
               {/* Social pill links */}
