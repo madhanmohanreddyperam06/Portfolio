@@ -17,8 +17,8 @@ services:
       - path: /*
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
-    routes:
-      - type: rewrite
-        source: /(.*)$
+    redirects:
+      - source: /*
         destination: /index.html
+        type: rewrite
 version: "1"
