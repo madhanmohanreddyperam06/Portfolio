@@ -8,6 +8,16 @@
   --font-mono: 'Times New Roman', Times, Georgia, serif;
 }
 
+/* Dynamic base font size for mobile responsiveness */
+html {
+  font-size: 16px;
+}
+@media (max-width: 767px) {
+  html {
+    font-size: calc(14px + 0.4vw);
+  }
+}
+
 :root {
   --bg-base:        #08080a;
   --bg-elevated:    #111114;
@@ -22,15 +32,26 @@
   --particle-color: #DC143C;
   --section-py:     120px;
 
-  --text-hero: clamp(48px, 7.5vw, 112px);
-  --text-h1: clamp(36px, 5vw, 64px);
-  --text-h2: clamp(24px, 3vw, 36px);
-  --text-body: 17px;
-  --text-small: 13px;
+  --text-hero: clamp(32px, 6vw, 112px);
+  --text-h1: clamp(24px, 4vw, 64px);
+  --text-h2: clamp(20px, 3vw, 36px);
+  --text-body: clamp(16px, 2.5vw, 17px);
+  --text-small: clamp(13px, 2vw, 13px);
 
   background-color: var(--bg-base);
   color: var(--text-primary);
   font-family: 'Times New Roman', Times, Georgia, serif;
+}
+
+/* Mobile-specific font scaling for better readability */
+@media (max-width: 767px) {
+  :root {
+    --text-hero: clamp(28px, 8vw, 48px);
+    --text-h1: clamp(20px, 5vw, 36px);
+    --text-h2: clamp(18px, 4vw, 24px);
+    --text-body: clamp(15px, 3vw, 16px);
+    --text-small: clamp(12px, 2.5vw, 13px);
+  }
 }
 
 :root[data-theme="light"] {
