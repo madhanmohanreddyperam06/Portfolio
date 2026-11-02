@@ -206,18 +206,7 @@ export default function Principles() {
     >
       {/* Header */}
       <div style={{ padding: '0 5vw', marginBottom: 'clamp(3rem, 6vh, 5rem)' }}>
-        <div
-          style={{
-            fontFamily: 'Menlo, monospace',
-            fontSize: '10px',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            marginBottom: '1.25rem',
-            opacity: headerVisible ? 0.85 : 0,
-            transition: 'opacity 0.5s ease',
-          }}
-        >
+        <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
           Beliefs
         </div>
 

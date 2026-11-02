@@ -407,19 +407,8 @@ export default function Skills() {
           }}
         >
           <div>
-            <div
-              style={{
-                fontFamily: 'Menlo, monospace',
-                fontSize: '10px',
-                letterSpacing: '0.18em',
-                textTransform: 'uppercase',
-                color: ACCENT,
-                marginBottom: '1rem',
-                opacity: headerVisible ? 0.85 : 0,
-                transition: 'opacity 0.5s ease',
-              }}
-            >
-              ● Toolkit
+            <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
+              Toolkit
             </div>
             <h2
               className="font-display"
@@ -432,8 +421,8 @@ export default function Skills() {
                 lineHeight: 1.05,
               }}
             >
-              <WipeWord text="SKILLS" delay={0} visible={headerVisible} />{' '}
-              <WipeWord text="& TOOLS" delay={0.15} visible={headerVisible} />
+              <WipeWord text="Skills" delay={0} visible={headerVisible} />{' '}
+              <WipeWord text="& Tools" delay={0.15} visible={headerVisible} />
             </h2>
           </div>
           <div

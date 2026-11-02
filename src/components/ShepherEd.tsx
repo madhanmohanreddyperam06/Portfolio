@@ -247,15 +247,15 @@ export default function IndusMind() {
 
             <span
               data-indus-intro
-              className="inline-flex items-center gap-2 text-[var(--accent)] text-xs font-display tracking-[0.28em] uppercase"
+              className="eyebrow text-xs font-display tracking-[0.28em] uppercase"
+              style={{ color: 'var(--accent)' }}
             >
-              <span className="text-[10px]">●</span>
               Featured Platform
             </span>
 
             <h2
               data-indus-intro
-              className="font-display font-bold uppercase text-[var(--text-primary)] leading-[0.9] tracking-tighter text-5xl sm:text-6xl md:text-7xl"
+              className="font-display font-bold text-[var(--text-primary)] leading-[0.9] tracking-tighter text-5xl sm:text-6xl md:text-7xl"
             >
               Building
               <br />

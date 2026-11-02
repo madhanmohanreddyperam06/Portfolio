@@ -87,9 +87,9 @@ h1, h2, h3, h4, h5, h6,
 
 .eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.25em;
   color: var(--text-tertiary);
-  font-size: var(--text-small);
+  font-size: 12px;
   font-weight: 500;
   font-family: var(--font-body);
 }
@@ -97,6 +97,12 @@ h1, h2, h3, h4, h5, h6,
   content: '●';
   color: var(--accent);
   margin-right: 8px;
+  font-size: 17px;
+  animation: eyebrow-dot-blink 1.5s ease-in-out infinite;
+}
+@keyframes eyebrow-dot-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 ::selection {

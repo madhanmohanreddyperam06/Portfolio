@@ -302,18 +302,7 @@ export default function HowIWork() {
         }}
       >
         <div>
-          <div
-            style={{
-              fontFamily: 'Menlo, monospace',
-              fontSize: '10px',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'var(--accent)',
-              marginBottom: '1.25rem',
-              opacity: headerVisible ? 0.85 : 0,
-              transition: 'opacity 0.5s ease',
-            }}
-          >
+          <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
             Process
           </div>
           <h2

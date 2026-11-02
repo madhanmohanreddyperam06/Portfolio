@@ -166,7 +166,7 @@ export default function LeetCodeAnalytics() {
                 Programming
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
               LeetCode Analytics
             </h2>
             <p className="mt-3 text-sm md:text-base text-[var(--text-secondary)] max-w-xl leading-relaxed">

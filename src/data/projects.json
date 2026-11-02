@@ -34,7 +34,7 @@
   {
     "id": "proj-03",
     "title": "Campus Finder"  ,
-    "subtitle": "Generative AI",
+    "subtitle": "Generative AI Application",
     "description": "Created an intelligent workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.",
     "tags": [
       "Next.js",

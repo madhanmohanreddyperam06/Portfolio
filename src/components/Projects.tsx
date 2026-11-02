@@ -377,17 +377,8 @@ export default function Projects() {
           transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.16,1,0.3,1)',
         }}
       >
-        <div
-          style={{
-            fontFamily: 'Menlo, monospace',
-            fontSize: '10px',
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            color: ACCENT,
-            marginBottom: '1.25rem',
-          }}
-        >
-          ● Selected Work
+        <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
+          Selected Work
         </div>
         <h2
           className="font-display"

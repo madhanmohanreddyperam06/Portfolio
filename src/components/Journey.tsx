@@ -217,17 +217,7 @@ export default function Journey() {
           transition: 'opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)',
         }}
       >
-        <div
-          style={{
-            fontFamily: 'Menlo, monospace',
-            fontSize: '10px',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'var(--accent)',
-            marginBottom: '1rem',
-            opacity: 0.85,
-          }}
-        >
+        <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
           The Journey
         </div>
         <p style={{ fontSize: 'clamp(14px, 1.1vw, 16px)', color: 'var(--text-secondary)', lineHeight: 1.8, margin: 0 }}>
