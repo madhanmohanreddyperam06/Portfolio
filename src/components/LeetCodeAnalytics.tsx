@@ -271,8 +271,8 @@ export default function LeetCodeAnalytics() {
 
             {/* Right: Stacked Difficulty Cards */}
             <div className="flex-1 flex flex-col justify-center gap-3">
-              {/* Easy Card */}
-              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+              {/* Easy Line */}
+              <div className="flex items-center justify-between py-3 border-b border-[var(--border)]">
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-emerald-400" />
                   <span className="text-sm font-semibold text-[var(--text-primary)]">Easy</span>
@@ -290,8 +290,8 @@ export default function LeetCodeAnalytics() {
                 </div>
               </div>
 
-              {/* Medium Card */}
-              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+              {/* Medium Line */}
+              <div className="flex items-center justify-between py-3 border-b border-[var(--border)]">
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full bg-amber-400" />
                   <span className="text-sm font-semibold text-[var(--text-primary)]">Med.</span>
@@ -309,8 +309,8 @@ export default function LeetCodeAnalytics() {
                 </div>
               </div>
 
-              {/* Hard Card */}
-              <div className="p-4 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between">
+              {/* Hard Line */}
+              <div className="flex items-center justify-between py-3">
                 <div className="flex items-center gap-3">
                   <span className="w-3 h-3 rounded-full" style={{ backgroundColor: '#DC143C' }} />
                   <span className="text-sm font-semibold text-[var(--text-primary)]">Hard</span>
