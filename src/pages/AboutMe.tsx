@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -11,6 +11,57 @@ import {
   User
 } from 'lucide-react';
 import meta from '../data/meta.json';
+
+// Lazy-load Three.js canvas and ParticleField
+const LazyCanvas = React.lazy(() => import('@react-three/fiber').then(m => ({ default: m.Canvas })));
+const LazyParticleField = React.lazy(() => import('../components/ParticleField'));
+
+let _webglCached: boolean | null = null;
+function isWebGLAvailable(): boolean {
+  if (_webglCached !== null) return _webglCached;
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
+    _webglCached = !!ctx;
+    if (ctx) {
+      const ext = ctx.getExtension('WEBGL_lose_context');
+      ext?.loseContext();
+    }
+  } catch {
+    _webglCached = false;
+  }
+  return _webglCached ?? false;
+}
+
+function CSSParticleFallback() {
+  const particlesData = useRef<Array<React.CSSProperties>>([]);
+  if (particlesData.current.length === 0) {
+    particlesData.current = Array.from({ length: 80 }, () => ({
+      left: `${(Math.random() * 100).toFixed(1)}%`,
+      top: `${(Math.random() * 100).toFixed(1)}%`,
+      animationDelay: `${(Math.random() * 6).toFixed(2)}s`,
+      animationDuration: `${(5 + Math.random() * 9).toFixed(2)}s`,
+      width: `${(1 + Math.random() * 2).toFixed(1)}px`,
+      height: `${(1 + Math.random() * 2).toFixed(1)}px`,
+    }));
+  }
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {particlesData.current.map((style, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            ...style,
+            background: 'var(--particle-color)',
+            opacity: 0.6,
+            animation: `float ${style.animationDuration} ease-in-out infinite alternate`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 const GITHUB_URL = 'https://github.com/madhanmohanreddyperam06';
 const LINKEDIN_URL = 'https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253';
@@ -174,6 +225,7 @@ export default function AboutMe() {
   const [profileImgError, setProfileImgError] = useState(false);
   const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const scrollProgress = useRef(0);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -181,6 +233,8 @@ export default function AboutMe() {
     window.addEventListener('resize', check, { passive: true });
     return () => window.removeEventListener('resize', check);
   }, []);
+
+  const [webglSupported] = useState<boolean>(() => isWebGLAvailable());
 
   // Filter achievements
   const filteredAchievements = ACHIEVEMENTS_DATA.filter((item) =>
@@ -196,6 +250,25 @@ export default function AboutMe() {
           content="Learn more about Madhan Mohan Reddy Peram — Computer Science Graduate, Developer, and researcher based in Cuddapah, Andhra Pradesh, India."
         />
       </Helmet>
+
+      {/* Background animation */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none vignette-overlay"
+        style={!isMobile ? { transform: 'translateX(18%)', width: '100%' } : undefined}
+        aria-hidden="true"
+      >
+        {!isMobile ? (
+          webglSupported ? (
+            <Suspense fallback={null}>
+              <LazyCanvas camera={{ position: [0, 0, 8], fov: 55 }}>
+                <LazyParticleField scrollProgress={scrollProgress} />
+              </LazyCanvas>
+            </Suspense>
+          ) : (
+            <CSSParticleFallback />
+          )
+        ) : null}
+      </div>
 
       {/* Top Floating Glass Navigation Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-6 py-5 md:px-12 backdrop-blur-md bg-[var(--bg-base)]/80 border-b border-[var(--border)]/60 flex items-center justify-between">

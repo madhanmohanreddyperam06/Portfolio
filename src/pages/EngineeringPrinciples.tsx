@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, Suspense } from 'react';
 import { Helmet } from 'react-helmet-async';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -6,6 +6,57 @@ import { Link } from 'react-router-dom';
 import principles from '../data/principles.json';
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Lazy-load Three.js canvas and ParticleField
+const LazyCanvas = React.lazy(() => import('@react-three/fiber').then(m => ({ default: m.Canvas })));
+const LazyParticleField = React.lazy(() => import('../components/ParticleField'));
+
+let _webglCached: boolean | null = null;
+function isWebGLAvailable(): boolean {
+  if (_webglCached !== null) return _webglCached;
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = (canvas.getContext('webgl') || canvas.getContext('experimental-webgl')) as WebGLRenderingContext | null;
+    _webglCached = !!ctx;
+    if (ctx) {
+      const ext = ctx.getExtension('WEBGL_lose_context');
+      ext?.loseContext();
+    }
+  } catch {
+    _webglCached = false;
+  }
+  return _webglCached ?? false;
+}
+
+function CSSParticleFallback() {
+  const particlesData = useRef<Array<React.CSSProperties>>([]);
+  if (particlesData.current.length === 0) {
+    particlesData.current = Array.from({ length: 80 }, () => ({
+      left: `${(Math.random() * 100).toFixed(1)}%`,
+      top: `${(Math.random() * 100).toFixed(1)}%`,
+      animationDelay: `${(Math.random() * 6).toFixed(2)}s`,
+      animationDuration: `${(5 + Math.random() * 9).toFixed(2)}s`,
+      width: `${(1 + Math.random() * 2).toFixed(1)}px`,
+      height: `${(1 + Math.random() * 2).toFixed(1)}px`,
+    }));
+  }
+  return (
+    <div className="absolute inset-0 overflow-hidden">
+      {particlesData.current.map((style, i) => (
+        <div
+          key={i}
+          className="absolute rounded-full"
+          style={{
+            ...style,
+            background: 'var(--particle-color)',
+            opacity: 0.6,
+            animation: `float ${style.animationDuration} ease-in-out infinite alternate`,
+          }}
+        />
+      ))}
+    </div>
+  );
+}
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 type Principle = (typeof principles)[number] & {
@@ -63,6 +114,17 @@ const PRACTICE_ROWS = [
 export default function EngineeringPrinciples() {
   const rootRef = useRef<HTMLDivElement>(null);
   const [heroVisible, setHeroVisible] = useState(false);
+  const scrollProgress = useRef(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check, { passive: true });
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const [webglSupported] = useState<boolean>(() => isWebGLAvailable());
 
   // Hero entrance
   useEffect(() => {
@@ -104,6 +166,25 @@ export default function EngineeringPrinciples() {
           content="The engineering principles that guide how Madhan Mohan Reddy Peram designs systems, makes technical decisions, and approaches software."
         />
       </Helmet>
+
+      {/* Background animation */}
+      <div
+        className="fixed inset-0 z-0 pointer-events-none vignette-overlay"
+        style={!isMobile ? { transform: 'translateX(18%)', width: '100%' } : undefined}
+        aria-hidden="true"
+      >
+        {!isMobile ? (
+          webglSupported ? (
+            <Suspense fallback={null}>
+              <LazyCanvas camera={{ position: [0, 0, 8], fov: 55 }}>
+                <LazyParticleField scrollProgress={scrollProgress} />
+              </LazyCanvas>
+            </Suspense>
+          ) : (
+            <CSSParticleFallback />
+          )
+        ) : null}
+      </div>
 
       {/* Nav Header */}
       <header className="fixed top-0 left-0 right-0 z-50 px-6 py-6 md:px-12 backdrop-blur-md bg-[var(--bg-base)]/50 border-b border-[var(--text-primary)]/5 flex items-center justify-between">

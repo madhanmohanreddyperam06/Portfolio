@@ -243,6 +243,13 @@ h1, h2, h3, h4, h5, h6,
   from { transform: translateX(-50%); }
   to   { transform: translateX(0); }
 }
+
+/* ─── Float animation for CSS particles ─── */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+  100% { transform: translateY(0px); }
+}
 .marquee-outer {
   overflow: hidden;
   position: relative;
