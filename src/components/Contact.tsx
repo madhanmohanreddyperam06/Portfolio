@@ -101,7 +101,7 @@ export default function Contact() {
         >
           <span
             className="font-display font-bold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-300"
-            style={{ fontSize: 'clamp(22px, 3.5vw, 52px)', letterSpacing: '-0.02em' }}
+            style={{ fontSize: 'clamp(16px, 3.5vw, 52px)', letterSpacing: '-0.02em' }}
           >
             {contact.email}
           </span>
