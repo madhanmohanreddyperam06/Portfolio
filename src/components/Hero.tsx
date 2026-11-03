@@ -138,7 +138,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
             className="font-display font-bold uppercase tracking-[-0.02em] leading-[0.95] text-[var(--text-primary)] whitespace-nowrap"
             style={{
               opacity: 0,
-              fontSize: 'clamp(1.5rem, 4.5vw, 4.5rem)',
+              fontSize: 'clamp(1.3rem, 4vw, 4rem)',
             }}
           >
             <span
