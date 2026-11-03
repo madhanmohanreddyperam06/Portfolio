@@ -1,0 +1,122 @@
+# Madhan Mohan Reddy Peram
+
+Developer based in Cuddapah, Andhra Pradesh, India.
+
+## Summary
+
+Madhan Mohan Reddy Peram is a Computer Science graduate and developer based in Cuddapah, Andhra Pradesh, India. He builds scalable web applications, enterprise SaaS platforms, and AI-driven automation workflows. He specializes in React, Node.js, TypeScript, and the MERN stack, with hands-on experience in cloud deployment (Azure, Vercel, Render), CI/CD pipelines, and agentic AI orchestration.
+
+## Personal Information
+
+- **Full Name:** Madhan Mohan Reddy Peram
+- **Professional Name:** Madhan DEV
+- **Role:** Developer
+- **Location:** Cuddapah, Andhra Pradesh, India
+- **Email:** madhanmohanreddyperam06@gmail.com
+- **Tagline:** I build systems that think, scale and endure.
+- **Status:** Available for Full-Time Opportunities
+
+## Education Timeline
+
+- **2022:** Programming Foundation at University - Began learning programming fundamentals & Problem Solving
+- **2023:** Built Academic Projects - Started developing comprehensive python based applications
+- **2024:** AI Developer Internship - Worked at Viswam AI contributing to Bhashaverse and Artificial Intelligence related workflows
+- **2025:** Full Stack Development Training at matrimony.com - Training Led by Industry Experts — From Core Fundamentals to Production-Ready Systems
+- **2026:** Engineering Graduate - Graduating with Hands-On Experience in Core Programming and Full-Stack Development
+
+## Experience
+
+### AI Developer Intern
+**Viswam AI** | May 2025 — June 2025
+
+Served as a Core developer, progressing from collecting domain-specific corpora to fine-tuning Large Language Models and building custom LLM-based solutions.
+
+**Highlights:**
+- Collected, curated and maintained domain-specific corpora on a daily basis to support model training
+- Performed fine-tuning of Large Language Models using the prepared datasets to improve performance and relevance
+- Built and tested custom LLM-based solutions, applying NLP and Machine Learning techniques
+
+## Projects
+
+### MITRA
+**FastAPI Application** | 2025
+
+An intelligent AI-powered institution helpdesk assistant designed specifically for college students and staff which provides instant support by understanding natural language queries and delivering relevant FAQ responses with text-to-speech capabilities.
+
+**Tech Stack:** Python, FastAPI, PostgreSQL, Streamlit
+**Link:** https://mitra-1-x8fo.onrender.com/
+
+### Portfolio Website
+**Cinematic React Portfolio** | 2026
+
+A cinematic portfolio with WebGL particles, GSAP scroll storytelling and editorial typography.
+
+**Tech Stack:** React, Vite, TypeScript, Tailwind CSS, GSAP, React Three Fiber
+**Link:** https://portfolio-qto0.onrender.com/
+
+### Campus Finder
+**Generative AI Application** | 2025
+
+Created an intelligent workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.
+
+**Tech Stack:** Next.js, TypeScript, Tailwind CSS, Shadcn UI, Google Gemini API
+**Link:** https://drive.google.com/file/d/1_xThxxREVn4mPhf8IuYrJfWhbf9qLbWv/view?usp=sharing
+
+## Tech Stack
+
+### Programming Languages
+- Python (85%)
+- Java (80%)
+- JavaScript (95%)
+
+### Frontend
+- HTML5 (95%)
+- CSS3 (95%)
+- React (95%)
+- Angular (85%)
+- Next.js (90%)
+- Tailwind CSS (95%)
+- Vite (85%)
+- Streamlit (80%)
+
+### Backend
+- Node.js (88%)
+- Express.js (85%)
+- Flask (80%)
+- FastAPI (82%)
+- REST APIs (90%)
+- Zod (88%)
+- JWT (90%)
+
+### Database
+- PostgreSQL (90%)
+- MySQL (88%)
+
+### Cloud & DevOps
+- Azure (85%)
+- Git (92%)
+- GitHub (95%)
+- GitHub Actions (90%)
+- CI/CD (88%)
+- Vercel (92%)
+- Render (88%)
+
+### Development Environment
+- Visual Studio Code (98%)
+- Devin (95%)
+- Antigravity (100%)
+
+## Social Links
+
+- **GitHub:** https://github.com/madhanmohanreddyperam06
+- **LinkedIn:** https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253
+- **LeetCode:** https://leetcode.com/u/madhanmohanreddyperam06/
+- **HackerRank:** https://www.hackerrank.com/profile/h99220041310
+
+## Resume
+
+- **Download:** /Peram_Madhan_Mohan_Reddy_Resume_.pdf
+
+## Contact
+
+- **Email:** madhanmohanreddyperam06@gmail.com

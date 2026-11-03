@@ -118,23 +118,7 @@ export default function Loader({ onComplete }: { onComplete: () => void }) {
         style={{ opacity: 0, animationDelay: '1.5s' }}
       />
 
-      {/* Spotlight beam */}
-      <div
-        className="spotlight-sweep absolute top-0 left-0 w-[200px] h-[200%]"
-        style={{
-          background: 'linear-gradient(90deg, transparent, var(--accent)/30, transparent)',
-          opacity: 0,
-          animationDelay: '0.5s',
-        }}
-      />
 
-      {/* Central glow */}
-      <div
-        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full"
-        style={{
-          background: `radial-gradient(circle, color-mix(in srgb, var(--accent) ${intensity * 0.3}%, transparent) 0%, transparent 70%)`,
-        }}
-      />
 
       {/* Main content */}
       <div className="relative z-30 text-center fade-in" style={{ opacity: 0 }}>
