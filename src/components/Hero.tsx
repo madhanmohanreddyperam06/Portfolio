@@ -75,17 +75,28 @@ export default function Hero({ started = false }: { started?: boolean }) {
 
       <div
         ref={contentRef}
-        className="container-layout w-full relative z-10 pb-8 md:pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
+        className="container-layout w-full relative z-10 pb-8 md:pb-12"
       >
-        <div className="max-w-[820px] translate-y-3 md:translate-y-6">
+        {/* Upside: Role */}
+        <div
+          data-hero-anim
+          className="mb-3 md:mb-4"
+          style={{ opacity: 0 }}
+        >
+          <span className="text-[var(--accent)] text-[11px] md:text-[13px] font-bold uppercase tracking-[0.3em]">
+            {role}
+          </span>
+        </div>
 
+        {/* Downside: Name parallel to LET'S TALK */}
+        <div className="flex items-baseline justify-between gap-4 w-full">
           {/* Name */}
           <h1
             data-hero-anim
-            className="font-display font-bold tracking-[-0.02em] leading-[0.95] whitespace-nowrap"
+            className="font-display font-bold tracking-[-0.02em] leading-none whitespace-nowrap"
             style={{
               opacity: 0,
-              fontSize: 'clamp(2.4rem, 6vw, 5.5rem)',
+              fontSize: 'clamp(2rem, 5.5vw, 5.5rem)',
             }}
           >
             <span
@@ -94,38 +105,27 @@ export default function Hero({ started = false }: { started?: boolean }) {
               data-text="Madhan DEV"
             >
               <span className="text-white [html[data-theme='light']_&]:text-[#0a0a0c]">Madhan</span>{' '}
-              <span className="text-[#DC143C]">DEV</span>
+              <span className="text-[#DC143C] [html[data-theme='light']_&]:text-[#0a0a0c]">DEV</span>
             </span>
           </h1>
 
-          {/* Role */}
+          {/* Right down side corner: "LET'S TALK" only text with underline (no button) */}
           <div
             data-hero-anim
-            className="mt-4 md:mt-5"
+            className="shrink-0"
             style={{ opacity: 0 }}
           >
-            <span className="text-[var(--accent)] text-[11px] md:text-[13px] font-bold uppercase tracking-[0.3em]">
-              {role}
-            </span>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="font-display text-xs sm:text-sm md:text-base font-medium tracking-wide uppercase underline underline-offset-4 decoration-1 text-[var(--text-primary)] hover:text-[#DC143C] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer whitespace-nowrap"
+            >
+              LET'S TALK
+            </a>
           </div>
-        </div>
-
-        {/* Right down side corner: "LET'S TALK" only text with underline (no button) */}
-        <div
-          data-hero-anim
-          className="self-end md:self-end pb-1 shrink-0"
-          style={{ opacity: 0 }}
-        >
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
-            }}
-            className="font-display text-sm md:text-base font-medium tracking-wide uppercase underline underline-offset-4 decoration-1 text-[var(--text-primary)] hover:text-[#DC143C] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer"
-          >
-            LET'S TALK
-          </a>
         </div>
       </div>
 
