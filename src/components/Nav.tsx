@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SiLeetcode, SiHackerrank } from 'react-icons/si';
 import { useTheme } from '../contexts/ThemeContext';
 import meta from '../data/meta.json';
 
@@ -307,9 +309,6 @@ export default function Nav() {
                           {sec.label}
                         </span>
                       </div>
-                      <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
                     </Link>
                   ) : (
                     <a
@@ -335,9 +334,6 @@ export default function Nav() {
                           {sec.label}
                         </span>
                       </div>
-                      <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                        →
-                      </span>
                     </a>
                   );
                 })}
@@ -345,7 +341,7 @@ export default function Nav() {
             </div>
 
             {/* Right: Info / Direct Links with generous area & larger typography */}
-            <div className="col-span-6 pl-8 lg:pl-12 border-l border-[var(--border)]/40 flex flex-col justify-between py-2 space-y-7">
+            <div className="col-span-6 pl-8 lg:pl-12 border-l border-[var(--border)]/40 flex flex-col justify-between py-2 space-y-9">
               <div>
                 <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2">
                   Identity
@@ -359,57 +355,45 @@ export default function Nav() {
               </div>
 
               <div>
-                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2">
-                  Direct Inquiries
-                </span>
-                <a
-                  href="mailto:madhanmohanreddyperam06@gmail.com"
-                  className="text-base lg:text-lg font-mono text-[var(--accent)] hover:underline block break-all tracking-wide"
-                >
-                  madhanmohanreddyperam06@gmail.com
-                </a>
-              </div>
-
-              <div>
-                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2.5">
+                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-3">
                   Social Profiles
                 </span>
-                <div className="flex flex-col gap-2.5 text-sm lg:text-base">
+                <div className="flex flex-col gap-3.5 text-sm lg:text-base">
                   <a
                     href="https://github.com/madhanmohanreddyperam06"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center gap-3.5 group"
                   >
+                    <FaGithub size={19} className="text-[var(--text-secondary)] group-hover:text-[var(--accent)] transition-colors shrink-0" />
                     <span>GitHub</span>
-                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center gap-3.5 group"
                   >
+                    <FaLinkedin size={19} className="text-[var(--text-secondary)] group-hover:text-[var(--accent)] transition-colors shrink-0" />
                     <span>LinkedIn</span>
-                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://leetcode.com/u/madhanmohanreddyperam06/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center gap-3.5 group"
                   >
+                    <SiLeetcode size={19} className="text-[var(--text-secondary)] group-hover:text-[var(--accent)] transition-colors shrink-0" />
                     <span>LeetCode</span>
-                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://www.hackerrank.com/profile/h99220041310"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center gap-3.5 group"
                   >
+                    <SiHackerrank size={19} className="text-[var(--text-secondary)] group-hover:text-[var(--accent)] transition-colors shrink-0" />
                     <span>HackerRank</span>
-                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                 </div>
               </div>
@@ -419,10 +403,9 @@ export default function Nav() {
                   href="/Peram_Madhan_Mohan_Reddy_Resume_.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded text-sm font-semibold uppercase tracking-wider bg-[var(--accent)] text-[var(--bg-base)] hover:opacity-90 transition-opacity shadow-sm"
+                  className="inline-flex items-center px-6 py-3.5 rounded text-sm font-semibold uppercase tracking-wider bg-[var(--accent)] text-[var(--bg-base)] hover:opacity-90 transition-opacity shadow-sm"
                 >
-                  <span>Download Resume (PDF)</span>
-                  <span>↓</span>
+                  Download Resume (PDF)
                 </a>
               </div>
             </div>
