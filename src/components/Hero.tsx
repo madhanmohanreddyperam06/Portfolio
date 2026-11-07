@@ -76,21 +76,6 @@ export default function Hero({ started = false }: { started?: boolean }) {
       <div className="container-layout w-full relative z-10">
         <div ref={contentRef} className="max-w-[820px]">
 
-          {/* Role · divider · Location */}
-          <div
-            data-hero-anim
-            className="flex flex-wrap items-center gap-4 mb-8"
-            style={{ opacity: 0 }}
-          >
-            <span className="text-[var(--accent)] text-[9px] md:text-[11px] font-medium uppercase tracking-[0.3em]">
-              {role}
-            </span>
-            <div className="h-[1px] w-8 bg-[var(--border-bright)]" />
-            <span className="text-[var(--text-secondary)] text-[9px] md:text-[11px] font-medium uppercase tracking-[0.25em]">
-              {location}
-            </span>
-          </div>
-
           {/* Name */}
           <h1
             data-hero-anim
@@ -108,6 +93,21 @@ export default function Hero({ started = false }: { started?: boolean }) {
               {name.first} {name.middle} <span className="text-[var(--accent)]">{name.last}</span>
             </span>
           </h1>
+
+          {/* Role · divider · Location */}
+          <div
+            data-hero-anim
+            className="flex flex-wrap items-center gap-4 mt-6 md:mt-8"
+            style={{ opacity: 0 }}
+          >
+            <span className="text-[var(--accent)] text-[9px] md:text-[11px] font-bold uppercase tracking-[0.3em]">
+              {role}
+            </span>
+            <div className="h-[1px] w-8 bg-[var(--border-bright)]" />
+            <span className="text-[var(--text-secondary)] text-[9px] md:text-[11px] font-medium uppercase tracking-[0.25em]">
+              {location}
+            </span>
+          </div>
         </div>
       </div>
 
