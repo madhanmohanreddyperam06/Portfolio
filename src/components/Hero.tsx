@@ -69,12 +69,12 @@ export default function Hero({ started = false }: { started?: boolean }) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] flex items-center pt-28 pb-16"
+      className="relative min-h-[100dvh] flex flex-col justify-end pt-28 pb-16 md:pb-20"
     >
       <div className="hero-text-scrim" aria-hidden="true" />
 
-      <div className="container-layout w-full relative z-10">
-        <div ref={contentRef} className="max-w-[820px] mt-16 md:mt-28">
+      <div className="container-layout w-full relative z-10 pb-8 md:pb-10">
+        <div ref={contentRef} className="max-w-[820px]">
 
           {/* Name */}
           <h1
