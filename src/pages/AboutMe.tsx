@@ -312,7 +312,7 @@ export default function AboutMe() {
                 <div className="relative w-52 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-[var(--border-bright)] bg-[#0d0d10] flex items-center justify-center shadow-xl">
                   {!profileImgError ? (
                     <img
-                      src="/Final.png"
+                      src="/Madhann.jpeg"
                       alt={meta.name}
                       onError={() => setProfileImgError(true)}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
