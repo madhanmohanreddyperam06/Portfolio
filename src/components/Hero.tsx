@@ -74,7 +74,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
       <div className="hero-text-scrim" aria-hidden="true" />
 
       <div className="container-layout w-full relative z-10">
-        <div ref={contentRef} className="max-w-[820px] mt-8 md:mt-14">
+        <div ref={contentRef} className="max-w-[820px] mt-16 md:mt-28">
 
           {/* Name */}
           <h1
