@@ -315,7 +315,8 @@ export default function AboutMe() {
                       src="/Madhann.jpeg"
                       alt={meta.name}
                       onError={() => setProfileImgError(true)}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      style={{ objectPosition: '50% 20%' }}
+                      className="w-full h-full object-cover scale-[1.35] origin-[50%_35%] transition-transform duration-500 group-hover:scale-[1.42]"
                     />
                   ) : (
                     /* Fallback Monogram Avatar if profile.jpg is not yet uploaded */
