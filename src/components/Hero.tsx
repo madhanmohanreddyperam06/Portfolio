@@ -77,7 +77,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
         ref={contentRef}
         className="container-layout w-full relative z-10 pb-8 md:pb-12 flex flex-col md:flex-row md:items-end justify-between gap-6"
       >
-        <div className="max-w-[820px]">
+        <div className="max-w-[820px] translate-y-3 md:translate-y-6">
 
           {/* Name */}
           <h1
@@ -110,7 +110,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
           </div>
         </div>
 
-        {/* Right down side corner: "Let's Talk" only text with underline (no button) */}
+        {/* Right down side corner: "LET'S TALK" only text with underline (no button) */}
         <div
           data-hero-anim
           className="self-end md:self-end pb-1 shrink-0"
@@ -122,9 +122,9 @@ export default function Hero({ started = false }: { started?: boolean }) {
               e.preventDefault();
               document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
             }}
-            className="font-display text-sm md:text-base font-medium tracking-wide underline underline-offset-4 decoration-1 text-[var(--text-primary)] hover:text-[#DC143C] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer"
+            className="font-display text-sm md:text-base font-medium tracking-wide uppercase underline underline-offset-4 decoration-1 text-[var(--text-primary)] hover:text-[#DC143C] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer"
           >
-            Let's Talk
+            LET'S TALK
           </a>
         </div>
       </div>

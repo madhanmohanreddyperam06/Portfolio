@@ -124,7 +124,8 @@ export default function Nav() {
           {/* Logo / Monogram */}
           <a
             href="/"
-            className="group flex items-center gap-3 shrink-0"
+            className="group flex items-center shrink-0 focus-visible:outline-none"
+            aria-label="Madhan DEV Home"
             onClick={e => {
               if (window.location.pathname === '/') {
                 e.preventDefault();
@@ -133,9 +134,13 @@ export default function Nav() {
               }
             }}
           >
-            <span className="font-display font-bold text-[var(--text-primary)] text-sm tracking-tight">
-              Madhan DEV
-            </span>
+            <svg
+              viewBox="0 0 4000 4000"
+              className="w-9 h-9 md:w-10 md:h-10 fill-[var(--text-primary)] group-hover:fill-[var(--accent)] transition-all duration-200"
+              aria-hidden="true"
+            >
+              <path d="M2000,2829.019l-256.317-147.948c53.484-3.656,95.95-44.885,102.321-96.85v-651.322l-295.779-170.768v807.146l-410.554-236.195c58.068-3.965,103.147-52.228,103.147-110.431v-889.722l-103.147-161.95L2000,1667.69l860.329-496.711l-103.146,161.95v889.722c0,58.203,45.079,106.466,103.146,110.431l-410.554,236.195v-807.146l-295.779,170.768v651.322c6.371,51.965,48.836,93.195,102.321,96.85L2000,2829.019z" />
+            </svg>
           </a>
 
           {/* Desktop Right: Theme Toggle + Desktop Hamburger Button */}
