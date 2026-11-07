@@ -16,7 +16,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
   const [play, setPlay] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
 
-  const { name, role, location, ctaPrimary, ctaSecondary, socials } = hero;
+  const { name, role, location, socials } = hero;
 
   const iconMap: Record<string, React.ReactNode> = {
     github: <FaGithub size={20} />,
@@ -118,42 +118,10 @@ export default function Hero({ started = false }: { started?: boolean }) {
             </span>
           </h1>
 
-          {/* CTAs */}
-          <div
-            data-hero-anim
-            className="mt-10 flex flex-wrap gap-4"
-            style={{ opacity: 0 }}
-          >
-            <a
-              href={ctaPrimary.target}
-              onClick={(e) => {
-                if (ctaPrimary.target.startsWith('#')) {
-                  e.preventDefault();
-                  const target = document.querySelector(ctaPrimary.target);
-                  if (target) {
-                    const top = target.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top, behavior: 'smooth' });
-                  }
-                }
-              }}
-              className="bg-[var(--accent)] text-[var(--bg-base)] px-8 py-4 text-sm font-semibold rounded-[2px] hover:bg-[#8A0B29] transition-colors"
-            >
-              {ctaPrimary.label}
-            </a>
-            <a
-              href={ctaSecondary.target}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-[var(--border-bright)] text-[var(--text-primary)] px-8 py-4 text-sm font-semibold rounded-[2px] hover:border-[var(--text-tertiary)] hover:bg-[var(--bg-elevated)] transition-colors"
-            >
-              {ctaSecondary.label}
-            </a>
-          </div>
-
           {/* Socials */}
           <div
             data-hero-anim
-            className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-3"
+            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
             style={{ opacity: 0 }}
           >
             {(socials || []).map((s: any) => (

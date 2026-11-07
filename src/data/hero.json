@@ -7,14 +7,6 @@
   },
   "role": "Developer",
   "location": "Cuddapah, Andhra Pradesh, India",
-  "ctaPrimary": {
-    "label": "View My Work",
-    "target": "#projects"
-  },
-  "ctaSecondary": {
-    "label": "Download CV",
-    "target": "/Peram_Madhan_Mohan_Reddy_Resume_.pdf"
-  },
   "socials": [
     {
       "label": "GitHub",
