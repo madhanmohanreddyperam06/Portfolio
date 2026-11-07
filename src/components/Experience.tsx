@@ -335,25 +335,6 @@ export default function Experience() {
         })}
       </div>
 
-      {/* ── Mobile top progress bar ── */}
-      <div
-        aria-hidden="true"
-        className="md:hidden flex gap-1.5 px-6 pt-6 pb-2"
-      >
-        {experience.map((_, i) => (
-          <div
-            key={i}
-            style={{
-              flex: 1,
-              height: '2px',
-              borderRadius: '1px',
-              backgroundColor: i <= activeChapter ? 'var(--accent)' : '#1c1c22',
-              transition: 'background-color 0.4s ease',
-            }}
-          />
-        ))}
-      </div>
-
       {/* ── Section header ── */}
       <div
         style={{
