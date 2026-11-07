@@ -64,7 +64,7 @@ function CSSParticleFallback() {
 function SectionDivider() {
   return (
     <div
-      className="w-full h-[1px] bg-[#DC143C] md:bg-white/20"
+      className="section-divider"
       aria-hidden="true"
     />
   );

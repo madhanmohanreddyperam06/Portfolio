@@ -403,7 +403,7 @@ export default function AboutMe() {
         </section>
 
         {/* Mobile separator */}
-        <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6 mb-24" />
+        <div className="md:hidden section-divider mx-6 mb-24" />
 
         {/* ======================= EDUCATION SECTION ======================= */}
         <section id="education" className="mb-0">
@@ -780,7 +780,7 @@ export default function AboutMe() {
         </section>
 
         {/* Mobile separator after Education */}
-        <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6 mb-24" />
+        <div className="md:hidden section-divider mx-6 mb-24" />
 
         {/* ======================= ACHIEVEMENTS & CERTIFICATIONS ======================= */}
         <section id="achievements" className="mb-0">
@@ -1041,7 +1041,7 @@ export default function AboutMe() {
         </section>
 
         {/* Mobile separator */}
-        <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6 mb-24" />
+        <div className="md:hidden section-divider mx-6 mb-24" />
 
         {/* ======================= BOTTOM BANNER & CTA ======================= */}
         <section className="mb-0">
