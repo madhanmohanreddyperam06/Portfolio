@@ -17,14 +17,14 @@ const NAV_LINKS = [
 ];
 
 const DESKTOP_SECTIONS = [
-  { num: '01', label: 'Profile',              href: '/about',       isRoute: true,  desc: 'Bio, education & achievements' },
-  { num: '02', label: 'Journey',              href: '#journey',     isRoute: false, desc: 'Milestones & timeline' },
-  { num: '03', label: 'LeetCode Analytics',   href: '#leetcode',    isRoute: false, desc: 'Live problem solving telemetry' },
-  { num: '04', label: 'Experience',          href: '#experience',  isRoute: false, desc: 'Professional trajectory & roles' },
-  { num: '05', label: 'Toolkit',              href: '#toolkit',     isRoute: false, desc: 'Technologies & core competencies' },
-  { num: '06', label: 'Work & Projects',      href: '#projects',    isRoute: false, desc: 'Featured engineering applications' },
-  { num: '07', label: 'Principles',           href: '/principles',  isRoute: true,  desc: 'Engineering architecture tenets' },
-  { num: '08', label: "Let's Talk",           href: '#contact',     isRoute: false, desc: 'Direct inquiries & opportunities' },
+  { num: '01', label: 'Profile',              href: '/about',       isRoute: true },
+  { num: '02', label: 'Journey',              href: '#journey',     isRoute: false },
+  { num: '03', label: 'LeetCode Analytics',   href: '#leetcode',    isRoute: false },
+  { num: '04', label: 'Experience',          href: '#experience',  isRoute: false },
+  { num: '05', label: 'Toolkit',              href: '#toolkit',     isRoute: false },
+  { num: '06', label: 'Work & Projects',      href: '#projects',    isRoute: false },
+  { num: '07', label: 'Principles',           href: '/principles',  isRoute: true },
+  { num: '08', label: "Let's Talk",           href: '#contact',     isRoute: false },
 ];
 
 export default function Nav() {
@@ -157,25 +157,21 @@ export default function Nav() {
 
             <button
               onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
-              className={`w-10 h-10 rounded-full flex items-center justify-center border transition-all cursor-pointer ${
-                desktopMenuOpen
-                  ? 'border-[var(--accent)] text-[var(--accent)] bg-[var(--accent)]/10'
-                  : 'border-[var(--border)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)]'
-              }`}
+              className="w-9 h-9 flex items-center justify-center text-[var(--text-primary)] hover:text-[var(--accent)] transition-colors cursor-pointer"
               aria-label={desktopMenuOpen ? "Close menu" : "Open menu"}
               title={desktopMenuOpen ? "Close menu (ESC)" : "Navigation Menu"}
             >
-              <svg width="18" height="14" viewBox="0 0 18 14" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round">
+              <svg width="18" height="12" viewBox="0 0 18 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square">
                 {desktopMenuOpen ? (
                   <>
-                    <path d="M2 2L16 12" />
-                    <path d="M16 2L2 12" />
+                    <path d="M1 1L17 11" />
+                    <path d="M17 1L1 11" />
                   </>
                 ) : (
                   <>
-                    <line x1="1" y1="2" x2="17" y2="2" />
-                    <line x1="1" y1="7" x2="17" y2="7" />
-                    <line x1="1" y1="12" x2="17" y2="12" />
+                    <line x1="0" y1="1" x2="18" y2="1" />
+                    <line x1="0" y1="6" x2="18" y2="6" />
+                    <line x1="0" y1="11" x2="18" y2="11" />
                   </>
                 )}
               </svg>
@@ -278,10 +274,10 @@ export default function Nav() {
 
         <div className="container-layout w-full h-full pt-28 pb-10 flex flex-col justify-between relative z-10 overflow-y-auto">
           {/* Main Content Area */}
-          <div className="grid grid-cols-12 gap-10 items-center my-auto">
+          <div className="grid grid-cols-12 gap-8 lg:gap-14 items-center my-auto">
             {/* Left: Sections List */}
-            <div className="col-span-8 pr-6">
-              <span className="text-[11px] font-mono uppercase tracking-[0.3em] text-[var(--accent)] mb-4 block">
+            <div className="col-span-6 pr-4">
+              <span className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--accent)] mb-4 block">
                 Index / Navigation
               </span>
               <div className="divide-y divide-[var(--border)]/30">
@@ -295,9 +291,9 @@ export default function Nav() {
                       key={sec.label}
                       to={sec.href}
                       onClick={() => setDesktopMenuOpen(false)}
-                      className="group flex items-baseline justify-between py-3 transition-all duration-300"
+                      className="group flex items-baseline justify-between py-3.5 transition-all duration-300"
                     >
-                      <div className="flex items-baseline gap-6">
+                      <div className="flex items-baseline gap-5">
                         <span className="font-mono text-xs text-[var(--accent)]/70 group-hover:text-[var(--accent)] transition-colors">
                           {sec.num}
                         </span>
@@ -311,14 +307,9 @@ export default function Nav() {
                           {sec.label}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <span className="hidden lg:inline text-xs text-[var(--text-tertiary)] font-sans opacity-0 group-hover:opacity-100 transition-opacity">
-                          {sec.desc}
-                        </span>
-                        <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                          →
-                        </span>
-                      </div>
+                      <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
                     </Link>
                   ) : (
                     <a
@@ -328,9 +319,9 @@ export default function Nav() {
                         setDesktopMenuOpen(false);
                         handleScroll(e, sec.href);
                       }}
-                      className="group flex items-baseline justify-between py-3 transition-all duration-300"
+                      className="group flex items-baseline justify-between py-3.5 transition-all duration-300"
                     >
-                      <div className="flex items-baseline gap-6">
+                      <div className="flex items-baseline gap-5">
                         <span className="font-mono text-xs text-[var(--accent)]/70 group-hover:text-[var(--accent)] transition-colors">
                           {sec.num}
                         </span>
@@ -344,96 +335,91 @@ export default function Nav() {
                           {sec.label}
                         </span>
                       </div>
-                      <div className="flex items-center gap-4">
-                        <span className="hidden lg:inline text-xs text-[var(--text-tertiary)] font-sans opacity-0 group-hover:opacity-100 transition-opacity">
-                          {sec.desc}
-                        </span>
-                        <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-                          →
-                        </span>
-                      </div>
+                      <span className="text-sm font-mono text-[var(--accent)] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
+                        →
+                      </span>
                     </a>
                   );
                 })}
               </div>
             </div>
 
-            {/* Right: Info / Direct Links */}
-            <div className="col-span-4 pl-8 border-l border-[var(--border)]/40 flex flex-col justify-between py-4 space-y-6">
+            {/* Right: Info / Direct Links with generous area & larger typography */}
+            <div className="col-span-6 pl-8 lg:pl-12 border-l border-[var(--border)]/40 flex flex-col justify-between py-2 space-y-7">
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-[0.25em] text-[var(--text-tertiary)] block mb-1.5">
+                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2">
                   Identity
                 </span>
-                <h3 className="text-lg font-bold text-[var(--text-primary)]">
+                <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[var(--text-primary)] font-display">
                   Peram Madhan Mohan Reddy
                 </h3>
-                <p className="text-xs text-[var(--text-secondary)] mt-1">
+                <p className="text-sm lg:text-base text-[var(--text-secondary)] mt-1.5 leading-relaxed">
                   Developer · Cuddapah, Andhra Pradesh, India
                 </p>
               </div>
 
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-[0.25em] text-[var(--text-tertiary)] block mb-1.5">
+                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2">
                   Direct Inquiries
                 </span>
                 <a
                   href="mailto:madhanmohanreddyperam06@gmail.com"
-                  className="text-xs font-mono text-[var(--accent)] hover:underline block break-all"
+                  className="text-base lg:text-lg font-mono text-[var(--accent)] hover:underline block break-all tracking-wide"
                 >
                   madhanmohanreddyperam06@gmail.com
                 </a>
               </div>
 
               <div>
-                <span className="text-[10px] uppercase font-mono tracking-[0.25em] text-[var(--text-tertiary)] block mb-2">
+                <span className="text-xs uppercase font-mono tracking-[0.25em] text-[var(--accent)] block mb-2.5">
                   Social Profiles
                 </span>
-                <div className="flex flex-col gap-2 text-xs">
+                <div className="flex flex-col gap-2.5 text-sm lg:text-base">
                   <a
                     href="https://github.com/madhanmohanreddyperam06"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
                   >
                     <span>GitHub</span>
-                    <span className="text-[10px]">↗</span>
+                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://www.linkedin.com/in/madhan-mohan-reddy-peram-63181b253"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
                   >
                     <span>LinkedIn</span>
-                    <span className="text-[10px]">↗</span>
+                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://leetcode.com/u/madhanmohanreddyperam06/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
                   >
                     <span>LeetCode</span>
-                    <span className="text-[10px]">↗</span>
+                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                   <a
                     href="https://www.hackerrank.com/profile/h99220041310"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between"
+                    className="text-[var(--text-secondary)] hover:text-[var(--accent)] transition-colors flex items-center justify-between group"
                   >
                     <span>HackerRank</span>
-                    <span className="text-[10px]">↗</span>
+                    <span className="text-xs font-mono text-[var(--accent)] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                   </a>
                 </div>
               </div>
 
-              <div>
+              <div className="pt-2">
                 <a
                   href="/Peram_Madhan_Mohan_Reddy_Resume_.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider bg-[var(--accent)] text-[var(--bg-base)] hover:opacity-90 transition-opacity"
+                  className="inline-flex items-center gap-2.5 px-6 py-3.5 rounded text-sm font-semibold uppercase tracking-wider bg-[var(--accent)] text-[var(--bg-base)] hover:opacity-90 transition-opacity shadow-sm"
                 >
                   <span>Download Resume (PDF)</span>
                   <span>↓</span>
