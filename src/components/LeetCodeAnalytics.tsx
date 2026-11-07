@@ -146,7 +146,7 @@ export default function LeetCodeAnalytics() {
   }, [data.submissionCalendar]);
 
   return (
-    <section id="leetcode" className="relative py-24 border-t border-[var(--border)] overflow-hidden">
+    <section id="leetcode" className="relative py-24 overflow-hidden">
       {/* Background radial glow */}
       <div
         className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[350px] pointer-events-none rounded-full"

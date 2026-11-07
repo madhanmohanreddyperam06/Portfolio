@@ -61,6 +61,15 @@ function CSSParticleFallback() {
   );
 }
 
+function SectionDivider() {
+  return (
+    <div
+      className="w-full h-[1px] bg-[#DC143C] md:bg-white/20"
+      aria-hidden="true"
+    />
+  );
+}
+
 export default function Home() {
   const scrollProgress = useRef(0);
   const [loading, setLoading] = useState(() => {
@@ -133,22 +142,25 @@ export default function Home() {
         <main>
           <Hero started={!loading} />
           <Journey />
+          <SectionDivider />
           <LeetCodeAnalytics />
+          <SectionDivider />
           <Experience />
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
+          <SectionDivider />
           <Skills />
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
           <div className="hidden md:block">
+            <SectionDivider />
             <ShepherEd />
           </div>
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
+          <SectionDivider />
           <Projects />
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
+          <SectionDivider />
           <HowIWork />
-          <div className="md:hidden h-[3px] bg-[var(--accent)] mx-6" />
+          <SectionDivider />
           {/* <EngineeringWithAI /> */}
           <Principles />
         </main>
+        <SectionDivider />
         <Contact />
       </div>
     </>

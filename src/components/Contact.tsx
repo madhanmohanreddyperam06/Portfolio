@@ -47,7 +47,7 @@ export default function Contact() {
     <footer
       id="contact"
       ref={sectionRef}
-      className="border-t border-[var(--border)] relative overflow-hidden"
+      className="relative overflow-hidden"
       style={{ paddingTop: '120px', paddingBottom: '60px' }}
     >
       {/* Subtle background glow */}

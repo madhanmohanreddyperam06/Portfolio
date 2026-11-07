@@ -280,7 +280,7 @@ export default function Nav() {
             {/* Left: Sections List */}
             <div className="col-span-6 pr-4">
               <span className="text-xs font-mono uppercase tracking-[0.3em] text-[var(--accent)] mb-4 block">
-                Index / Navigation
+                INDEX
               </span>
               <div className="divide-y divide-[var(--border)]/30">
                 {DESKTOP_SECTIONS.map((sec) => {
@@ -347,7 +347,7 @@ export default function Nav() {
                   Identity
                 </span>
                 <h3 className="text-2xl lg:text-3xl font-bold tracking-tight text-[var(--text-primary)] font-display">
-                  Peram Madhan Mohan Reddy
+                  PERAM MADHAN MOHAN REDDY
                 </h3>
                 <p className="text-sm lg:text-base text-[var(--text-secondary)] mt-1.5 leading-relaxed">
                   Developer · Cuddapah, Andhra Pradesh, India

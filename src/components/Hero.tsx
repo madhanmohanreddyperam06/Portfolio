@@ -1,8 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { SiLeetcode, SiHackerrank } from 'react-icons/si';
 import hero from '../data/hero.json';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,14 +14,7 @@ export default function Hero({ started = false }: { started?: boolean }) {
   const [play, setPlay] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
 
-  const { name, role, location, socials } = hero;
-
-  const iconMap: Record<string, React.ReactNode> = {
-    github: <FaGithub size={20} />,
-    hackerrank: <SiHackerrank size={20} />,
-    linkedin: <FaLinkedin size={20} />,
-    leetcode: <SiLeetcode size={20} />,
-  };
+  const { name, role, location } = hero;
 
   // Trigger entrance only after the loader finishes (`started` flips true)
   useEffect(() => {
@@ -117,28 +108,6 @@ export default function Hero({ started = false }: { started?: boolean }) {
               {name.first} {name.middle} <span className="text-[var(--accent)]">{name.last}</span>
             </span>
           </h1>
-
-          {/* Socials */}
-          <div
-            data-hero-anim
-            className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-3"
-            style={{ opacity: 0 }}
-          >
-            {(socials || []).map((s: any) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noreferrer noopener"
-                className={`flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent)] text-[11px] font-medium uppercase tracking-[0.25em] transition-colors ${
-                  s.label === 'HackerRank' ? 'hidden md:flex' : ''
-                }`}
-              >
-                {s.icon && iconMap[s.icon]}
-                {s.label}
-              </a>
-            ))}
-          </div>
         </div>
       </div>
 
