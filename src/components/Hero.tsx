@@ -7,27 +7,6 @@ import hero from '../data/hero.json';
 
 gsap.registerPlugin(ScrollTrigger);
 
-function useTypewriter(text: string, start: boolean, speed = 55) {
-  const [out, setOut] = useState('');
-  const [done, setDone] = useState(false);
-  useEffect(() => {
-    if (!start) return;
-    let i = 0;
-    setOut('');
-    setDone(false);
-    const id = window.setInterval(() => {
-      i += 1;
-      setOut(text.slice(0, i));
-      if (i >= text.length) {
-        window.clearInterval(id);
-        setDone(true);
-      }
-    }, speed);
-    return () => window.clearInterval(id);
-  }, [text, start, speed]);
-  return { out, done };
-}
-
 export default function Hero({ started = false }: { started?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const chevronRef = useRef<HTMLDivElement>(null);
@@ -36,9 +15,8 @@ export default function Hero({ started = false }: { started?: boolean }) {
   const hasGlitchedRef = useRef(false);
   const [play, setPlay] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
-  const [startTaglineTyper, setStartTaglineTyper] = useState(false);
 
-  const { name, role, location, tagline, ctaPrimary, ctaSecondary, socials } = hero;
+  const { name, role, location, ctaPrimary, ctaSecondary, socials } = hero;
 
   const iconMap: Record<string, React.ReactNode> = {
     github: <FaGithub size={20} />,
@@ -46,10 +24,6 @@ export default function Hero({ started = false }: { started?: boolean }) {
     linkedin: <FaLinkedin size={20} />,
     leetcode: <SiLeetcode size={20} />,
   };
-
-  const taglineFull = `${tagline.prefix}${tagline.accent}${tagline.suffix}`;
-
-  const { out: taglineOut, done: taglineDone } = useTypewriter(taglineFull, startTaglineTyper, 28);
 
   // Trigger entrance only after the loader finishes (`started` flips true)
   useEffect(() => {
@@ -76,20 +50,14 @@ export default function Hero({ started = false }: { started?: boolean }) {
     );
   }, [play]);
 
-  // Sequence: entrance → tagline typer → glitch
+  // Trigger glitch shortly after entrance completes
   useEffect(() => {
-    if (!entranceDone) return;
-    const t = window.setTimeout(() => setStartTaglineTyper(true), 400);
-    return () => window.clearTimeout(t);
-  }, [entranceDone]);
-
-  useEffect(() => {
-    if (!taglineDone || !nameRef.current || hasGlitchedRef.current) return;
+    if (!entranceDone || !nameRef.current || hasGlitchedRef.current) return;
     hasGlitchedRef.current = true;
     const el = nameRef.current;
-    const t = window.setTimeout(() => el.classList.add('is-glitching'), 300);
+    const t = window.setTimeout(() => el.classList.add('is-glitching'), 350);
     return () => window.clearTimeout(t);
-  }, [taglineDone]);
+  }, [entranceDone]);
 
   // Chevron scroll fade
   useEffect(() => {
@@ -150,24 +118,10 @@ export default function Hero({ started = false }: { started?: boolean }) {
             </span>
           </h1>
 
-          {/* Typewriter tagline */}
-          <p
-            data-hero-anim
-            className="mt-5 max-w-[520px] text-lg md:text-xl text-[var(--text-secondary)] leading-relaxed"
-            style={{ opacity: 0, minHeight: '3em' }}
-          >
-            <span
-              className={`${startTaglineTyper && !taglineDone ? 'tw-caret' : ''}`}
-              aria-label={taglineFull}
-            >
-              {taglineOut}
-            </span>
-          </p>
-
           {/* CTAs */}
           <div
             data-hero-anim
-            className="mt-12 flex flex-wrap gap-4"
+            className="mt-10 flex flex-wrap gap-4"
             style={{ opacity: 0 }}
           >
             <a
