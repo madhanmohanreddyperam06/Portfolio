@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { X, ExternalLink, Download } from 'lucide-react';
 import experience from '../data/experience.json';
 
@@ -225,7 +226,7 @@ function DesktopChapter({
           }
           className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
-          <span>CREDENTIAL</span>
+          <span>Credential</span>
         </button>
 
         <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
@@ -238,7 +239,7 @@ function DesktopChapter({
           rel="noopener noreferrer"
           className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
-          <span>VIEW APPLICATION</span>
+          <span>View Application</span>
         </a>
       </div>
     </div>
@@ -334,7 +335,7 @@ function MobileChapter({
           }
           className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
-          <span >CREDENTIALS</span>
+          <span>Credential</span>
         </button>
 
         <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
@@ -347,7 +348,7 @@ function MobileChapter({
           rel="noopener noreferrer"
           className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
-          <span>VIEW APPLICATION</span>
+          <span>View Application</span>
         </a>
       </div>
     </div>
@@ -493,7 +494,11 @@ export default function Experience() {
                 transition: 'opacity 0.7s ease, transform 0.7s cubic-bezier(0.16, 1, 0.3, 1)',
               }}
             >
-              <MobileChapter exp={exp} isActive={isActive} />
+              <MobileChapter
+                exp={exp}
+                isActive={isActive}
+                onOpenCredential={(url, title, subtitle) => setActivePdf({ url, title, subtitle })}
+              />
             </div>
           );
         }
@@ -514,13 +519,107 @@ export default function Experience() {
                 padding: '0 5vw',
               }}
             >
-              <DesktopChapter exp={exp} isActive={isActive} />
+              <DesktopChapter
+                exp={exp}
+                isActive={isActive}
+                onOpenCredential={(url, title, subtitle) => setActivePdf({ url, title, subtitle })}
+              />
             </div>
           </div>
         );
       })}
 
       <div style={{ height: '5rem' }} />
+
+      {/* ── Credential PDF Viewer Modal Pop-up via Portal ── */}
+      {activePdf && typeof document !== 'undefined' && createPortal(
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="experience-pdf-modal-title"
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md transition-all duration-300"
+          onClick={() => setActivePdf(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl h-[90vh] max-h-[900px] flex flex-col rounded-xl overflow-hidden border border-[var(--border-bright)] bg-[var(--bg-elevated)] shadow-[0_20px_70px_rgba(0,0,0,0.85)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-[var(--border)] bg-[var(--bg-base)] shrink-0">
+              <div className="min-w-0 pr-2">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C] animate-pulse" />
+                  <span className="text-[10px] uppercase tracking-widest text-[#DC143C] font-mono font-medium">
+                    Experience Credential • {activePdf.subtitle}
+                  </span>
+                </div>
+                <h3
+                  id="experience-pdf-modal-title"
+                  className="font-display text-sm sm:text-base md:text-lg font-bold text-[var(--text-primary)] truncate"
+                  title={activePdf.title}
+                >
+                  {activePdf.title} — {activePdf.subtitle}
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={activePdf.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-bright)] transition-colors"
+                  title="Open PDF in new tab"
+                >
+                  <ExternalLink size={13} />
+                  <span className="hidden sm:inline">Open</span>
+                </a>
+                <a
+                  href={activePdf.url}
+                  download
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-bright)] transition-colors"
+                  title="Download PDF"
+                >
+                  <Download size={13} />
+                  <span className="hidden sm:inline">Download</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActivePdf(null)}
+                  className="p-1.5 rounded text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-base)] transition-colors cursor-pointer border border-transparent hover:border-[var(--border)]"
+                  aria-label="Close PDF Viewer"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal PDF Viewer Body */}
+            <div className="relative flex-1 w-full bg-[#121216] overflow-hidden">
+              <iframe
+                src={`${encodeURI(activePdf.url)}#toolbar=1&navpanes=0`}
+                className="w-full h-full border-0"
+                title={activePdf.title}
+              />
+            </div>
+
+            {/* Modal Footer (Helper hint) */}
+            <div className="px-4 sm:px-6 py-2.5 text-[11px] text-[var(--text-tertiary)] border-t border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between shrink-0">
+              <span className="hidden sm:inline">
+                Press <kbd className="px-1.5 py-0.5 rounded bg-[var(--bg-elevated)] border border-[var(--border)] text-[10px] font-mono">ESC</kbd> or click outside to close
+              </span>
+              <a
+                href={activePdf.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#DC143C] hover:underline ml-auto"
+              >
+                Having trouble viewing preview? Click here to open directly
+              </a>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </section>
   );
 }

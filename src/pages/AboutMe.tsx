@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
+import { createPortal } from 'react-dom';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import {
@@ -1277,12 +1278,12 @@ export default function AboutMe() {
       </main>
 
       {/* ======================= PDF VIEWER MODAL POP-UP ======================= */}
-      {activePdf && (
+      {activePdf && typeof document !== 'undefined' && createPortal(
         <div
           role="dialog"
           aria-modal="true"
           aria-labelledby="pdf-modal-title"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md transition-all duration-300"
+          className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md transition-all duration-300"
           onClick={() => setActivePdf(null)}
         >
           <div
@@ -1362,7 +1363,8 @@ export default function AboutMe() {
               </a>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );
