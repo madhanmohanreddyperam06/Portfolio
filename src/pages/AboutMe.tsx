@@ -434,7 +434,13 @@ export default function AboutMe() {
 
                 {/* Identity & Bio Summary */}
                 <div className="md:col-span-8 space-y-4 text-center md:text-left">
-                  <h1 className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] leading-tight text-3xl sm:text-4xl md:text-5xl">
+                  <h1
+                    className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] sm:whitespace-nowrap"
+                    style={{
+                      fontSize: 'clamp(1.25rem, 2.6vw, 2.35rem)',
+                      lineHeight: 1.15,
+                    }}
+                  >
                     Peram Madhan Mohan Reddy
                   </h1>
 
