@@ -166,8 +166,8 @@ export default function LeetCodeAnalytics() {
                 Programming
               </span>
             </div>
-            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-[var(--text-primary)]">
-              LeetCode Analytics
+            <h2 className="text-3xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)]">
+              LEETCODE ANALYTICS
             </h2>
             <p className="mt-3 text-sm md:text-base text-[var(--text-secondary)] max-w-xl leading-relaxed">
               Real-time competitive programming performance, difficulty breakdowns and algorithm practice synced live from LeetCode.

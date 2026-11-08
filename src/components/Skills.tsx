@@ -411,7 +411,7 @@ export default function Skills() {
               Toolkit
             </div>
             <h2
-              className="font-display"
+              className="font-display uppercase"
               style={{
                 fontWeight: 500,
                 fontSize: 'clamp(2rem, 5vw, 4rem)',
@@ -419,10 +419,11 @@ export default function Skills() {
                 color: 'var(--text-primary)',
                 margin: 0,
                 lineHeight: 1.05,
+                textTransform: 'uppercase',
               }}
             >
-              <WipeWord text="Skills" delay={0} visible={headerVisible} />{' '}
-              <WipeWord text="& Tools" delay={0.15} visible={headerVisible} />
+              <WipeWord text="SKILLS" delay={0} visible={headerVisible} />{' '}
+              <WipeWord text="& TOOLS" delay={0.15} visible={headerVisible} />
             </h2>
           </div>
           <div
