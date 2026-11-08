@@ -69,9 +69,31 @@ export default function Hero({ started = false }: { started?: boolean }) {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-[100dvh] flex flex-col justify-end pt-28 pb-16 md:pb-20"
+      className="relative min-h-[100dvh] flex flex-col justify-end pt-28 pb-16 md:pb-20 overflow-hidden"
     >
-      <div className="hero-text-scrim" aria-hidden="true" />
+      {/* Mobile Translucent Portrait Backdrop */}
+      <div
+        className="md:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden"
+        aria-hidden="true"
+      >
+        <img
+          src="/Madhann.jpeg"
+          alt=""
+          className={`w-full h-full object-cover object-[50%_15%] select-none pointer-events-none transition-opacity duration-1000 ${
+            started ? 'opacity-55 [html[data-theme="light"]_&]:opacity-45' : 'opacity-0'
+          }`}
+          style={{
+            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
+            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
+          }}
+        />
+        {/* Soft bottom vignette to ensure typography contrast */}
+        <div
+          className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[var(--bg-base)] via-[var(--bg-base)]/80 to-transparent"
+        />
+      </div>
+
+      <div className="hero-text-scrim hidden md:block" aria-hidden="true" />
 
       <div
         ref={contentRef}
