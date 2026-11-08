@@ -230,7 +230,6 @@ export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'publication' | 'competition' | 'certification'>('all');
   const [expandedEdu, setExpandedEdu] = useState<string>('btech');
   const [profileImgError, setProfileImgError] = useState(false);
-  const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollProgress = useRef(0);
 
@@ -953,13 +952,10 @@ export default function AboutMe() {
           <div>
             {filteredAchievements.map((item, i) => {
               const num = String(i + 1).padStart(2, '0');
-              const isHovered = !isMobile && hoveredAchievement === i;
 
               return (
                 <div
                   key={item.id}
-                  onMouseEnter={() => { if (!isMobile) setHoveredAchievement(i); }}
-                  onMouseLeave={() => { if (!isMobile) setHoveredAchievement(null); }}
                   style={{
                     position: 'relative',
                     padding: `clamp(3rem, 6vh, 5rem) 5vw`,
@@ -967,7 +963,7 @@ export default function AboutMe() {
                     cursor: 'default',
                   }}
                 >
-                  {/* Left accent strip — hover only */}
+                  {/* Left accent strip — always visible */}
                   <div
                     aria-hidden="true"
                     style={{
@@ -977,14 +973,13 @@ export default function AboutMe() {
                       bottom: 0,
                       width: '2px',
                       background: 'linear-gradient(to bottom, var(--accent), color-mix(in srgb, var(--accent) 15%, transparent))',
-                      boxShadow: isHovered ? '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)' : 'none',
-                      transform: isHovered ? 'scaleY(1)' : 'scaleY(0)',
+                      boxShadow: '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)',
+                      transform: 'scaleY(1)',
                       transformOrigin: 'top',
-                      transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
                     }}
                   />
 
-                  {/* Top rule */}
+                  {/* Top rule — always visible accent gradient */}
                   <div
                     aria-hidden="true"
                     style={{
@@ -993,29 +988,25 @@ export default function AboutMe() {
                       left: 0,
                       right: 0,
                       height: '1px',
-                      background: isHovered
-                        ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, var(--border) 60%)'
-                        : 'var(--border)',
+                      background: 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 25%, transparent) 35%, var(--border) 70%)',
                       transform: 'scaleX(1)',
                       transformOrigin: 'left',
-                      transition: 'background 0.35s ease',
                     }}
                   />
 
-                  {/* Subtle hover background glow */}
+                  {/* Subtle background glow — always visible */}
                   <div
                     aria-hidden="true"
                     style={{
                       position: 'absolute',
                       inset: 0,
                       background: 'radial-gradient(ellipse 70% 100% at 0% 50%, color-mix(in srgb, var(--accent) 4%, transparent) 0%, transparent 70%)',
-                      opacity: isHovered ? 1 : 0,
-                      transition: 'opacity 0.4s ease',
+                      opacity: 1,
                       pointerEvents: 'none',
                     }}
                   />
 
-                  {/* Massive watermark numeral */}
+                  {/* Massive watermark numeral — always visible */}
                   <div
                     aria-hidden="true"
                     className="font-display"
@@ -1028,9 +1019,8 @@ export default function AboutMe() {
                       fontSize: isMobile ? 'clamp(120px, 40vw, 220px)' : 'clamp(140px, 20vw, 320px)',
                       lineHeight: 1,
                       letterSpacing: '-0.07em',
-                      color: isHovered ? 'var(--accent)' : 'var(--text-primary)',
-                      opacity: isHovered ? 0.1 : 0.07,
-                      transition: 'opacity 0.4s ease, color 0.4s ease',
+                      color: 'var(--accent)',
+                      opacity: 0.1,
                       userSelect: 'none',
                       pointerEvents: 'none',
                       zIndex: 0,
@@ -1070,11 +1060,10 @@ export default function AboutMe() {
                           fontSize: '9px',
                           letterSpacing: '0.2em',
                           textTransform: 'uppercase',
-                          color: isHovered ? 'var(--accent)' : '#2e2e3a',
-                          border: `1px solid ${isHovered ? 'color-mix(in srgb, var(--accent) 35%, transparent)' : 'rgba(255,255,255,0.05)'}`,
+                          color: 'var(--accent)',
+                          border: '1px solid color-mix(in srgb, var(--accent) 35%, transparent)',
                           padding: '4px 8px',
                           borderRadius: '2px',
-                          transition: 'color 0.35s ease, border-color 0.35s ease',
                         }}
                       >
                         <span
@@ -1082,10 +1071,9 @@ export default function AboutMe() {
                             width: '5px',
                             height: '5px',
                             borderRadius: '50%',
-                            background: isHovered ? 'var(--accent)' : 'transparent',
-                            border: isHovered ? 'none' : '1px solid #3a3a44',
+                            background: 'var(--accent)',
+                            border: 'none',
                             flexShrink: 0,
-                            transition: 'background 0.35s ease, border-color 0.35s ease',
                           }}
                         />
                         {item.badge}
@@ -1096,9 +1084,8 @@ export default function AboutMe() {
                         style={{
                           fontFamily: 'Menlo, monospace',
                           fontSize: '11px',
-                          color: isHovered ? 'var(--accent)' : '#252530',
+                          color: 'var(--accent)',
                           letterSpacing: '0.08em',
-                          transition: 'color 0.35s ease',
                         }}
                       >
                         {item.year}
@@ -1121,26 +1108,24 @@ export default function AboutMe() {
                         {item.title}
                       </h3>
 
-                      {/* Accent underline — hover only */}
+                      {/* Accent underline — always visible */}
                       <div
                         aria-hidden="true"
                         style={{
                           height: '1px',
-                          background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 40%, transparent), transparent 65%)',
-                          width: isHovered ? '55%' : '0%',
+                          background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 60%, transparent), transparent 70%)',
+                          width: '55%',
                           marginBottom: 'clamp(0.875rem, 1.5vh, 1.25rem)',
-                          transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                         }}
                       />
 
                       <p
                         style={{
                           fontSize: 'clamp(13px, 1vw, 15px)',
-                          color: isHovered ? '#b0b0ba' : 'var(--text-secondary)',
+                          color: 'var(--text-secondary)',
                           lineHeight: 1.8,
                           margin: 0,
                           maxWidth: '520px',
-                          transition: 'color 0.35s ease',
                         }}
                       >
                         {item.summary}
