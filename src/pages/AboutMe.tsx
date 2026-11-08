@@ -1181,40 +1181,16 @@ export default function AboutMe() {
         {/* Section separator after Achievements */}
         <div className="section-divider my-16 md:my-24" aria-hidden="true" />
 
-        {/* ======================= BOTTOM BANNER & CTA ======================= */}
-        <section className="mb-0">
-          <div className="mb-8">
-            <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
-              Contact
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-[var(--text-primary)] mt-1">
-              Let's Work Together
-            </h2>
-          </div>
-
-          <div className="max-w-2xl">
-            <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed mb-8">
-              Looking for software development engineering roles, Full-Stack development and innovative tech teams.
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <a
-                href={`mailto:${EMAIL}`}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider bg-[var(--accent)] text-[var(--bg-base)] hover:opacity-90 transition-opacity shadow-sm"
-              >
-                <Mail size={14} />
-                <span>Send an Email</span>
-              </a>
-              <Link
-                to="/"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border-bright)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
-              >
-                <ArrowLeft size={14} />
-                <span>Return to Portfolio</span>
-              </Link>
-            </div>
-          </div>
-        </section>
+        {/* ======================= RETURN TO PORTFOLIO ======================= */}
+        <div className="pb-24">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border-bright)] text-[var(--text-primary)] hover:border-[var(--accent)] hover:text-[var(--accent)] transition-all"
+          >
+            <ArrowLeft size={14} />
+            <span>Return to Portfolio</span>
+          </Link>
+        </div>
       </main>
     </div>
   );
