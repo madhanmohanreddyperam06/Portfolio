@@ -230,6 +230,7 @@ export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'publication' | 'competition' | 'certification'>('all');
   const [expandedEdu, setExpandedEdu] = useState<string>('btech');
   const [profileImgError, setProfileImgError] = useState(false);
+  const [hoveredProfile, setHoveredProfile] = useState(false);
   const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollProgress = useRef(0);
@@ -299,125 +300,278 @@ export default function AboutMe() {
 
       <main className="container-layout pt-32 relative z-10 max-w-5xl mx-auto">
         {/* ======================= HERO / PROFILE SECTION ======================= */}
-        <section className="mb-20">
-          <div className="mb-8">
-            <div className="eyebrow mb-4" style={{ color: 'var(--accent)' }}>
-              Profile
+        <section className="mb-0">
+          {/* Profile Card - Recognitions & Milestones Style */}
+          <div
+            onMouseEnter={() => { if (!isMobile) setHoveredProfile(true); }}
+            onMouseLeave={() => { if (!isMobile) setHoveredProfile(false); }}
+            style={{
+              position: 'relative',
+              padding: `clamp(2.5rem, 5vh, 4.5rem) 5vw`,
+              overflow: 'hidden',
+              cursor: 'default',
+            }}
+          >
+            {/* Left accent strip — hover only */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                width: '2px',
+                background: 'linear-gradient(to bottom, var(--accent), color-mix(in srgb, var(--accent) 15%, transparent))',
+                boxShadow: hoveredProfile ? '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)' : 'none',
+                transform: hoveredProfile ? 'scaleY(1)' : 'scaleY(0)',
+                transformOrigin: 'top',
+                transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
+              }}
+            />
+
+            {/* Top rule */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: '1px',
+                background: hoveredProfile
+                  ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, var(--border) 60%)'
+                  : 'var(--border)',
+                transform: 'scaleX(1)',
+                transformOrigin: 'left',
+                transition: 'background 0.35s ease',
+              }}
+            />
+
+            {/* Subtle hover background glow */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: 'radial-gradient(ellipse 70% 100% at 0% 50%, color-mix(in srgb, var(--accent) 4%, transparent) 0%, transparent 70%)',
+                opacity: hoveredProfile ? 1 : 0,
+                transition: 'opacity 0.4s ease',
+                pointerEvents: 'none',
+              }}
+            />
+
+            {/* Massive watermark numeral */}
+            <div
+              aria-hidden="true"
+              className="font-display"
+              style={{
+                position: 'absolute',
+                right: isMobile ? '0%' : '4%',
+                top: '50%',
+                transform: 'translateY(-50%)',
+                fontWeight: 900,
+                fontSize: isMobile ? 'clamp(120px, 40vw, 220px)' : 'clamp(140px, 20vw, 320px)',
+                lineHeight: 1,
+                letterSpacing: '-0.07em',
+                color: hoveredProfile ? 'var(--accent)' : 'var(--text-primary)',
+                opacity: hoveredProfile ? 0.1 : 0.07,
+                transition: 'opacity 0.4s ease, color 0.4s ease',
+                userSelect: 'none',
+                pointerEvents: 'none',
+                zIndex: 0,
+              }}
+            >
+              01
             </div>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-[var(--text-primary)] mt-1">
-              About Me
-            </h2>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-            {/* Profile Picture / Portrait Frame */}
-            <div className="md:col-span-4 flex justify-center">
-              <div className="relative group">
-                {/* Decorative rotating accent glow ring */}
-                <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[var(--accent)]/40 via-emerald-500/20 to-[var(--accent)]/30 blur-sm opacity-60 group-hover:opacity-100 transition-opacity" />
+            {/* Content layout */}
+            <div
+              style={{
+                position: 'relative',
+                zIndex: 1,
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+                {/* Profile Picture / Portrait Frame */}
+                <div className="md:col-span-4 flex justify-center md:justify-start">
+                  <div className="relative group/pic">
+                    {/* Decorative rotating accent glow ring */}
+                    <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-[var(--accent)]/40 via-emerald-500/20 to-[var(--accent)]/30 blur-sm opacity-60 group-hover/pic:opacity-100 transition-opacity" />
 
-                <div className="relative w-52 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-[var(--border-bright)] bg-[#0d0d10] flex items-center justify-center shadow-xl">
-                  {!profileImgError ? (
-                    <img
-                      src="/Madhann.jpeg"
-                      alt={meta.name}
-                      onError={() => setProfileImgError(true)}
-                      style={{ objectPosition: '50% 20%' }}
-                      className="w-full h-full object-cover scale-[1.35] origin-[50%_35%] transition-transform duration-500 group-hover:scale-[1.42]"
-                    />
-                  ) : (
-                    /* Fallback Monogram Avatar if profile.jpg is not yet uploaded */
-                    <div className="flex flex-col items-center justify-center text-center p-6 w-full h-full bg-gradient-to-br from-[#121216] to-[#08080a]">
-                      <div className="w-20 h-20 rounded-full border border-[var(--border-bright)] bg-[var(--bg-elevated)] flex items-center justify-center mb-3">
-                        <User size={36} className="text-[var(--accent)]" />
-                      </div>
-                      <span className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
-                        MMR
-                      </span>
-                      <span className="text-[10px] uppercase tracking-widest text-[var(--text-tertiary)] mt-1">
-                        Profile Portrait
-                      </span>
+                    <div className="relative w-52 h-64 sm:w-60 sm:h-72 rounded-2xl overflow-hidden border border-[var(--border-bright)] bg-[#0d0d10] flex items-center justify-center shadow-xl">
+                      {!profileImgError ? (
+                        <img
+                          src="/Madhann.jpeg"
+                          alt={meta.name}
+                          onError={() => setProfileImgError(true)}
+                          style={{ objectPosition: '50% 20%' }}
+                          className="w-full h-full object-cover scale-[1.35] origin-[50%_35%] transition-transform duration-500 group-hover/pic:scale-[1.42]"
+                        />
+                      ) : (
+                        /* Fallback Monogram Avatar if profile.jpg is not yet uploaded */
+                        <div className="flex flex-col items-center justify-center text-center p-6 w-full h-full bg-gradient-to-br from-[#121216] to-[#08080a]">
+                          <div className="w-20 h-20 rounded-full border border-[var(--border-bright)] bg-[var(--bg-elevated)] flex items-center justify-center mb-3">
+                            <User size={36} className="text-[var(--accent)]" />
+                          </div>
+                          <span className="text-xl font-bold tracking-tight text-[var(--text-primary)]">
+                            MMR
+                          </span>
+                          <span className="text-[10px] uppercase tracking-widest text-[var(--text-tertiary)] mt-1">
+                            Profile Portrait
+                          </span>
+                        </div>
+                      )}
+
+                      {/* Corner accents */}
+                      <div className="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-[var(--accent)]" />
+                      <div className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-[var(--accent)]" />
                     </div>
-                  )}
+                  </div>
+                </div>
 
-                  {/* Corner accents */}
-                  <div className="absolute top-2 left-2 w-2.5 h-2.5 border-t border-l border-[var(--accent)]" />
-                  <div className="absolute bottom-2 right-2 w-2.5 h-2.5 border-b border-r border-[var(--accent)]" />
+                {/* Identity & Bio Summary */}
+                <div className="md:col-span-8 space-y-4 text-center md:text-left">
+                  {/* Category badge */}
+                  <div className="flex justify-center md:justify-start">
+                    <div
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.4rem',
+                        fontFamily: 'Menlo, monospace',
+                        fontSize: '9px',
+                        letterSpacing: '0.2em',
+                        textTransform: 'uppercase',
+                        color: hoveredProfile ? 'var(--accent)' : 'var(--text-secondary)',
+                        border: `1px solid ${hoveredProfile ? 'color-mix(in srgb, var(--accent) 35%, transparent)' : 'var(--border)'}`,
+                        padding: '4px 8px',
+                        borderRadius: '2px',
+                        transition: 'color 0.35s ease, border-color 0.35s ease',
+                      }}
+                    >
+                      <span
+                        style={{
+                          width: '5px',
+                          height: '5px',
+                          borderRadius: '50%',
+                          background: hoveredProfile ? 'var(--accent)' : 'transparent',
+                          border: hoveredProfile ? 'none' : '1px solid var(--text-tertiary)',
+                          flexShrink: 0,
+                          transition: 'background 0.35s ease, border-color 0.35s ease',
+                        }}
+                      />
+                      PROFILE
+                    </div>
+                  </div>
+
+                  <h1 className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] leading-tight text-3xl sm:text-4xl md:text-5xl">
+                    Peram Madhan Mohan Reddy
+                  </h1>
+
+                  {/* Accent underline — hover only */}
+                  <div
+                    aria-hidden="true"
+                    style={{
+                      height: '1px',
+                      background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 40%, transparent), transparent 65%)',
+                      width: hoveredProfile ? '55%' : '0%',
+                      marginBottom: 'clamp(0.75rem, 1.2vh, 1rem)',
+                      transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+                    }}
+                  />
+
+                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-[var(--text-secondary)]">
+                    <span className="flex items-center gap-1.5">
+                      <MapPin size={14} className="text-[var(--accent)]" />
+                      Cuddapah, Andhra Pradesh, India
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <Mail size={14} className="text-[var(--accent)]" />
+                      {EMAIL}
+                    </span>
+                  </div>
+
+                  <p
+                    style={{
+                      fontSize: 'clamp(14px, 1.05vw, 16px)',
+                      color: hoveredProfile ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      lineHeight: 1.8,
+                      margin: 0,
+                      maxWidth: '620px',
+                      transition: 'color 0.35s ease',
+                    }}
+                  >
+                    Computer Science graduate passionate about crafting robust software systems, performant backend architectures, and clean user interfaces. Hands-on experience across Java, JavaScript, Python, Flask, FastAPI, React and SQL databases.
+                  </p>
+
+                  {/* Social pill links */}
+                  <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-3">
+                    <a
+                      href={GITHUB_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"/></svg>
+                      <span>GitHub</span>
+                    </a>
+                    <a
+                      href={LINKEDIN_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 128 128"><path d="M116 3H12a8.91 8.91 0 00-9 8.8v104.42a8.91 8.91 0 009 8.78h104a8.93 8.93 0 009-8.81V11.77A8.93 8.93 0 00116 3zM39.17 107H21.06V48.73h18.11zm-9-66.21a10.5 10.5 0 1110.49-10.5 10.5 10.5 0 01-10.54 10.48zM107 107H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53V48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75z"/></svg>
+                      <span>LinkedIn</span>
+                    </a>
+                    <a
+                      href={LEETCODE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
+                    >
+                      <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
+                      <span>LeetCode</span>
+                    </a>
+                    <a
+                      href={`mailto:${EMAIL}`}
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all"
+                    >
+                      <Mail size={14} />
+                      <span>Get In Touch</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Identity & Bio Summary */}
-            <div className="md:col-span-8 space-y-4 text-center md:text-left">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight text-[var(--text-primary)] leading-tight">
-                Peram Madhan Mohan Reddy
-              </h1>
-
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-4 text-xs text-[var(--text-secondary)]">
-                <span className="flex items-center gap-1.5">
-                  <MapPin size={14} className="text-[var(--accent)]" />
-                  Cuddapah, Andhra Pradesh, India
-                </span>
-                <span className="flex items-center gap-1.5">
-                  <Mail size={14} className="text-[var(--accent)]" />
-                  {EMAIL}
-                </span>
-              </div>
-
-              <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed pt-2">
-                Computer Science graduate passionate about crafting robust software systems, performant backend architectures, and clean user interfaces. Hands-on experience across Java, JavaScript, Python, Flask, FastAPI, React and SQL databases.
-              </p>
-
-              {/* Social pill links */}
-              <div className="flex flex-wrap items-center justify-center md:justify-start gap-3 pt-3">
-                <a
-                  href={GITHUB_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M10.226 17.284c-2.965-.36-5.054-2.493-5.054-5.256 0-1.123.404-2.336 1.078-3.144-.292-.741-.247-2.314.09-2.965.898-.112 2.111.36 2.83 1.01.853-.269 1.752-.404 2.853-.404 1.1 0 1.999.135 2.807.382.696-.629 1.932-1.1 2.83-.988.315.606.36 2.179.067 2.942.72.854 1.101 2 1.101 3.167 0 2.763-2.089 4.852-5.098 5.234.763.494 1.28 1.572 1.28 2.807v2.336c0 .674.561 1.056 1.235.786 4.066-1.55 7.255-5.615 7.255-10.646C23.5 6.188 18.334 1 11.978 1 5.62 1 .5 6.188.5 12.545c0 4.986 3.167 9.12 7.435 10.669.606.225 1.19-.18 1.19-.786V20.63a2.9 2.9 0 0 1-1.078.224c-1.483 0-2.359-.808-2.987-2.313-.247-.607-.517-.966-1.034-1.033-.27-.023-.359-.135-.359-.27 0-.27.45-.471.898-.471.652 0 1.213.404 1.797 1.235.45.651.921.943 1.483.943.561 0 .92-.202 1.437-.719.382-.381.674-.718.944-.943"/></svg>
-                  <span>GitHub</span>
-                </a>
-                <a
-                  href={LINKEDIN_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 128 128"><path d="M116 3H12a8.91 8.91 0 00-9 8.8v104.42a8.91 8.91 0 009 8.78h104a8.93 8.93 0 009-8.81V11.77A8.93 8.93 0 00116 3zM39.17 107H21.06V48.73h18.11zm-9-66.21a10.5 10.5 0 1110.49-10.5 10.5 10.5 0 01-10.54 10.48zM107 107H88.89V78.65c0-6.75-.12-15.44-9.41-15.44s-10.87 7.36-10.87 15V107H50.53V48.73h17.36v8h.24c2.42-4.58 8.32-9.41 17.13-9.41C103.6 47.28 107 59.35 107 75z"/></svg>
-                  <span>LinkedIn</span>
-                </a>
-                <a
-                  href={LEETCODE_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)] transition-all"
-                >
-                  <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943l-3.5-2.831c-.8-.647-1.766-1.045-2.774-1.202l2.015-2.158A1.384 1.384 0 0 0 13.483 0zm-2.866 12.815a1.38 1.38 0 0 0-1.38 1.382 1.38 1.38 0 0 0 1.38 1.382H20.79a1.38 1.38 0 0 0 1.38-1.382 1.38 1.38 0 0 0-1.38-1.382z"/></svg>
-                  <span>LeetCode</span>
-                </a>
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-base)] text-xs text-[var(--text-secondary)] hover:text-[var(--accent)] hover:border-[var(--accent)] transition-all"
-                >
-                  <Mail size={14} />
-                  <span>Get In Touch</span>
-                </a>
-              </div>
-            </div>
+            {/* Bottom rule */}
+            <div
+              aria-hidden="true"
+              style={{
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: '1px',
+                backgroundColor: 'var(--border)',
+              }}
+            />
           </div>
         </section>
 
-        {/* Mobile separator */}
-        <div className="md:hidden section-divider mx-6 mb-24" />
+        {/* Section separator after Profile */}
+        <div className="section-divider my-16 md:my-24" aria-hidden="true" />
 
         {/* ======================= EDUCATION SECTION ======================= */}
         <section id="education" className="mb-0">
           <div className="mb-8">
-            <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
-              Academic Background
-            </span>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
+                Academic Background
+              </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-[var(--text-primary)] mt-1">
               Education & Qualifications
             </h2>
@@ -786,15 +940,18 @@ export default function AboutMe() {
           </div>
         </section>
 
-        {/* Mobile separator after Education */}
-        <div className="md:hidden section-divider mx-6 mb-24" />
+        {/* Section separator after Education */}
+        <div className="section-divider my-16 md:my-24" aria-hidden="true" />
 
         {/* ======================= ACHIEVEMENTS & CERTIFICATIONS ======================= */}
         <section id="achievements" className="mb-0">
           <div className="mb-8">
-            <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
-              Recognitions & Milestones
-            </span>
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
+                Recognitions & Milestones
+              </span>
+            </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-[var(--text-primary)] mt-1">
               Achievements & Certifications
             </h2>
@@ -867,8 +1024,8 @@ export default function AboutMe() {
                       right: 0,
                       height: '1px',
                       background: isHovered
-                        ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, #1a1a22 60%)'
-                        : '#1a1a22',
+                        ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, var(--border) 60%)'
+                        : 'var(--border)',
                       transform: 'scaleX(1)',
                       transformOrigin: 'left',
                       transition: 'background 0.35s ease',
@@ -1060,14 +1217,14 @@ export default function AboutMe() {
               style={{
                 margin: '0 5vw',
                 height: '1px',
-                backgroundColor: '#1a1a22',
+                backgroundColor: 'var(--border)',
               }}
             />
           </div>
         </section>
 
-        {/* Mobile separator */}
-        <div className="md:hidden section-divider mx-6 mb-24" />
+        {/* Section separator after Achievements */}
+        <div className="section-divider my-16 md:my-24" aria-hidden="true" />
 
         {/* ======================= BOTTOM BANNER & CTA ======================= */}
         <section className="mb-0">
