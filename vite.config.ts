@@ -30,10 +30,11 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
-          vendor: ['react', 'react-dom', 'react-helmet-async', 'react-error-boundary'],
+          vendor: ['react', 'react-dom', 'react-router-dom', 'react-helmet-async', 'react-error-boundary'],
           animations: ['gsap'],
           three: ['three', '@react-three/fiber']
         }

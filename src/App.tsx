@@ -1,10 +1,11 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, lazy, Suspense } from 'react';
 import Home from './pages/Home';
-import ShepherEdCaseStudy from './pages/ShepherEdCaseStudy';
-import EngineeringPrinciples from './pages/EngineeringPrinciples';
-import NoteList from './pages/notes/NoteList';
-import AboutMe from './pages/AboutMe';
+
+const ShepherEdCaseStudy = lazy(() => import('./pages/ShepherEdCaseStudy'));
+const EngineeringPrinciples = lazy(() => import('./pages/EngineeringPrinciples'));
+const NoteList = lazy(() => import('./pages/notes/NoteList'));
+const AboutMe = lazy(() => import('./pages/AboutMe'));
 
 import { ThemeProvider } from './contexts/ThemeContext';
 
@@ -35,14 +36,15 @@ function App() {
     <ThemeProvider>
       <BrowserRouter>
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/case-studies/shephered" element={<ShepherEdCaseStudy />} />
-          <Route path="/principles" element={<EngineeringPrinciples />} />
-          <Route path="/about" element={<AboutMe />} />
-          <Route path="/notes" element={<NoteList />} />
-
-        </Routes>
+        <Suspense fallback={<div className="min-h-screen bg-[var(--bg-base)]" />}>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/case-studies/shephered" element={<ShepherEdCaseStudy />} />
+            <Route path="/principles" element={<EngineeringPrinciples />} />
+            <Route path="/about" element={<AboutMe />} />
+            <Route path="/notes" element={<NoteList />} />
+          </Routes>
+        </Suspense>
       </BrowserRouter>
     </ThemeProvider>
   );
