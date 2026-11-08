@@ -88,8 +88,8 @@ const EDUCATION_DATA: EducationItem[] = [
     institution: 'Kalasalingam Academy of Research and Education',
     location: 'Tamil Nadu, India',
     period: '2022 — 2026',
-    score: '8.25',
-    scoreLabel: 'CGPA (out of 10)',
+    score: '8.25 / 10',
+    scoreLabel: '',
     description:
       'Pursuing an intensive Computer Science & Engineering curriculum focusing on Artificial Intelligence & Machine Learning.',
     highlights: [
@@ -105,7 +105,7 @@ const EDUCATION_DATA: EducationItem[] = [
     institution: 'Narayana Junior College',
     location: 'Andhra Pradesh, India',
     period: '2020 — 2022',
-    score: '84.2 / 100%',
+    score: '84.20 / 100%',
     scoreLabel: '',
     description:
       'Completed rigorous pre-university curriculum with focus on Mathematics, Physics and Chemistry with building strong mathematical modeling and analytical reasoning skills.',
