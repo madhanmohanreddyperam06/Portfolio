@@ -165,7 +165,7 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
     category: 'competition',
     badge: 'National Finalist',
     summary:
-      'Selected as a National Finalist in IBM’s flagship Expert Labs National Hackathon among thousands of participating teams across India.',
+      'Selected as a National Finalist in IBM’s flagship Expert Labs National Hackathon among thousands of participating teams across India held at S VYASA University, Bengaluru.',
     details:
       'Designed and presented an enterprise-grade prototype under strict evaluation criteria covering scalability, real-world utility, and clean architectural design.',
   },
