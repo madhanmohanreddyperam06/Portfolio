@@ -63,24 +63,32 @@ function ProjectRow({
 
   const title = (
     <div style={{ position: 'relative', display: 'inline-block' }}>
-      <h3
-        className="font-display"
-        style={{
-          fontWeight: 300,
-          fontSize: isMobile ? 'clamp(38px, 10vw, 64px)' : 'clamp(48px, 6.5vw, 112px)',
-          letterSpacing: '-0.04em',
-          lineHeight: 0.95,
-          margin: '0 0 1.75rem',
-          color: isHovered ? ACCENT : 'var(--text-primary)',
-          transition: 'color 0.5s ease, letter-spacing 0.5s ease',
-          cursor: 'pointer',
-          overflowWrap: 'anywhere',
-          wordBreak: 'break-word',
-          maxWidth: '100%',
-        }}
+      <a
+        href={project.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={(e) => project.link === '#' && e.preventDefault()}
+        style={{ textDecoration: 'none', color: 'inherit' }}
       >
-        {project.title}
-      </h3>
+        <h3
+          className="font-display"
+          style={{
+            fontWeight: 300,
+            fontSize: isMobile ? 'clamp(38px, 10vw, 64px)' : 'clamp(48px, 6.5vw, 112px)',
+            letterSpacing: '-0.04em',
+            lineHeight: 0.95,
+            margin: '0 0 1.75rem',
+            color: isHovered ? ACCENT : 'var(--text-primary)',
+            transition: 'color 0.5s ease, letter-spacing 0.5s ease',
+            cursor: 'pointer',
+            overflowWrap: 'anywhere',
+            wordBreak: 'break-word',
+            maxWidth: '100%',
+          }}
+        >
+          {project.title}
+        </h3>
+      </a>
       {/* Accent underline */}
       <span
         aria-hidden="true"
@@ -107,7 +115,7 @@ function ProjectRow({
         fontWeight: 300,
         fontSize: 'clamp(15px, 1.15vw, 19px)',
         lineHeight: 1.65,
-        color: '#a8a8b0',
+        color: 'var(--text-secondary)',
         margin: 0,
         maxWidth: '38ch',
       }}
@@ -141,14 +149,14 @@ function ProjectRow({
             style={{
               fontFamily: 'Menlo, monospace',
               fontSize: '11px',
-              color: isHovered ? '#c8c8d0' : '#5a5a64',
+              color: isHovered ? 'var(--text-primary)' : 'var(--text-secondary)',
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
               transition: 'all 0.35s ease',
               padding: '6px 12px',
-              border: `1px solid ${isHovered ? 'rgba(140,140,148,0.6)' : 'rgba(140,140,148,0.28)'}`,
+              border: `1px solid ${isHovered ? 'var(--border-bright)' : 'var(--border)'}`,
               borderRadius: '4px',
-              background: isHovered ? 'rgba(140,140,148,0.1)' : 'transparent',
+              background: isHovered ? 'color-mix(in srgb, var(--text-secondary) 10%, transparent)' : 'transparent',
             }}
           >
             {tag}
@@ -159,6 +167,8 @@ function ProjectRow({
       {align === 'center' ? (
         <a
           href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={(e) => project.link === '#' && e.preventDefault()}
           aria-label={`View ${project.title}`}
           style={{
@@ -189,6 +199,8 @@ function ProjectRow({
       ) : (
         <a
           href={project.link}
+          target="_blank"
+          rel="noopener noreferrer"
           onClick={(e) => project.link === '#' && e.preventDefault()}
           style={{
             display: 'inline-flex',

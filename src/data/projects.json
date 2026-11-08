@@ -33,7 +33,7 @@
   },
   {
     "id": "proj-03",
-    "title": "Campus Finder"  ,
+    "title": "Campus Finder",
     "subtitle": "Generative AI Application",
     "description": "Created an intelligent workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.",
     "tags": [
@@ -44,7 +44,41 @@
       "Google Gemini API"
     ],
     "year": "2025",
-    "link": "https://drive.google.com/file/d/1_xThxxREVn4mPhf8IuYrJfWhbf9qLbWv/view?usp=sharing",
+    "link": "https://github.com/madhanmohanreddyperam06/Campus-Finder.git",
+    "featured": true
+  },
+  {
+    "id": "proj-04",
+    "title": "Book My Doctor",
+    "subtitle": "Flask Application",
+    "description": "A comprehensive hospital appointment management system supporting Admin, Doctor, and Patient workflows with strict Online/Offline mode separation. BookMyDoctor connects patients with qualified medical professionals for seamless healthcare experiences.",
+    "tags": [
+      "Python",
+      "Flask",
+      "HTML5",
+      "CSS3",
+      "Bootstrap",
+      "JavaScript"
+    ],
+    "year": "2025",
+    "link": "https://github.com/madhanmohanreddyperam06/BookMyDoctoru.git",
+    "featured": true
+  },
+  {
+    "id": "proj-05",
+    "title": "JMart",
+    "subtitle": "Java-Spring Boot Application",
+    "description": "A production-ready e-commerce platform with comprehensive backend API and modern frontend. Built with Java Spring Boot and featuring Razorpay payment integration, JWT authentication and a beautiful animated landing page.",
+    "tags": [
+      "Java",
+      "Spring Boot",
+      "Razorpay",
+      "MySQL",
+      "JavaScript",
+      "REST API"
+    ],
+    "year": "2025",
+    "link": "https://github.com/madhanmohanreddyperam06/JMart.git",
     "featured": true
   }
 ]
