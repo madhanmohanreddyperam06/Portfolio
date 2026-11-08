@@ -67,7 +67,7 @@
   {
     "id": "proj-05",
     "title": "JMart",
-    "subtitle": "Java-Spring Boot Application",
+    "subtitle": "Spring Boot Application",
     "description": "A production-ready e-commerce platform with comprehensive backend API and modern frontend. Built with Java Spring Boot and featuring Razorpay payment integration, JWT authentication and a beautiful animated landing page.",
     "tags": [
       "Java",
