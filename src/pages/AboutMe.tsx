@@ -230,7 +230,6 @@ export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'publication' | 'competition' | 'certification'>('all');
   const [expandedEdu, setExpandedEdu] = useState<string>('btech');
   const [profileImgError, setProfileImgError] = useState(false);
-  const [hoveredProfile, setHoveredProfile] = useState(false);
   const [hoveredAchievement, setHoveredAchievement] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollProgress = useRef(0);
@@ -301,10 +300,21 @@ export default function AboutMe() {
       <main className="container-layout pt-32 relative z-10 max-w-5xl mx-auto">
         {/* ======================= HERO / PROFILE SECTION ======================= */}
         <section className="mb-0">
+          {/* Eyebrow & Heading outside the card */}
+          <div className="mb-8">
+            <div className="inline-flex items-center gap-2 mb-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+              <span className="text-xs uppercase tracking-[0.25em] text-[var(--accent)] font-medium">
+                Profile
+              </span>
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold uppercase tracking-tight text-[var(--text-primary)] mt-1">
+              About Me
+            </h2>
+          </div>
+
           {/* Profile Card - Recognitions & Milestones Style */}
           <div
-            onMouseEnter={() => { if (!isMobile) setHoveredProfile(true); }}
-            onMouseLeave={() => { if (!isMobile) setHoveredProfile(false); }}
             style={{
               position: 'relative',
               padding: `clamp(2.5rem, 5vh, 4.5rem) 5vw`,
@@ -312,7 +322,7 @@ export default function AboutMe() {
               cursor: 'default',
             }}
           >
-            {/* Left accent strip — hover only */}
+            {/* Left accent strip — always visible */}
             <div
               aria-hidden="true"
               style={{
@@ -322,14 +332,13 @@ export default function AboutMe() {
                 bottom: 0,
                 width: '2px',
                 background: 'linear-gradient(to bottom, var(--accent), color-mix(in srgb, var(--accent) 15%, transparent))',
-                boxShadow: hoveredProfile ? '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)' : 'none',
-                transform: hoveredProfile ? 'scaleY(1)' : 'scaleY(0)',
+                boxShadow: '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)',
+                transform: 'scaleY(1)',
                 transformOrigin: 'top',
-                transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
               }}
             />
 
-            {/* Top rule */}
+            {/* Top rule — always visible accent gradient */}
             <div
               aria-hidden="true"
               style={{
@@ -338,24 +347,20 @@ export default function AboutMe() {
                 left: 0,
                 right: 0,
                 height: '1px',
-                background: hoveredProfile
-                  ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, var(--border) 60%)'
-                  : 'var(--border)',
+                background: 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 25%, transparent) 35%, var(--border) 70%)',
                 transform: 'scaleX(1)',
                 transformOrigin: 'left',
-                transition: 'background 0.35s ease',
               }}
             />
 
-            {/* Subtle hover background glow */}
+            {/* Subtle background glow */}
             <div
               aria-hidden="true"
               style={{
                 position: 'absolute',
                 inset: 0,
-                background: 'radial-gradient(ellipse 70% 100% at 0% 50%, color-mix(in srgb, var(--accent) 4%, transparent) 0%, transparent 70%)',
-                opacity: hoveredProfile ? 1 : 0,
-                transition: 'opacity 0.4s ease',
+                background: 'radial-gradient(ellipse 70% 100% at 0% 50%, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 70%)',
+                opacity: 1,
                 pointerEvents: 'none',
               }}
             />
@@ -373,9 +378,8 @@ export default function AboutMe() {
                 fontSize: isMobile ? 'clamp(120px, 40vw, 220px)' : 'clamp(140px, 20vw, 320px)',
                 lineHeight: 1,
                 letterSpacing: '-0.07em',
-                color: hoveredProfile ? 'var(--accent)' : 'var(--text-primary)',
-                opacity: hoveredProfile ? 0.1 : 0.07,
-                transition: 'opacity 0.4s ease, color 0.4s ease',
+                color: 'var(--accent)',
+                opacity: 0.1,
                 userSelect: 'none',
                 pointerEvents: 'none',
                 zIndex: 0,
@@ -431,52 +435,19 @@ export default function AboutMe() {
 
                 {/* Identity & Bio Summary */}
                 <div className="md:col-span-8 space-y-4 text-center md:text-left">
-                  {/* Category badge */}
-                  <div className="flex justify-center md:justify-start">
-                    <div
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        fontFamily: 'Menlo, monospace',
-                        fontSize: '9px',
-                        letterSpacing: '0.2em',
-                        textTransform: 'uppercase',
-                        color: hoveredProfile ? 'var(--accent)' : 'var(--text-secondary)',
-                        border: `1px solid ${hoveredProfile ? 'color-mix(in srgb, var(--accent) 35%, transparent)' : 'var(--border)'}`,
-                        padding: '4px 8px',
-                        borderRadius: '2px',
-                        transition: 'color 0.35s ease, border-color 0.35s ease',
-                      }}
-                    >
-                      <span
-                        style={{
-                          width: '5px',
-                          height: '5px',
-                          borderRadius: '50%',
-                          background: hoveredProfile ? 'var(--accent)' : 'transparent',
-                          border: hoveredProfile ? 'none' : '1px solid var(--text-tertiary)',
-                          flexShrink: 0,
-                          transition: 'background 0.35s ease, border-color 0.35s ease',
-                        }}
-                      />
-                      PROFILE
-                    </div>
-                  </div>
-
                   <h1 className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] leading-tight text-3xl sm:text-4xl md:text-5xl">
                     Peram Madhan Mohan Reddy
                   </h1>
 
-                  {/* Accent underline — hover only */}
+                  {/* Accent underline — always visible */}
                   <div
                     aria-hidden="true"
                     style={{
                       height: '1px',
-                      background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 40%, transparent), transparent 65%)',
-                      width: hoveredProfile ? '55%' : '0%',
+                      background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 60%, transparent), transparent 70%)',
+                      width: '55%',
+                      marginTop: 'clamp(0.5rem, 1vh, 0.75rem)',
                       marginBottom: 'clamp(0.75rem, 1.2vh, 1rem)',
-                      transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                     }}
                   />
 
@@ -494,11 +465,10 @@ export default function AboutMe() {
                   <p
                     style={{
                       fontSize: 'clamp(14px, 1.05vw, 16px)',
-                      color: hoveredProfile ? 'var(--text-primary)' : 'var(--text-secondary)',
+                      color: 'var(--text-secondary)',
                       lineHeight: 1.8,
                       margin: 0,
                       maxWidth: '620px',
-                      transition: 'color 0.35s ease',
                     }}
                   >
                     Computer Science graduate passionate about crafting robust software systems, performant backend architectures, and clean user interfaces. Hands-on experience across Java, JavaScript, Python, Flask, FastAPI, React and SQL databases.
