@@ -5,7 +5,7 @@
     "period": "May 2025 — June 2025",
     "description": "Served as a Core developer, progressing from collecting domain-specific corpora to fine-tuning Large Language Models and building custom LLM-based solutions.",
     "highlights": [
-      "Collected, curated and maintained domain-specific corpora on a daily basis to support model training.",
+      "Collected, curated & maintained domain-specific corpora on a daily basis to support model training.",
       "Performed fine-tuning of Large Language Models using the prepared datasets to improve performance and relevance",
       "Built and tested custom LLM-based solutions, applying NLP and Machine Learning techniques"
     ]
