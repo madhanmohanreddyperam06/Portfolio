@@ -209,7 +209,7 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Hands-on training in complex queries, window functions, relational database schema optimization, indexing, and joins.',
     details:
       'Applied analytical SQL transformations across PostgreSQL and MySQL database engines with performance-first query design.',
-    credentialUrl: '',
+    credentialUrl: '#s',
   },
   {
     id: 'codechef-dbms',
