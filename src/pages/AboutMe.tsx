@@ -142,20 +142,22 @@ interface AchievementItem {
   badge: string;
   summary: string;
   details: string;
+  credentialUrl?: string;
 }
 
 const ACHIEVEMENTS_DATA: AchievementItem[] = [
   {
     id: 'ieee-paper',
     title: 'IEEE Research Paper Publication: Smart College Helpdesk Assistant',
-    issuer: 'ICISS 2026 · IEEE Conference',
+    issuer: 'ICISS 2026',
     year: '2026',
     category: 'publication',
     badge: 'Research Publication',
     summary:
-      'Authored and published research paper titled "Smart College Helpdesk Assistant using Machine Learning" at the 8th International Conference on Intelligent Sustainable Systems.',
+      'Authored and published research paper titled "Smart College Helpdesk Assistant using Machine Learning & NLP" at the 8th International Conference on Intelligent Sustainable Systems.',
     details:
       'Engineered an ML-driven conversational assistant architecture resolving student grievances, query routing, and institutional FAQ automation with natural language classification.',
+    credentialUrl: '',
   },
   {
     id: 'ibm-hackathon',
@@ -168,11 +170,12 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Selected as a National Finalist in IBM’s flagship Expert Labs National Hackathon among thousands of participating teams across India held at S VYASA University, Bengaluru.',
     details:
       'Designed and presented an enterprise-grade prototype under strict evaluation criteria covering scalability, real-world utility, and clean architectural design.',
+    credentialUrl: '',
   },
   {
     id: 'oracle-ai',
     title: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
-    issuer: 'Oracle University',
+    issuer: 'Oracle',
     year: '2025',
     category: 'certification',
     badge: 'Industry Certification',
@@ -180,10 +183,11 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Demonstrated foundational proficiency in Artificial Intelligence, Large Language Models, Cloud Machine Learning workflows, and OCI cloud services.',
     details:
       'Validates understanding of generative AI architectures, model tuning, prompt engineering paradigms, and cloud infrastructure deployment.',
+    credentialUrl: '',
   },
   {
     id: 'udemy-python',
-    title: 'Full Stack Python Development — Real World Applications',
+    title: 'Full Stack Python Development — Building Real World Applications',
     issuer: 'Udemy',
     year: '2024',
     category: 'certification',
@@ -192,18 +196,20 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Comprehensive full-stack engineering certification covering Flask, REST APIs, frontend integration, and database operations.',
     details:
       'Built end-to-end applications demonstrating clean code organization, RESTful endpoint design, and authentication flows.',
+    credentialUrl: '',
   },
   {
     id: 'sql-simplilearn',
-    title: 'SQL for Data Analysis Professional Certification',
+    title: 'SQL for Data Analysis Certification',
     issuer: 'Simplilearn',
     year: '2024',
     category: 'certification',
-    badge: 'Database Analytics',
+    badge: 'Database Analysis',
     summary:
       'Hands-on training in complex queries, window functions, relational database schema optimization, indexing, and joins.',
     details:
       'Applied analytical SQL transformations across PostgreSQL and MySQL database engines with performance-first query design.',
+    credentialUrl: '',
   },
   {
     id: 'codechef-dbms',
@@ -211,11 +217,12 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
     issuer: 'CodeChef',
     year: '2024',
     category: 'certification',
-    badge: 'Core CS Skills',
+    badge: 'DATABASE MANAGEMENT',
     summary:
       'In-depth validation of DBMS fundamentals including ACID compliance, ER modeling, normalization forms, and transaction isolation.',
     details:
       'Strengthened theoretical foundation for scalable database architectures and backend microservice communication.',
+    credentialUrl: '',
   },
 ];
 
@@ -1012,10 +1019,29 @@ export default function AboutMe() {
                         {item.summary}
                       </p>
 
-                      <div style={{ marginTop: '1rem' }}>
-                        <p className="text-xs font-semibold text-[var(--text-secondary)]">
+                      <div
+                        style={{ marginTop: '1rem' }}
+                        className="flex flex-wrap items-center gap-x-2.5 gap-y-1 text-xs font-semibold"
+                      >
+                        <span className="text-[var(--text-secondary)]">
                           Issued by: <span className="text-[var(--text-primary)]">{item.issuer}</span>
-                        </p>
+                        </span>
+                        <span className="text-[var(--text-tertiary)] select-none" aria-hidden="true">
+                          |
+                        </span>
+                        <a
+                          href={item.credentialUrl || '#'}
+                          target={item.credentialUrl && item.credentialUrl !== '#' ? '_blank' : undefined}
+                          rel={item.credentialUrl && item.credentialUrl !== '#' ? 'noopener noreferrer' : undefined}
+                          onClick={(e) => {
+                            if (!item.credentialUrl || item.credentialUrl === '#') {
+                              e.preventDefault();
+                            }
+                          }}
+                          className="text-[var(--text-primary)] hover:text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[var(--border-bright)] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer"
+                        >
+                          Credential
+                        </a>
                       </div>
 
                       <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid var(--border)/70' }}>
@@ -1056,7 +1082,7 @@ export default function AboutMe() {
 
           <div className="max-w-2xl">
             <p className="text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed mb-8">
-              Looking for software development engineering (SDE) roles, full-stack development, and innovative tech teams.
+              Looking for software development engineering roles, Full-Stack development and innovative tech teams.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
