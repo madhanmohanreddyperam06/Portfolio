@@ -1150,7 +1150,7 @@ export default function AboutMe() {
                               e.preventDefault();
                             }
                           }}
-                          className="text-[var(--text-primary)] hover:text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[var(--border-bright)] hover:decoration-[#DC143C] transition-colors duration-200 cursor-pointer"
+                          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer"
                         >
                           Credential
                         </a>
