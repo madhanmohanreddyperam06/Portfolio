@@ -99,13 +99,17 @@ export default function Hero({ started = false }: { started?: boolean }) {
         ref={contentRef}
         className="container-layout w-full relative z-10 pb-8 md:pb-12"
       >
-        {/* Upside: Role */}
+        {/* Upside: Role with thin line bar */}
         <div
           data-hero-anim
-          className="mb-3 md:mb-4"
+          className="mb-3 md:mb-4 flex items-center gap-2.5 sm:gap-3"
           style={{ opacity: 0 }}
         >
-          <span className="text-[var(--accent)] text-[11px] md:text-[13px] font-bold uppercase tracking-[0.3em]">
+          <span
+            className="inline-block h-[1px] w-7 sm:w-9 md:w-10 bg-[#DC143C] [html[data-theme='light']_&]:bg-[#0a0a0c] transition-colors duration-300 shrink-0"
+            aria-hidden="true"
+          />
+          <span className="text-[var(--accent)] text-[11px] md:text-[13px] font-bold uppercase tracking-[0.3em] whitespace-nowrap">
             {role}
           </span>
         </div>
