@@ -1,7 +1,7 @@
 [
   {
     "id": "proj-01",
-    "title": "MITRA",
+    "title": "Mitra",
     "subtitle": "FastAPI Application",
     "description": "An intelligent AI-powered institution helpdesk assistant designed specifically for college students and staff which provides instant support by understanding natural language queries and delivering relevant FAQ responses with text-to-speech capabilities.",
     "tags": [

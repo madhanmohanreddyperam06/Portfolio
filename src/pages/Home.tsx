@@ -16,8 +16,6 @@ import Skills from '../components/Skills';
 import Projects from '../components/Projects';
 import ShepherEd from '../components/ShepherEd';
 import HowIWork from '../components/HowIWork';
-// import EngineeringWithAI from '../components/EngineeringWithAI';
-import Principles from '../components/Principles';
 import Contact from '../components/Contact';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -156,9 +154,6 @@ export default function Home() {
           <Projects />
           <SectionDivider />
           <HowIWork />
-          <SectionDivider />
-          {/* <EngineeringWithAI /> */}
-          <Principles />
         </main>
         <SectionDivider />
         <Contact />

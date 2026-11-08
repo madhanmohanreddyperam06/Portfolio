@@ -25,8 +25,7 @@ const DESKTOP_SECTIONS = [
   { num: '04', label: 'Experience',          href: '#experience',  isRoute: false },
   { num: '05', label: 'Toolkit',              href: '#toolkit',     isRoute: false },
   { num: '06', label: 'Work & Projects',      href: '#projects',    isRoute: false },
-  { num: '07', label: 'Principles',           href: '/principles',  isRoute: true },
-  { num: '08', label: "Let's Talk",           href: '#contact',     isRoute: false },
+  { num: '07', label: "Let's Talk",           href: '#contact',     isRoute: false },
 ];
 
 export default function Nav() {

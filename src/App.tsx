@@ -1,9 +1,8 @@
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import { useEffect, lazy, Suspense } from 'react';
 import Home from './pages/Home';
 
 const ShepherEdCaseStudy = lazy(() => import('./pages/ShepherEdCaseStudy'));
-const EngineeringPrinciples = lazy(() => import('./pages/EngineeringPrinciples'));
 const NoteList = lazy(() => import('./pages/notes/NoteList'));
 const AboutMe = lazy(() => import('./pages/AboutMe'));
 
@@ -40,7 +39,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/case-studies/shephered" element={<ShepherEdCaseStudy />} />
-            <Route path="/principles" element={<EngineeringPrinciples />} />
+            <Route path="/principles" element={<Navigate to="/" replace />} />
             <Route path="/about" element={<AboutMe />} />
             <Route path="/notes" element={<NoteList />} />
           </Routes>
