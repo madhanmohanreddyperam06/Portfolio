@@ -8,7 +8,10 @@ import {
   BookOpen,
   MapPin,
   Mail,
-  User
+  User,
+  X,
+  ExternalLink,
+  Download,
 } from 'lucide-react';
 import meta from '../data/meta.json';
 
@@ -147,8 +150,21 @@ interface AchievementItem {
 
 const ACHIEVEMENTS_DATA: AchievementItem[] = [
   {
-    id: 'ieee-paper',
-    title: 'IEEE Research Paper Publication: Smart College Helpdesk Assistant',
+    id: 'genai-discovery-paper',
+    title: 'A Generative-AI Powered Personalized Recommendation System for Discovery of Indian Educational Institutions',
+    issuer: 'ICCiEST 2026',
+    year: '2026',
+    category: 'publication',
+    badge: 'Research Publication',
+    summary:
+      'Authored and published research paper titled "A Generative-AI Powered Personalized Recommendation System for Discovery of Indian Educational Institutions" at International Conference on Computational Intelligence, Electronics and Smart Technologies held on 8 - 9 April 2026 at Moodlakatte Institute of Technology & Management, Mudalkatte, Karnataka.',
+    details:
+      'Designed a Generative-AI based personalized recommendation system for discovery of Indian Educational Institutions.',
+    credentialUrl: '/A Generative-AI powered Educational Institution Discovery Platform.pdf',
+  },
+  {
+    id: 'smart-helpdesk-paper',
+    title: 'Smart College Helpdesk Assistant using Machine Learning & Natural Language Processing',
     issuer: 'ICISS 2026',
     year: '2026',
     category: 'publication',
@@ -157,7 +173,7 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Authored and published research paper titled "Smart College Helpdesk Assistant using Machine Learning & NLP" at the 8th International Conference on Intelligent Sustainable Systems.',
     details:
       'Engineered an ML-driven conversational assistant architecture resolving student grievances, query routing, and institutional FAQ automation with natural language classification.',
-    credentialUrl: '',
+    credentialUrl: '/Smart College Helpdesk Assistant using Machine Learning & NLP.pdf',
   },
   {
     id: 'ibm-hackathon',
@@ -170,7 +186,20 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Selected as a National Finalist in IBM’s flagship Expert Labs National Hackathon among thousands of participating teams across India held at S VYASA University, Bengaluru.',
     details:
       'Designed and presented an enterprise-grade prototype under strict evaluation criteria covering scalability, real-world utility, and clean architectural design.',
-    credentialUrl: '',
+    credentialUrl: '/IBM_Hackathon Certificate.pdf',
+  },
+  {
+    id: 'code-combat',
+    title: 'Code Combat — National-Level Programming Challenge',
+    issuer: 'CODING NINJAS',
+    year: '2022',
+    category: 'competition',
+    badge: 'Programming Challenge',
+    summary:
+      'Secured 714th All-India Rank in National-Level Code Combat Programming Challenge among thousands of participants across India conducted by CODING NINJAS.',
+    details:
+      'Participated and secured 714th All-India Rank in National-Level Code Combat Programming Challenge among thousands of participants across India.',
+    credentialUrl: '/Code Combat.pdf',
   },
   {
     id: 'oracle-ai',
@@ -183,24 +212,37 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Demonstrated foundational proficiency in Artificial Intelligence, Large Language Models, Cloud Machine Learning workflows, and OCI cloud services.',
     details:
       'Validates understanding of generative AI architectures, model tuning, prompt engineering paradigms, and cloud infrastructure deployment.',
-    credentialUrl: '',
+    credentialUrl: '/Oracle.pdf',
   },
   {
     id: 'udemy-python',
-    title: 'Full Stack Python Development — Building Real World Applications',
-    issuer: 'Udemy',
+    title: 'Full Stack Python Development Training',
+    issuer: 'UDEMY',
     year: '2024',
     category: 'certification',
     badge: 'Professional Training',
     summary:
       'Comprehensive full-stack engineering certification covering Flask, REST APIs, frontend integration, and database operations.',
     details:
-      'Built end-to-end applications demonstrating clean code organization, RESTful endpoint design, and authentication flows.',
-    credentialUrl: '',
+      'Built end-to-end applications demonstrating clean code organization, REST API design and authentication flows.',
+    credentialUrl: '/Full Stack Python Development – Udemy.pdf',
+  },
+  {
+    id: 'matrimony-training',
+    title: 'Full-Stack Development Training',
+    issuer: 'matrimony.com',
+    year: '2025',
+    category: 'certification',
+    badge: 'Professional Training',
+    summary:
+      'Comprehensive full-stack development certification covering Angular, Node.js, JWT-based Authorization, REST APIs and MySQL.',
+    details:
+      'Built end-to-end full-stack applications demonstrating clean code organization, REST API design and authentication flows.',
+    credentialUrl: '/Matrimony_Certificate.pdf',
   },
   {
     id: 'sql-simplilearn',
-    title: 'SQL for Data Analysis Certification',
+    title: 'SQL for Data Analysis',
     issuer: 'Simplilearn',
     year: '2024',
     category: 'certification',
@@ -209,11 +251,11 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'Hands-on training in complex queries, window functions, relational database schema optimization, indexing, and joins.',
     details:
       'Applied analytical SQL transformations across PostgreSQL and MySQL database engines with performance-first query design.',
-    credentialUrl: '#s',
+    credentialUrl: '/SQL for Data Analysis.pdf',
   },
   {
     id: 'codechef-dbms',
-    title: 'Database Management Systems Certification',
+    title: 'Database Management Systems',
     issuer: 'CodeChef',
     year: '2024',
     category: 'certification',
@@ -222,16 +264,41 @@ const ACHIEVEMENTS_DATA: AchievementItem[] = [
       'In-depth validation of DBMS fundamentals including ACID compliance, ER modeling, normalization forms, and transaction isolation.',
     details:
       'Strengthened theoretical foundation for scalable database architectures and backend microservice communication.',
-    credentialUrl: '',
+    credentialUrl: '/DATABASE MANAGEMENT SYSTEMS.pdf',
   },
 ];
+
+interface ActivePdfModal {
+  url: string;
+  title: string;
+  issuer: string;
+  badge: string;
+}
 
 export default function AboutMe() {
   const [activeCategory, setActiveCategory] = useState<'all' | 'publication' | 'competition' | 'certification'>('all');
   const [expandedEdu, setExpandedEdu] = useState<string>('btech');
   const [profileImgError, setProfileImgError] = useState(false);
+  const [activePdf, setActivePdf] = useState<ActivePdfModal | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const scrollProgress = useRef(0);
+
+  // Lock body scroll and listen for Escape key when PDF modal is open
+  useEffect(() => {
+    if (!activePdf) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActivePdf(null);
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.body.style.overflow = originalOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [activePdf]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -435,9 +502,9 @@ export default function AboutMe() {
                 {/* Identity & Bio Summary */}
                 <div className="md:col-span-8 space-y-4 text-center md:text-left">
                   <h1
-                    className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] sm:whitespace-nowrap"
+                    className="font-display font-bold uppercase tracking-tight text-[var(--text-primary)] whitespace-nowrap"
                     style={{
-                      fontSize: 'clamp(1.25rem, 2.6vw, 2.35rem)',
+                      fontSize: 'clamp(0.95rem, 2.2vw, 1.75rem)',
                       lineHeight: 1.15,
                     }}
                   >
@@ -1147,19 +1214,29 @@ export default function AboutMe() {
                         <span className="text-[var(--text-tertiary)] select-none" aria-hidden="true">
                           |
                         </span>
-                        <a
-                          href={item.credentialUrl || '#'}
-                          target={item.credentialUrl && item.credentialUrl !== '#' ? '_blank' : undefined}
-                          rel={item.credentialUrl && item.credentialUrl !== '#' ? 'noopener noreferrer' : undefined}
-                          onClick={(e) => {
-                            if (!item.credentialUrl || item.credentialUrl === '#') {
-                              e.preventDefault();
+                        {item.credentialUrl ? (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setActivePdf({
+                                url: item.credentialUrl!,
+                                title: item.title,
+                                issuer: item.issuer,
+                                badge: item.badge,
+                              })
                             }
-                          }}
-                          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer"
-                        >
-                          Credential
-                        </a>
+                            className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+                          >
+                            <span>Credential</span>
+                          </button>
+                        ) : (
+                          <span
+                            className="text-[var(--text-tertiary)] underline underline-offset-4 decoration-1 decoration-[var(--border)] text-xs font-semibold cursor-not-allowed"
+                            title="Credential verification document pending"
+                          >
+                            Credential (Pending)
+                          </span>
+                        )}
                       </div>
 
                       <div style={{ marginTop: '0.75rem', paddingTop: '0.75rem', borderTop: '1px solid var(--border)/70' }}>
@@ -1198,6 +1275,95 @@ export default function AboutMe() {
           </Link>
         </div>
       </main>
+
+      {/* ======================= PDF VIEWER MODAL POP-UP ======================= */}
+      {activePdf && (
+        <div
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="pdf-modal-title"
+          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/85 backdrop-blur-md transition-all duration-300"
+          onClick={() => setActivePdf(null)}
+        >
+          <div
+            className="relative w-full max-w-5xl h-[90vh] max-h-[900px] flex flex-col rounded-xl overflow-hidden border border-[var(--border-bright)] bg-[var(--bg-elevated)] shadow-[0_20px_70px_rgba(0,0,0,0.85)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between gap-3 px-4 sm:px-6 py-3.5 border-b border-[var(--border)] bg-[var(--bg-base)] shrink-0">
+              <div className="min-w-0 pr-2">
+                <div className="flex items-center gap-2 mb-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#DC143C] animate-pulse" />
+                  <span className="text-[10px] uppercase tracking-widest text-[#DC143C] font-mono font-medium">
+                    {activePdf.badge} • {activePdf.issuer}
+                  </span>
+                </div>
+                <h3
+                  id="pdf-modal-title"
+                  className="font-display text-sm sm:text-base md:text-lg font-bold text-[var(--text-primary)] truncate"
+                  title={activePdf.title}
+                >
+                  {activePdf.title}
+                </h3>
+              </div>
+
+              <div className="flex items-center gap-2 shrink-0">
+                <a
+                  href={activePdf.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-bright)] transition-colors"
+                  title="Open PDF in new tab"
+                >
+                  <ExternalLink size={13} />
+                  <span className="hidden sm:inline">Open</span>
+                </a>
+                <a
+                  href={activePdf.url}
+                  download
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded text-xs font-semibold uppercase tracking-wider border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-bright)] transition-colors"
+                  title="Download PDF"
+                >
+                  <Download size={13} />
+                  <span className="hidden sm:inline">Download</span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setActivePdf(null)}
+                  className="p-1.5 rounded text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-base)] transition-colors cursor-pointer border border-transparent hover:border-[var(--border)]"
+                  aria-label="Close PDF Viewer"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+            </div>
+
+            {/* Modal PDF Viewer Body */}
+            <div className="relative flex-1 w-full bg-[#121216] overflow-hidden">
+              <iframe
+                src={`${encodeURI(activePdf.url)}#toolbar=1&navpanes=0`}
+                className="w-full h-full border-0"
+                title={activePdf.title}
+              />
+            </div>
+
+            {/* Modal Footer (Helper hint) */}
+            <div className="px-4 sm:px-6 py-2.5 text-[11px] text-[var(--text-tertiary)] border-t border-[var(--border)] bg-[var(--bg-base)] flex items-center justify-between shrink-0">
+              <span className="hidden sm:inline">
+                Press <kbd className="px-1.5 py-0.5 rounded bg-[var(--bg-elevated)] border border-[var(--border)] text-[10px] font-mono">ESC</kbd> or click outside to close
+              </span>
+              <a
+                href={activePdf.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#DC143C] hover:underline ml-auto"
+              >
+                Having trouble viewing preview? Click here to open directly
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

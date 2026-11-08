@@ -1,5 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
+import { X, ExternalLink, Download } from 'lucide-react';
 import experience from '../data/experience.json';
+
+interface ActivePdfModal {
+  url: string;
+  title: string;
+  subtitle: string;
+}
 
 type Exp = (typeof experience)[number];
 
@@ -87,7 +94,15 @@ function Typewriter({
   );
 }
 
-function DesktopChapter({ exp, isActive }: { exp: Exp; isActive: boolean }) {
+function DesktopChapter({
+  exp,
+  isActive,
+  onOpenCredential,
+}: {
+  exp: Exp;
+  isActive: boolean;
+  onOpenCredential?: (url: string, title: string, subtitle: string) => void;
+}) {
   return (
     <div style={{ width: '100%', maxWidth: '1200px', margin: '0 auto', paddingRight: '8rem' }}>
       <h3
@@ -184,11 +199,61 @@ function DesktopChapter({ exp, isActive }: { exp: Exp; isActive: boolean }) {
           </div>
         ))}
       </div>
+
+      {/* Action Links: Credential & View Application */}
+      <div
+        style={{
+          marginTop: '2.25rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1.25rem',
+          opacity: isActive ? 1 : 0,
+          transform: isActive ? 'translateY(0)' : 'translateY(14px)',
+          transition: isActive
+            ? 'opacity 0.5s ease 1.25s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 1.25s'
+            : 'opacity 0.15s ease',
+        }}
+      >
+        <button
+          type="button"
+          onClick={() =>
+            onOpenCredential?.(
+              (exp as any).credentialUrl || '/ViswamAI_Certificate.pdf',
+              exp.role,
+              exp.company
+            )
+          }
+          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+        >
+          <span>CREDENTIAL</span>
+        </button>
+
+        <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
+          |
+        </span>
+
+        <a
+          href={(exp as any).applicationUrl || 'https://viswam.ai'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
+        >
+          <span>VIEW APPLICATION</span>
+        </a>
+      </div>
     </div>
   );
 }
 
-function MobileChapter({ exp, isActive }: { exp: Exp; isActive: boolean }) {
+function MobileChapter({
+  exp,
+  isActive,
+  onOpenCredential,
+}: {
+  exp: Exp;
+  isActive: boolean;
+  onOpenCredential?: (url: string, title: string, subtitle: string) => void;
+}) {
   return (
     <div>
       <h3
@@ -243,6 +308,48 @@ function MobileChapter({ exp, isActive }: { exp: Exp; isActive: boolean }) {
           </div>
         ))}
       </div>
+
+      {/* Action Links: Credential & View Application */}
+      <div
+        style={{
+          marginTop: '1.5rem',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1.25rem',
+          opacity: isActive ? 1 : 0,
+          transform: isActive ? 'translateY(0)' : 'translateY(12px)',
+          transition: isActive
+            ? 'opacity 0.5s ease 0.45s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s'
+            : 'opacity 0.15s ease',
+        }}
+      >
+        <button
+          type="button"
+          onClick={() =>
+            onOpenCredential?.(
+              (exp as any).credentialUrl || '/ViswamAI_Certificate.pdf',
+              exp.role,
+              exp.company
+            )
+          }
+          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+        >
+          <span >CREDENTIALS</span>
+        </button>
+
+        <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
+          |
+        </span>
+
+        <a
+          href={(exp as any).applicationUrl || 'https://viswam.ai'}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
+        >
+          <span>VIEW APPLICATION</span>
+        </a>
+      </div>
     </div>
   );
 }
@@ -252,6 +359,21 @@ export default function Experience() {
   const [enteredChapters, setEnteredChapters] = useState<Set<number>>(new Set());
   const wrapperRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
+  const [activePdf, setActivePdf] = useState<ActivePdfModal | null>(null);
+
+  useEffect(() => {
+    if (!activePdf) return;
+    const orig = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setActivePdf(null);
+    };
+    window.addEventListener('keydown', onKey);
+    return () => {
+      document.body.style.overflow = orig;
+      window.removeEventListener('keydown', onKey);
+    };
+  }, [activePdf]);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
