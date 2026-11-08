@@ -5,6 +5,11 @@ import hero from '../data/hero.json';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const HERO_MOBILE_IMAGES = [
+  '/Madhann.jpeg',
+  '/Pastel Anime Portrait of a Young Man.png',
+];
+
 export default function Hero({ started = false }: { started?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const chevronRef = useRef<HTMLDivElement>(null);
@@ -13,6 +18,15 @@ export default function Hero({ started = false }: { started?: boolean }) {
   const hasGlitchedRef = useRef(false);
   const [play, setPlay] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
+  const [activeImgIndex, setActiveImgIndex] = useState(0);
+
+  // Rotate mobile portrait backdrop every 5 seconds
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveImgIndex((prev) => (prev + 1) % HERO_MOBILE_IMAGES.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
 
   const { name, role, location } = hero;
 
@@ -71,22 +85,27 @@ export default function Hero({ started = false }: { started?: boolean }) {
       ref={sectionRef}
       className="relative min-h-[100dvh] flex flex-col justify-end pt-28 pb-16 md:pb-20 overflow-hidden"
     >
-      {/* Mobile Translucent Portrait Backdrop */}
+      {/* Mobile Translucent Portrait Backdrop (5s alternating slideshow) */}
       <div
         className="md:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden"
         aria-hidden="true"
       >
-        <img
-          src="/Madhann.jpeg"
-          alt=""
-          className={`w-full h-full object-cover object-[50%_15%] select-none pointer-events-none transition-opacity duration-1000 ${
-            started ? 'opacity-55 [html[data-theme="light"]_&]:opacity-45' : 'opacity-0'
-          }`}
-          style={{
-            maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
-            WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
-          }}
-        />
+        {HERO_MOBILE_IMAGES.map((imgSrc, idx) => (
+          <img
+            key={imgSrc}
+            src={imgSrc}
+            alt=""
+            className={`absolute inset-0 w-full h-full object-cover object-[50%_15%] select-none pointer-events-none transition-opacity duration-1000 ease-in-out ${
+              started && activeImgIndex === idx
+                ? 'opacity-55 [html[data-theme="light"]_&]:opacity-45'
+                : 'opacity-0'
+            }`}
+            style={{
+              maskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
+              WebkitMaskImage: 'linear-gradient(to bottom, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.95) 55%, rgba(0,0,0,0.2) 80%, transparent 98%)',
+            }}
+          />
+        ))}
         {/* Soft bottom vignette to ensure typography contrast */}
         <div
           className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[var(--bg-base)] via-[var(--bg-base)]/80 to-transparent"
