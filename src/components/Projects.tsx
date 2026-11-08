@@ -21,17 +21,14 @@ interface RowProps {
   project: Project;
   index: number;
   isRevealed: boolean;
-  isHovered: boolean;
-  isDimmed: boolean;
   isMobile: boolean;
-  onEnter: () => void;
-  onLeave: () => void;
 }
 
 function ProjectRow({
-  project, index, isRevealed, isHovered, isDimmed, isMobile,
-  onEnter, onLeave,
+  project, index, isRevealed, isMobile,
 }: RowProps) {
+  const isHovered = true;
+  const isDimmed = false;
   const align: Align = isMobile ? 'left' : alignFor(index);
   const idx = pad(index);
   const stagger = 0.06;
@@ -250,8 +247,6 @@ function ProjectRow({
 
   return (
     <article
-      onMouseEnter={onEnter}
-      onMouseLeave={onLeave}
       style={articleStyle}
     >
       {/* Ghost watermark numeral */}
@@ -319,7 +314,6 @@ export default function Projects() {
   const rowRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [headerVisible, setHeaderVisible] = useState(false);
   const [revealedRows, setRevealedRows] = useState<Set<number>>(new Set());
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -433,11 +427,7 @@ export default function Projects() {
               project={project}
               index={i}
               isRevealed={revealedRows.has(i)}
-              isHovered={!isMobile && hoveredIndex === i}
-              isDimmed={!isMobile && hoveredIndex !== null && hoveredIndex !== i}
               isMobile={isMobile}
-              onEnter={() => !isMobile && setHoveredIndex(i)}
-              onLeave={() => !isMobile && setHoveredIndex(null)}
             />
           </div>
         ))}

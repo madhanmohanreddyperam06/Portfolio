@@ -8,19 +8,14 @@ interface StepProps {
   step: (typeof howIWork)[number];
   phase: string;
   isRevealed: boolean;
-  isHovered: boolean;
   isMobile: boolean;
-  onMouseEnter: () => void;
-  onMouseLeave: () => void;
 }
 
-function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMouseLeave }: StepProps) {
+function Step({ step, phase, isRevealed, isMobile }: StepProps) {
   const num = step.step;
 
   return (
     <div
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
       style={{
         position: 'relative',
         padding: `clamp(3rem, 6vh, 5rem) 5vw`,
@@ -28,7 +23,7 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
         cursor: 'default',
       }}
     >
-      {/* Left accent strip — hover only */}
+      {/* Left accent strip — always visible */}
       <div
         aria-hidden="true"
         style={{
@@ -38,14 +33,13 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
           bottom: 0,
           width: '2px',
           background: 'linear-gradient(to bottom, var(--accent), color-mix(in srgb, var(--accent) 15%, transparent))',
-          boxShadow: isHovered ? '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)' : 'none',
-          transform: isHovered ? 'scaleY(1)' : 'scaleY(0)',
+          boxShadow: '0 0 18px color-mix(in srgb, var(--accent) 50%, transparent)',
+          transform: 'scaleY(1)',
           transformOrigin: 'top',
-          transition: 'transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease',
         }}
       />
 
-      {/* Top rule */}
+      {/* Top rule — always visible accent gradient */}
       <div
         aria-hidden="true"
         style={{
@@ -54,9 +48,8 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
           left: 0,
           right: 0,
           height: '1px',
-          background: isHovered
-            ? 'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 18%, transparent) 25%, #1a1a22 60%)'
-            : '#1a1a22',
+          background:
+            'linear-gradient(to right, var(--accent) 0%, color-mix(in srgb, var(--accent) 25%, transparent) 35%, var(--border) 70%)',
           transform: `scaleX(${isRevealed ? 1 : 0})`,
           transformOrigin: 'left',
           transition: isRevealed
@@ -65,20 +58,19 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
         }}
       />
 
-      {/* Subtle hover background glow */}
+      {/* Subtle background glow — always visible */}
       <div
         aria-hidden="true"
         style={{
           position: 'absolute',
           inset: 0,
           background: 'radial-gradient(ellipse 70% 100% at 0% 50%, color-mix(in srgb, var(--accent) 4%, transparent) 0%, transparent 70%)',
-          opacity: isHovered ? 1 : 0,
-          transition: 'opacity 0.4s ease',
+          opacity: 1,
           pointerEvents: 'none',
         }}
       />
 
-      {/* Massive watermark numeral */}
+      {/* Massive watermark numeral — always visible */}
       <div
         aria-hidden="true"
         className="font-display"
@@ -91,8 +83,8 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
           fontSize: isMobile ? 'clamp(120px, 40vw, 220px)' : 'clamp(140px, 20vw, 320px)',
           lineHeight: 1,
           letterSpacing: '-0.07em',
-          color: isHovered ? 'var(--accent)' : 'var(--text-primary)',
-          opacity: isHovered ? 0.1 : (isRevealed ? 0.07 : 0),
+          color: 'var(--accent)',
+          opacity: isRevealed ? 0.1 : 0,
           transition: 'opacity 0.4s ease, color 0.4s ease, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
           userSelect: 'none',
           pointerEvents: 'none',
@@ -133,15 +125,15 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
               fontSize: '9px',
               letterSpacing: '0.2em',
               textTransform: 'uppercase',
-              color: isHovered ? 'var(--accent)' : '#2e2e3a',
-              border: `1px solid ${isHovered ? 'color-mix(in srgb, var(--accent) 35%, transparent)' : 'rgba(255,255,255,0.05)'}`,
+              color: 'var(--accent)',
+              border: '1px solid color-mix(in srgb, var(--accent) 35%, transparent)',
               padding: '4px 8px',
               borderRadius: '2px',
               opacity: isRevealed ? 1 : 0,
               transform: isRevealed ? 'translateX(0)' : 'translateX(-10px)',
               transition: isRevealed
-                ? 'opacity 0.45s ease 0.12s, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s, color 0.35s ease, border-color 0.35s ease'
-                : 'color 0.35s ease, border-color 0.35s ease',
+                ? 'opacity 0.45s ease 0.12s, transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) 0.12s'
+                : 'none',
             }}
           >
             <span
@@ -149,10 +141,9 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
                 width: '5px',
                 height: '5px',
                 borderRadius: '50%',
-                background: isHovered ? 'var(--accent)' : 'transparent',
-                border: isHovered ? 'none' : '1px solid #3a3a44',
+                background: 'var(--accent)',
+                border: 'none',
                 flexShrink: 0,
-                transition: 'background 0.35s ease, border-color 0.35s ease',
               }}
             />
             {phase}
@@ -163,12 +154,12 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
             style={{
               fontFamily: 'Menlo, monospace',
               fontSize: '11px',
-              color: isHovered ? 'var(--accent)' : '#252530',
+              color: 'var(--accent)',
               letterSpacing: '0.08em',
               opacity: isRevealed ? 1 : 0,
               transition: isRevealed
-                ? 'opacity 0.4s ease 0.2s, color 0.35s ease'
-                : 'color 0.35s ease',
+                ? 'opacity 0.4s ease 0.2s'
+                : 'none',
             }}
           >
             {num} / {String(TOTAL).padStart(2, '0')}
@@ -196,30 +187,29 @@ function Step({ step, phase, isRevealed, isHovered, isMobile, onMouseEnter, onMo
             {step.title}
           </h3>
 
-          {/* Accent underline — hover only */}
+          {/* Accent underline — always visible */}
           <div
             aria-hidden="true"
             style={{
               height: '1px',
-              background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 40%, transparent), transparent 65%)',
-              width: isHovered ? '55%' : '0%',
+              background: 'linear-gradient(to right, color-mix(in srgb, var(--accent) 60%, transparent), transparent 70%)',
+              width: '55%',
               marginBottom: 'clamp(0.875rem, 1.5vh, 1.25rem)',
-              transition: 'width 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
             }}
           />
 
           <p
             style={{
               fontSize: 'clamp(14px, 1.1vw, 16px)',
-              color: isHovered ? '#b0b0ba' : 'var(--text-secondary)',
+              color: 'var(--text-secondary)',
               lineHeight: 1.8,
               margin: 0,
               maxWidth: '520px',
               opacity: isRevealed ? 1 : 0,
               transform: isRevealed ? 'translateY(0)' : 'translateY(12px)',
               transition: isRevealed
-                ? 'opacity 0.5s ease 0.45s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s, color 0.35s ease'
-                : 'color 0.35s ease',
+                ? 'opacity 0.5s ease 0.45s, transform 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.45s'
+                : 'none',
             }}
           >
             {step.description}
@@ -236,7 +226,6 @@ export default function HowIWork() {
 
   const [headerVisible, setHeaderVisible] = useState(false);
   const [revealedSteps, setRevealedSteps] = useState<Set<number>>(new Set());
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -349,18 +338,17 @@ export default function HowIWork() {
           }}
         >
           {howIWork.map((_, i) => {
-            const isHov = hoveredIndex === i;
             const isRev = revealedSteps.has(i);
             return (
               <div
                 key={i}
                 aria-hidden="true"
                 style={{
-                  width: isHov ? '22px' : (isRev ? '10px' : '6px'),
+                  width: isRev ? '16px' : '6px',
                   height: '6px',
                   borderRadius: '3px',
-                  background: isHov ? 'var(--accent)' : (isRev ? '#3a3a44' : '#1e1e28'),
-                  boxShadow: isHov ? '0 0 10px color-mix(in srgb, var(--accent) 70%, transparent)' : 'none',
+                  background: isRev ? 'var(--accent)' : '#3a3a44',
+                  boxShadow: isRev ? '0 0 10px color-mix(in srgb, var(--accent) 70%, transparent)' : 'none',
                   transition: 'width 0.35s cubic-bezier(0.16, 1, 0.3, 1), background 0.35s ease, box-shadow 0.35s ease',
                 }}
               />
@@ -377,10 +365,7 @@ export default function HowIWork() {
               step={step}
               phase={PHASES[i]}
               isRevealed={revealedSteps.has(i)}
-              isHovered={!isMobile && hoveredIndex === i}
               isMobile={isMobile}
-              onMouseEnter={() => { if (!isMobile) setHoveredIndex(i); }}
-              onMouseLeave={() => { if (!isMobile) setHoveredIndex(null); }}
             />
           </div>
         ))}
