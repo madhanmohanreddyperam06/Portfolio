@@ -1226,16 +1226,16 @@ export default function AboutMe() {
                                 badge: item.badge,
                               })
                             }
-                            className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+                            className="text-[var(--accent)] [html[data-theme='light']_&]:text-black underline underline-offset-4 decoration-1 decoration-[var(--accent)] [html[data-theme='light']_&]:decoration-black hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1 uppercase tracking-wider"
                           >
-                            <span>Credential</span>
+                            <span>CREDENTIAL</span>
                           </button>
                         ) : (
                           <span
-                            className="text-[var(--text-tertiary)] underline underline-offset-4 decoration-1 decoration-[var(--border)] text-xs font-semibold cursor-not-allowed"
+                            className="text-[var(--text-tertiary)] underline underline-offset-4 decoration-1 decoration-[var(--border)] text-xs font-semibold cursor-not-allowed uppercase tracking-wider"
                             title="Credential verification document pending"
                           >
-                            Credential (Pending)
+                            CREDENTIAL (PENDING)
                           </span>
                         )}
                       </div>
