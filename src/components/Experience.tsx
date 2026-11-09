@@ -226,7 +226,7 @@ function DesktopChapter({
           }
           className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
-          <span>Credential</span>
+          <span>CREDENTIAL</span>
         </button>
 
         <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
@@ -239,7 +239,7 @@ function DesktopChapter({
           rel="noopener noreferrer"
           className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
-          <span>View Application</span>
+          <span>VIEW APPLICATION</span>
         </a>
       </div>
     </div>
@@ -335,7 +335,7 @@ function MobileChapter({
           }
           className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
-          <span>Credential</span>
+          <span>CREDENTIAL</span>
         </button>
 
         <span className="text-[var(--text-tertiary)] select-none text-xs" aria-hidden="true">
@@ -348,7 +348,7 @@ function MobileChapter({
           rel="noopener noreferrer"
           className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
-          <span>View Application</span>
+          <span>VIEW APPLICATION</span>
         </a>
       </div>
     </div>
