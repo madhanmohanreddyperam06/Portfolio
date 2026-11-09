@@ -224,7 +224,7 @@ function DesktopChapter({
               exp.company
             )
           }
-          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+          className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
           <span>Credential</span>
         </button>
@@ -237,7 +237,7 @@ function DesktopChapter({
           href={(exp as any).applicationUrl || 'https://viswam.ai'}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
+          className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
           <span>View Application</span>
         </a>
@@ -333,7 +333,7 @@ function MobileChapter({
               exp.company
             )
           }
-          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
+          className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold bg-transparent border-0 p-0 inline-flex items-center gap-1"
         >
           <span>Credential</span>
         </button>
@@ -346,7 +346,7 @@ function MobileChapter({
           href={(exp as any).applicationUrl || 'https://viswam.ai'}
           target="_blank"
           rel="noopener noreferrer"
-          className="text-[#DC143C] underline underline-offset-4 decoration-1 decoration-[#DC143C] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
+          className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
         >
           <span>View Application</span>
         </a>
