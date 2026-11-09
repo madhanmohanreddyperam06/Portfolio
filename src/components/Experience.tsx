@@ -343,7 +343,7 @@ function MobileChapter({
         </span>
 
         <a
-          href={(exp as any).applicationUrl || 'https://viswam.ai'}
+          href={(exp as any).applicationUrl || 'https://bhashaverse.streamlit.app/'}
           target="_blank"
           rel="noopener noreferrer"
           className="text-[var(--text-primary)] underline underline-offset-4 decoration-1 decoration-[var(--text-primary)] hover:opacity-80 transition-opacity duration-200 cursor-pointer text-xs font-semibold inline-flex items-center gap-1"
