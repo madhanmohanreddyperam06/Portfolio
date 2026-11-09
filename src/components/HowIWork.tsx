@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import howIWork from '../data/howIWork.json';
 
-const PHASES = ['Discover', 'Architect', 'Execute', 'Handover'];
+const PHASES = ['Discover', 'Architect', 'Execute', 'Handover', 'Deliver'];
 const TOTAL = howIWork.length;
 
 interface StepProps {

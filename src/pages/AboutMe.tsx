@@ -318,7 +318,7 @@ export default function AboutMe() {
   return (
     <div className="min-h-screen bg-[var(--bg-base)] text-[var(--text-primary)] selection:bg-[var(--accent)] selection:text-black font-body relative pb-24">
       <Helmet>
-        <title>About Me | Madhan Mohan Reddy Peram</title>
+        <title>About Me</title>
         <meta
           name="description"
           content="Learn more about Madhan Mohan Reddy Peram — Computer Science Graduate, Developer, and researcher based in Cuddapah, Andhra Pradesh, India."

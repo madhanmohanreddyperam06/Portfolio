@@ -7,7 +7,6 @@ gsap.registerPlugin(ScrollTrigger);
 
 const HERO_MOBILE_IMAGES = [
   '/Madhann.jpeg',
-  '/Pastel Anime Portrait of a Young Man.png',
 ];
 
 export default function Hero({ started = false }: { started?: boolean }) {

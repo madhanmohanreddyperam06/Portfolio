@@ -16,6 +16,22 @@
   },
   {
     "id": "proj-02",
+    "title": "Campus Finder",
+    "subtitle": "Generative AI Application",
+    "description": "A comprehensive web application that serves as a one-stop-shop for discovering and evaluating educational institutions across India. This platform is designed to empower students and parents with the data they need to make informed decisions about their educational future.",
+    "tags": [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Shadcn UI",
+      "Google Gemini API"
+    ],
+    "year": "2025",
+    "link": "https://github.com/madhanmohanreddyperam06/Campus-Finder.git",
+    "featured": true
+  },
+  {
+    "id": "proj-03",
     "title": "Portfolio Website",
     "subtitle": "Cinematic React Portfolio",
     "description": "A cinematic portfolio with WebGL particles, GSAP scroll storytelling and editorial typography.",
@@ -32,22 +48,6 @@
     "featured": true
   },
   {
-    "id": "proj-03",
-    "title": "Campus Finder",
-    "subtitle": "Generative AI Application",
-    "description": "Created an intelligent workflow using n8n and Gemini AI that extracts event details from emails and automatically creates Google Calendar events.",
-    "tags": [
-      "Next.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Shadcn UI",
-      "Google Gemini API"
-    ],
-    "year": "2025",
-    "link": "https://github.com/madhanmohanreddyperam06/Campus-Finder.git",
-    "featured": true
-  },
-  {
     "id": "proj-04",
     "title": "Book My Doctor",
     "subtitle": "Flask Application",
@@ -58,7 +58,8 @@
       "HTML5",
       "CSS3",
       "Bootstrap",
-      "JavaScript"
+      "JavaScript",
+      "MySQL"
     ],
     "year": "2025",
     "link": "https://github.com/madhanmohanreddyperam06/BookMyDoctoru.git",
@@ -73,9 +74,9 @@
       "Java",
       "Spring Boot",
       "Razorpay",
-      "MySQL",
       "JavaScript",
-      "REST API"
+      "REST API",
+      "MySQL"
     ],
     "year": "2025",
     "link": "https://github.com/madhanmohanreddyperam06/JMart.git",
