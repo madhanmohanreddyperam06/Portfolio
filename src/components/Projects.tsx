@@ -398,7 +398,7 @@ export default function Projects() {
             maxWidth: '18ch',
           }}
         >
-          Projects I've built{' '}
+          Things I've built{' '}
           <span
             style={{
               fontStyle: 'italic',
