@@ -125,7 +125,7 @@ const EDUCATION_DATA: EducationItem[] = [
     score: '99.33 / 100%',
     scoreLabel: '',
     description:
-      'Graduated with near-perfect academic distinction (99.33%), demonstrating consistent commitment to academic discipline, analytical excellence and teamwork.',
+      'Graduated with near-perfect academic distinction, demonstrating consistent commitment to academic discipline, analytical excellence and teamwork.',
     highlights: [
       'Ranked among top performers across the academic cohort',
       'Consistent academic awards in mathematics and physical sciences'
