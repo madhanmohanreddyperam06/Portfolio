@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import {
   ArrowLeft,
   GraduationCap,
@@ -12,6 +14,8 @@ import {
 } from 'lucide-react';
 import meta from '../data/meta.json';
 import PdfModal, { ActivePdfModal } from '../components/PdfModal';
+
+gsap.registerPlugin(ScrollTrigger);
 
 // Lazy-load Three.js canvas and ParticleField
 const LazyCanvas = React.lazy(() => import('@react-three/fiber').then(m => ({ default: m.Canvas })));
@@ -280,6 +284,36 @@ export default function AboutMe() {
     window.addEventListener('resize', check, { passive: true });
     return () => window.removeEventListener('resize', check);
   }, []);
+
+  // Keep ScrollTrigger synced when category filters, accordion items, or images change height
+  useEffect(() => {
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    resizeObserver.observe(document.body);
+    return () => resizeObserver.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const isReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    scrollProgress.current = 0;
+
+    const st = ScrollTrigger.create({
+      trigger: document.body,
+      start: 'top top',
+      end: 'bottom bottom',
+      scrub: isMobile ? true : 1.3,
+      onUpdate: (self) => {
+        scrollProgress.current = isReducedMotion ? 0 : self.progress;
+      },
+    });
+
+    ScrollTrigger.refresh();
+
+    return () => {
+      st.kill();
+    };
+  }, [isMobile]);
 
   const [webglSupported] = useState<boolean>(() => isWebGLAvailable());
 
