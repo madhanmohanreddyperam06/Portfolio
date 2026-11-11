@@ -13,10 +13,10 @@ export default function Hero({ started = false }: { started?: boolean }) {
   const sectionRef = useRef<HTMLElement>(null);
   const chevronRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
-  const nameRef = useRef<HTMLSpanElement>(null);
   const hasGlitchedRef = useRef(false);
   const [play, setPlay] = useState(false);
   const [entranceDone, setEntranceDone] = useState(false);
+  const [glitching, setGlitching] = useState(false);
   const [activeImgIndex, setActiveImgIndex] = useState(0);
 
   // Rotate mobile portrait backdrop every 5 seconds
@@ -56,10 +56,9 @@ export default function Hero({ started = false }: { started?: boolean }) {
 
   // Trigger glitch shortly after entrance completes
   useEffect(() => {
-    if (!entranceDone || !nameRef.current || hasGlitchedRef.current) return;
+    if (!entranceDone || hasGlitchedRef.current) return;
     hasGlitchedRef.current = true;
-    const el = nameRef.current;
-    const t = window.setTimeout(() => el.classList.add('is-glitching'), 350);
+    const t = window.setTimeout(() => setGlitching(true), 350);
     return () => window.clearTimeout(t);
   }, [entranceDone]);
 
@@ -137,19 +136,29 @@ export default function Hero({ started = false }: { started?: boolean }) {
           {/* Name */}
           <h1
             data-hero-anim
-            className="font-display font-bold tracking-[-0.02em] leading-none whitespace-nowrap"
-            style={{
-              opacity: 0,
-              fontSize: 'clamp(2rem, 5.5vw, 5.5rem)',
-            }}
+            className="font-display font-bold tracking-[-0.02em] leading-none whitespace-nowrap text-[length:clamp(2rem,5.5vw,5.5rem)] md:text-[length:clamp(1.65rem,3.8vw,4rem)]"
+            style={{ opacity: 0 }}
           >
-            <span
-              ref={nameRef}
-              className="glitch"
-              data-text="Madhan DEV"
-            >
-              <span className="text-white [html[data-theme='light']_&]:text-[#0a0a0c]">Madhan</span>{' '}
-              <span className="text-[#DC143C] [html[data-theme='light']_&]:text-[#0a0a0c]">DEV</span>
+            {/* Mobile view (untouched): Madhan DEV */}
+            <span className="md:hidden">
+              <span
+                className={`glitch ${glitching ? 'is-glitching' : ''}`}
+                data-text="Madhan DEV"
+              >
+                <span className="text-white [html[data-theme='light']_&]:text-[#0a0a0c]">Madhan</span>{' '}
+                <span className="text-[#DC143C] [html[data-theme='light']_&]:text-[#0a0a0c]">DEV</span>
+              </span>
+            </span>
+
+            {/* Desktop view: MADHAN MOHAN REDDY PERAM */}
+            <span className="hidden md:inline">
+              <span
+                className={`glitch ${glitching ? 'is-glitching' : ''}`}
+                data-text="MADHAN MOHAN REDDY PERAM"
+              >
+                <span className="text-white [html[data-theme='light']_&]:text-[#0a0a0c]">MADHAN MOHAN REDDY</span>{' '}
+                <span className="text-[#DC143C] [html[data-theme='light']_&]:text-[#0a0a0c]">PERAM</span>
+              </span>
             </span>
           </h1>
 
