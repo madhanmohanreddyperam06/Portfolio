@@ -27,3 +27,8 @@ To run this project locally:
 ## Live URL
 
 [![Live Portfolio](https://img.shields.io/badge/Live-Portfolio-4673FF?style=for-the-badge&logo=render&logoColor=white)](https://portfolio-qto0.onrender.com/)
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
